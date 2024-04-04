@@ -9,7 +9,6 @@
   h2 {
     @apply text-lg text-greenlake-800 dark:text-purple-pale;
     @apply mb-2;
-    /* font-variant-caps: small-caps; */
   }
 
   h3 {
@@ -35,5 +34,9 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+  }
+
+  .small-caps {
+    font-variant-caps: small-caps;
   }
 }

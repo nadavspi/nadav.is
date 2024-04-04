@@ -1,61 +1,109 @@
 ---
-import Layout from "./_layout.astro";
+import Layout from "@layouts/base.astro";
+import Prose from "@components/Prose.astro";
 import { Image } from "astro:assets";
 
-import Spaceship from "./wyoming/wyoming-100.jpg";
-import Ranchers from "./wyoming/wyoming-101.jpg";
-import Jason from "./wyoming/wyoming-102.jpg";
-import Trees from "./wyoming/wyoming-103.jpg";
-import Dan from "./wyoming/wyoming-104.jpg";
-import Lasso from "./wyoming/wyoming-105.jpg";
-import StandingRock from "./wyoming/wyoming-106.jpg";
-import Rodger from "./wyoming/wyoming-107.jpg";
-import StainedGlass from "./wyoming/wyoming-108.jpg";
-import SynagogueExterior from "./wyoming/wyoming-109.jpg";
-import SynagogueStorage from "./wyoming/wyoming-100-2.jpg";
-import SynagogueShelf from "./wyoming/wyoming-110.jpg";
-import Simon from "./wyoming/wyoming-112.jpg";
-import PrayerFence from "./wyoming/wyoming-113.jpg";
-import Me from "./wyoming/wyoming-114.jpg";
+import Map from "./wyoming/map-1882.jpg";
+import Highway from "./wyoming/wyoming-website-01.jpg";
+import Jason from "./wyoming/wyoming-website-02.jpg";
+import Emptiness from "./wyoming/wyoming-website-04.jpg";
+import Dan from "./wyoming/wyoming-website-05.jpg";
+import Lasso from "./wyoming/wyoming-website-06.jpg";
+import DanExterior from "./wyoming/wyoming-website-07.jpg";
+import StainedGlass from "./wyoming/wyoming-website-08.jpg";
+import Simon from "./wyoming/wyoming-website-09.jpg";
+import AyresTree from "./wyoming/wyoming-website-10.jpg";
+import AyresRiver from "./wyoming/wyoming-website-11.jpg";
+import Cribbage from "./wyoming/wyoming-website-13.jpg";
+import Rose from "./wyoming/wyoming-website-14.jpg";
+import SynagogueExterior from "./wyoming/wyoming-website-15.jpg";
+import SynagogueShelf from "./wyoming/wyoming-website-16.jpg";
+import Spaceship from "./wyoming/wyoming-website-17.jpg";
+import Ranchers from "./wyoming/wyoming-website-18.jpg";
+import PrayerFence from "./wyoming/wyoming-website-19.jpg";
+import Riley from "./wyoming/wyoming-website-20.jpg";
+import PowerPlant from "./wyoming/wyoming-website-21.jpg";
+import Train from "./wyoming/wyoming-website-22.jpg";
 ---
 
-<Layout pageTitle="Photography / Wyoming">
-  <div class="text-center">
-    <h1 class="mb-6">Wyoming</h1>
-    <h2>
-      Work in progress
-      <br />
-      2022–ongoing
-    </h2>
+<Layout pageTitle="Photography / Wyoming" backTo="photography">
+  <header class="mb-6 text-center">
+    <h1 class="mb-0">Wyoming</h1>
+    <h2 class="mb-6">Work in progress</h2>
+  </header>
+
+  <div class="grid gap-6 justify-center mb-12">
+    <dl class="text-center">
+      <!-- https://www2.census.gov/programs-surveys/decennial/2020/data/apportionment/apportionment-2020-table01.pdf -->
+      <!-- https://www.census.gov/geographies/reference-files/2010/geo/state-area.html -->
+      <dt class="small-caps">Wyoming</dt>
+      <dd>Population: 577,719</dd>
+      <dd>Area: 97,813 sq mi</dd>
+
+      <dt class="mt-6 small-caps">United Kingdom</dt>
+      <dd>Population: 67 million</dd>
+      <dd>Area: 94,354 sq mi</dd>
+
+      <!-- https://web.archive.org/web/20230401190603/https://www.cbs.gov.il/en/mediarelease/Pages/2022/Population-of-Israel-on-the-Eve-of-2023.aspx -->
+      <!-- https://web.archive.org/web/20210109203809/https://www.cia.gov/the-world-factbook/countries/israel/#geography -->
+      <dt class="mt-6 small-caps">Israel</dt>
+      <dd>Population: 9.6 million</dd>
+      <dd>Area: 8,522 sq mi</dd>
+    </dl>
+    <Prose>
+      <figure>
+        <Image src={Map} alt="Map of Wyoming" />
+        <figcaption>
+          <em>People's Cyclopedia of Universal Knowledge</em>, 1882.
+          <a href="https://wyoshpo.wyo.gov/homestead/maps.html">
+            View source
+          </a>
+        </figcaption>
+      </figure>
+    </Prose>
   </div>
 
-  <div class="grid gap-6 xl:grid-cols-2 2xl:fullbleed 2xl:px-8">
-    <Image src={Spaceship} alt="" />
-    <Image src={Ranchers} alt="" />
-    <Image
-      src={Jason}
-      alt=""
-      class="xl:col-span-2 xl:my-12 xl:max-w-[50rem] justify-self-center"
-    />
-    <div class="xl:col-span-2 grid xl:grid-cols-7 gap-6 xl:mb-12 xl:items-end">
-      <Image src={Trees} alt="" class="xl:col-span-3 xl:mt-24" />
+  <div class="grid gap-12 justify-center xl:fullbleed xl:px-12">
+    <Image src={Highway} alt="" class="" />
+
+    <Image src={Jason} alt="" class="lg:max-w-[40rem] mx-auto" />
+    <Image src={Emptiness} alt="" class="" />
+
+    <div class="grid xl:grid-cols-7 gap-6 xl:mb-12 xl:items-end">
       <Image src={Dan} alt="" class="xl:col-span-4" />
-      <Image src={Lasso} alt="" class="xl:col-span-3 xl:col-start-3" />
+      <Image src={Lasso} alt="" class="mt-12 xl:col-span-3 xl:mt-24" />
+      <Image src={DanExterior} alt="" class="xl:col-span-4 xl:col-start-3" />
     </div>
-    <div class="xl:col-span-2 grid xl:grid-cols-12 gap-6 xl:mb-12 xl:items-end">
-      <Image src={StandingRock} alt="" class="xl:col-span-5" />
-      <Image src={Rodger} alt="" class="xl:col-span-7" />
+
+    <div class="grid xl:grid-cols-3 gap-6 xl:mb-12 xl:items-end">
+      <Image src={StainedGlass} alt="" class="xl:col-span-1" />
+      <Image src={Simon} alt="" class="xl:col-span-2" />
     </div>
-    <div class="xl:col-span-2 grid xl:grid-cols-3 gap-6 xl:mb-12 xl:items-center">
-      <Image src={StainedGlass} alt="" />
-      <div class="xl:col-span-2 xl:row-span-2">
-        <Image src={Simon} alt="" />
+
+    <div class="grid gap-6 xl:grid-cols-6">
+      <Image src={AyresTree} alt="" class="xl:col-span-3" />
+      <Image src={AyresRiver} alt="" class="xl:col-span-3" />
+      <Image src={Cribbage} alt="" class="xl:col-span-4 xl:col-start-2" />
+    </div>
+
+    <Image src={Rose} alt="" class="lg:max-w-[40rem] mx-auto" />
+
+    <div class="grid gap-6 lg:grid-cols-3 lg:items-end">
+      <Image src={SynagogueExterior} alt="" class="lg:col-span-2" />
+      <Image src={SynagogueShelf} alt="" class="" />
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <Image src={Spaceship} alt="" />
+      <Image src={Ranchers} alt="" />
+      <div class="grid lg:grid-cols-4 lg:col-span-2">
+        <Image src={PrayerFence} alt="" class="lg:col-start-2 lg:col-span-2" />
       </div>
-      <Image src={SynagogueStorage} alt="" />
     </div>
-    <Image src={SynagogueShelf} alt="" class="xl:mt-12" />
-    <Image src={SynagogueExterior} alt="" />
-    <Image src={PrayerFence} alt="" />
-    <Image src={Me} alt="" class="xl:col-span-1 xl:col-start-1 xl:mt-12" />
+
+    <Image src={Riley} alt="" class="lg:max-w-[40rem] mx-auto" />
+
+    <Image src={PowerPlant} alt="" />
+    <Image src={Train} alt="" class="" />
   </div>
 </Layout>

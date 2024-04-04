@@ -1,3 +1,7 @@
+---
+const { class: className } = Astro.props;
+---
+
 <div
   class:list={[
     "prose dark:prose-invert prose-nadav",
@@ -5,7 +9,8 @@
     "prose-a:no-underline prose-a:font-normal",
     "prose-h1:font-bold prose-h1:mb-8 prose-h1:text-xl md:prose-h1:text-2xl",
     "prose-h1:text-purple-dark prose-h1:dark:text-purple-light",
-    "prose-h2:text-lg prose-h2:text-greenlake-800 dark:prose-h2:text-purple-pale prose-h2:mt-0 prose-h2:mb-2"
+    "prose-h2:text-lg prose-h2:text-greenlake-800 dark:prose-h2:text-purple-pale prose-h2:mt-0 prose-h2:mb-2",
+    className,
   ]}
 >
   <slot />
