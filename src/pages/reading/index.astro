@@ -1,0 +1,34 @@
+---
+import Content from "./_content.astro";
+// import Items from "./_items.astro";
+import WrittenLongAgo from "@components/WrittenLongAgo.astro";
+import Layout from "@layouts/base.astro";
+// import TagNav from "@components/TagNav.astro";
+import { getCollection } from "astro:content";
+
+import { compareDesc } from "date-fns";
+
+const reading = await getCollection("reading");
+const items = reading
+  .sort((a, b) => b.data.dateUpdated - a.data.dateUpdated)
+  .filter((item) => {
+    return item.data.title != "undefined";
+  });
+---
+
+<Layout pageTitle="Reading">
+  <ol>
+    {
+      items.map((item) => {
+        const { data } = item;
+        return (
+          <li class="mb-4">
+            <h2>{data.title}</h2>
+            <WrittenLongAgo class="text-sm" date={data.dateUpdated} />
+            <Content item={item} />
+          </li>
+        );
+      })
+    }
+  </ol>
+</Layout>

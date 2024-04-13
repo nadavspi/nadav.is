@@ -1,0 +1,9 @@
+---
+import Prose from "@components/Prose.astro";
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<Prose>
+  <Content />
+</Prose>
