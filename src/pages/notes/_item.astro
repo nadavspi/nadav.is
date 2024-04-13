@@ -1,7 +1,7 @@
 ---
 import { excludedTags } from "./allTags.ts";
-const { collection, data, slug } = Astro.props;
-const { cover, coverAlt, date, tags = [], title, titleTranslated } = data;
+const { collection, data, date = data.date, slug } = Astro.props;
+const { cover, coverAlt, tags = [], title, titleTranslated } = data;
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import { Image } from "astro:assets";
 
@@ -14,13 +14,18 @@ const isFeatured = hasTag("featured");
 
 const displayTags = (() => {
   const displayableTags = tags.filter((tag) => !excludedTags.includes(tag));
-  if (collection == "writing" && displayableTags) {
-    return displayableTags;
+  switch (collection) {
+    case "writing":
+      if (displayableTags) {
+        return displayableTags;
+      }
+    case "watching":
+      return ["media"];
+    case "reading":
+      return [data.category];
+    default:
+      return [collection];
   }
-  if (collection == "watching") {
-    return ["media"];
-  }
-  return [collection];
 })();
 
 const href = (() => {
@@ -31,7 +36,7 @@ const href = (() => {
     return `/notes/media/${slug}`;
   }
   if (collection == "reading") {
-    return `/notes/reading/${slug}`;
+    return `/reading/${slug}`;
   }
 
   throw new Error(`Missing href logic for collection \`${collection}\``);

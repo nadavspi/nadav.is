@@ -1,5 +1,6 @@
 ---
 import Content from "./_content.astro";
+import Item from "../notes/_item.astro";
 // import Items from "./_items.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import Layout from "@layouts/base.astro";
@@ -17,16 +18,16 @@ const items = reading
 ---
 
 <Layout pageTitle="Reading">
-  <ol>
+  <ol class="grid lg:grid-cols-2 xl:grid-cols-3">
     {
-      items.map((item) => {
-        const { data } = item;
+      items.map(({ data, slug, collection }) => {
         return (
-          <li class="mb-4">
-            <h2>{data.title}</h2>
-            <WrittenLongAgo class="text-sm" date={data.dateUpdated} />
-            <Content item={item} />
-          </li>
+          <Item
+            collection={collection}
+            data={data}
+            date={data.dateUpdated}
+            slug={slug}
+          />
         );
       })
     }
