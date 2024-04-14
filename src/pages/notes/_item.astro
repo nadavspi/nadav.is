@@ -1,9 +1,11 @@
 ---
-import { excludedTags } from "./allTags.ts";
-const { collection, data, date = data.date, slug } = Astro.props;
+const { item, date = item.data.date } = Astro.props;
+const { collection, data, slug } = item;
 const { cover, coverAlt, tags = [], title, titleTranslated } = data;
+import ItemContent from "@components/ItemContent.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import { Image } from "astro:assets";
+import { excludedTags } from "./allTags.ts";
 
 const hasTag = (tag) => {
   if (!tags) return false;
@@ -41,9 +43,18 @@ const href = (() => {
 
   throw new Error(`Missing href logic for collection \`${collection}\``);
 })();
+
+const pathname = Astro.url.pathname
+  // trim trailing slash
+  .replace(/\/$/, "")
+  // trim /reading because that's not in the slug
+  .replace(/^\/reading\//, "");
+const isActive = slug === pathname;
+
+const Element = isActive ? 'div' : 'a';
 ---
 
-<a
+<Element
   href={href}
   class:list={[
     "relative group",
@@ -54,7 +65,7 @@ const href = (() => {
     "shadow-md",
     "border-4 rounded",
     "border-tumbleweed-600 dark:border-purple",
-    "hover:border-greenlake dark:hover:border-cyan",
+    { "hover:border-greenlake dark:hover:border-cyan": !isActive },
     { "border-tumbleweed-600/50 hover:border-tumbleweed-600/100": isArchived },
     { "dark:border-purple/70": isArchived },
     { "row-span-2": isFeatured },
@@ -96,4 +107,5 @@ const href = (() => {
     </time>
   </div>
   {cover && <Image src={cover} alt={coverAlt} class="mb-2" />}
-</a>
+  {isActive && collection === "reading" && <ItemContent item={item} />}
+</Element>

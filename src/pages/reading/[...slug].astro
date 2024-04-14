@@ -1,0 +1,15 @@
+---
+import Layout from "@layouts/base.astro";
+import { getCollection } from "astro:content";
+import ReadingGrid from "./_grid.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("reading");
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+---
+
+<ReadingGrid />

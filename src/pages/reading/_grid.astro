@@ -1,0 +1,22 @@
+---
+import Item from "../notes/_item.astro";
+import Layout from "@layouts/base.astro";
+import { getCollection } from "astro:content";
+
+const reading = await getCollection("reading");
+const items = reading
+  .sort((a, b) => b.data.dateUpdated - a.data.dateUpdated)
+  .filter((item) => {
+    return item.data.title != "undefined";
+  });
+---
+
+<Layout pageTitle="Reading">
+  <ol class="grid xl:grid-cols-2">
+    {
+      items.map((item) => {
+        return <Item item={item} date={item.data.dateUpdated} />;
+      })
+    }
+  </ol>
+</Layout>

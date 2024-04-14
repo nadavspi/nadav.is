@@ -1,35 +1,5 @@
 ---
-import Content from "./_content.astro";
-import Item from "../notes/_item.astro";
-// import Items from "./_items.astro";
-import WrittenLongAgo from "@components/WrittenLongAgo.astro";
-import Layout from "@layouts/base.astro";
-// import TagNav from "@components/TagNav.astro";
-import { getCollection } from "astro:content";
-
-import { compareDesc } from "date-fns";
-
-const reading = await getCollection("reading");
-const items = reading
-  .sort((a, b) => b.data.dateUpdated - a.data.dateUpdated)
-  .filter((item) => {
-    return item.data.title != "undefined";
-  });
+import ReadingGrid from "./_grid.astro";
 ---
 
-<Layout pageTitle="Reading">
-  <ol class="grid lg:grid-cols-2 xl:grid-cols-3">
-    {
-      items.map(({ data, slug, collection }) => {
-        return (
-          <Item
-            collection={collection}
-            data={data}
-            date={data.dateUpdated}
-            slug={slug}
-          />
-        );
-      })
-    }
-  </ol>
-</Layout>
+<ReadingGrid />

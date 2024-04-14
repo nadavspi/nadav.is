@@ -7,8 +7,8 @@ const archived = items.filter(item => item.data.tags?.includes("archived"))
 
 <ol class="grid md:grid-cols-2 lg:grid-cols-3">
   {
-    [...unarchived, ...archived].map(({ collection, data, slug }) => {
-      return <Item data={data} slug={slug} collection={collection} />;
+    [...unarchived, ...archived].map((item) => {
+      return <Item item={item} />;
     })
   }
 </ol>
