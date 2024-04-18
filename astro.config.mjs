@@ -9,4 +9,7 @@ export default defineConfig({
   integrations: [mdx(), tailwind({
     applyBaseStyles: false
   }), react()],
+  prefetch: {
+    prefetchAll: true
+  }
 });

@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/fonts.css";
 import Header from "../components/Header.astro";
 const { pageTitle, backTo, noHeader } = Astro.props;
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <html class="dark text-lg md:text-2xl/normal font-serif p-8 md:px-10" lang="en">
@@ -12,6 +13,7 @@ const { pageTitle, backTo, noHeader } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <ViewTransitions />
   </head>
   <body class="bg-tumbleweed-100 dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-[60rem] mx-auto">
     {!noHeader && <Header backTo={backTo} />}
