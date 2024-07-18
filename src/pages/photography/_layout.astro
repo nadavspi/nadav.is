@@ -3,16 +3,18 @@ const { pageTitle } = Astro.props;
 import Layout from "@layouts/base.astro";
 import Subnav from "@components/Subnav.astro";
 
+const { class: className } = Astro.props;
 const links = [
   { text: "Wyoming", href: "/photography/wyoming" },
   { text: "Andy Miller", href: "/photography/andy-miller" },
   { text: "Eric Goldberg", href: "/photography/eric-goldberg" },
+  { text: "Everything is fine", href: "/photography/everything-is-fine" },
 ];
 ---
 
 <Layout pageTitle={pageTitle}>
   <Subnav class="mb-10" links={links} />
-  <div class="grid gap-y-8">
+  <div class:list={["grid gap-y-8", className ]}>
     <slot />
   </div>
 </Layout>
