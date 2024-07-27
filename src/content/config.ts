@@ -46,6 +46,7 @@ const writing = defineCollection({
     dateUpdated: z.date().optional(),
     tags: z.array(z.string()).optional(),
     title: z.string(),
+    subtitle: z.string().optional(),
   }),
 });
 
