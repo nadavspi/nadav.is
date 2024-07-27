@@ -1,14 +1,13 @@
 import mdx from "@astrojs/mdx";
-import { defineConfig } from "astro/config";
+import preact from "@astrojs/preact";
 import tailwind from "@astrojs/tailwind";
-
-import react from "@astrojs/react";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx(), tailwind({
     applyBaseStyles: false
-  }), react()],
+  }), preact({ compat: true })],
   prefetch: {
     prefetchAll: true
   }
