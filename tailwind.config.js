@@ -22,7 +22,7 @@ export default {
 					'--tw-prose-captions': theme('colors.greenlake[800]'),
 					'--tw-prose-invert-body': theme('colors.purple.light'),
 					'--tw-prose-invert-bullets': theme('colors.purple.light'),
-					'--tw-prose-invert-quotes': theme('colors.tumbleweed[50]'),
+					'--tw-prose-invert-quotes': theme('colors.purple.light'),
 					'--tw-prose-invert-quote-borders': theme('colors.tumbleweed[400]'),
 					'--tw-prose-invert-captions': theme('colors.tumbleweed[50]'),
 					},
