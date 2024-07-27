@@ -1,7 +1,7 @@
 ---
 import { excludedTags } from "./allTags.ts";
 const { collection, data, slug } = Astro.props;
-const { cover, coverAlt, date, tags = [], title, titleTranslated } = data;
+const { cover, coverAlt, date, tags = [], title, titleTranslated, subtitle } = data;
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import { Image } from "astro:assets";
 
@@ -84,6 +84,7 @@ const href = (() => {
   <div class="block text-center text-lg/tight my-5">
     {title}
     {titleTranslated && <div>{titleTranslated}</div>}
+    {subtitle && <div class="text-xs mt-2">{subtitle}</div>}
     <time
       class="absolute bottom-2 right-2 block text-sm text-purple-dark dark:text-purple-light"
     >
