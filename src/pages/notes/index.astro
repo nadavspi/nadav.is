@@ -5,9 +5,9 @@ import TagNav from "@components/TagNav.astro";
 import { getCollection } from "astro:content";
 
 const writing = await getCollection("writing");
-const watching = await getCollection("watching");
+const media = await getCollection("media");
 const reading = await getCollection("reading");
-const items = [...writing, ...reading, ...watching].sort((a, b) => b.data.date - a.data.date);
+const items = [...writing, ...reading, ...media].sort((a, b) => b.data.date - a.data.date);
 ---
 
 <Layout pageTitle="Writing">

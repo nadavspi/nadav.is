@@ -5,7 +5,7 @@ import Prose from "@components/Prose.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const items = await getCollection("watching");
+  const items = await getCollection("media");
   return items.map((item) => ({
     params: { slug: item.slug },
     props: { item },
