@@ -9,7 +9,7 @@ export async function getStaticPaths() {
   const allItems = await getCollection("writing");
   const itemsByTag = async (tag) => {
     if (tag == "media") {
-      return await getCollection("watching");
+      return await getCollection("media");
     }
     if (tag == "reading") {
       return await getCollection("reading");

@@ -23,7 +23,7 @@ const reading = defineCollection({
   }),
 });
 
-const watching = defineCollection({
+const media = defineCollection({
   type: 'content', 
   schema: z.object({
     category: z.enum(["Movie", "TV"]),
@@ -54,5 +54,5 @@ export const collections = {
   "reading": reading,
   "photoCollection": photoCollection,
   "writing": writing,
-  "watching": watching,
+  "media": media,
 };

@@ -17,7 +17,7 @@ const displayTags = (() => {
   if (collection == "writing" && displayableTags) {
     return displayableTags;
   }
-  if (collection == "watching") {
+  if (collection == "media") {
     return ["media"];
   }
   return [collection];
@@ -27,7 +27,7 @@ const href = (() => {
   if (collection == "writing") {
     return `/notes/${slug}`;
   }
-  if (collection == "watching") {
+  if (collection == "media") {
     return `/notes/media/${slug}`;
   }
   if (collection == "reading") {
