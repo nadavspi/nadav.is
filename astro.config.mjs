@@ -10,5 +10,6 @@ export default defineConfig({
   }), preact({ compat: true })],
   prefetch: {
     prefetchAll: true
-  }
+  },
+  site: "https://nadav.is",
 });

@@ -13,4 +13,5 @@ const items = [...writing, ...reading, ...media].sort((a, b) => b.data.date - a.
 <Layout pageTitle="Writing">
   <TagNav />
   <Items items={items} />
+  <footer class="mt-6 text-sm text-right"><a href="/rss.xml">Subscribe (RSS feed)</a></footer>
 </Layout>
