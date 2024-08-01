@@ -12,7 +12,7 @@
   }
 
   h3 {
-    @apply text-lg;
+    @apply text-sm;
   }
 
   a {
