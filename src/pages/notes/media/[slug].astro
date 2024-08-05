@@ -2,6 +2,8 @@
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import Layout from "@layouts/base.astro";
 import Prose from "@components/Prose.astro";
+import PostHeader from "@components/PostHeader.astro";
+import PostTitle from "@components/PostTitle.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -18,17 +20,17 @@ const { category, date, title, titleTranslated, yearPublished } = item.data;
 ---
 
 <Layout backTo="notes" pageTitle={title}>
-  <header class="mb-8">
-    <h1 class="mb-0">
+  <PostHeader>
+    <PostTitle>
       <span class="block">{title}</span>
       {titleTranslated}
-    </h1>
+    </PostTitle>
     <div class="flex gap-2">
       <WrittenLongAgo date={date} />
       ⋅
       <div>{yearPublished}, {category}</div>
     </div>
-  </header>
+  </PostHeader>
 
   <Prose>
     <Content />
