@@ -1,4 +1,6 @@
 ---
+import PostTitle from "@components/PostTitle.astro";
+import PostHeader from "@components/PostHeader.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import Layout from "@layouts/base.astro";
 import Prose from "@components/Prose.astro";
@@ -18,11 +20,11 @@ const { date, title, subtitle } = item.data;
 ---
 
 <Layout backTo="notes" pageTitle={title}>
-  <header class="mb-8">
-    <h1 class="mb-0">{title}</h1>
+  <PostHeader>
+    <PostTitle>{title}</PostTitle>
     {subtitle && <h2>{subtitle}</h2>}
     <WrittenLongAgo date={date} />
-  </header>
+  </PostHeader>
 
   <Prose>
     <Content />
