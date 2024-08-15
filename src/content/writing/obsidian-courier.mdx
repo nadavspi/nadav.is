@@ -17,7 +17,7 @@ Since Courier is written specifically for my particular workflow, I'm not planni
 
 The plugin adds a command to Obsidian that takes the current file, does some stuff to it, and copies it to my local Astro content directory. At that point, I can preview it in Astro, commit it to git, and push to deploy.
 
-<Image src={courierCommand} alt="" />
+<Image src={courierCommand} alt="Courier's Publish current file command in Obsidian's command palette" />
 
 ## What it does
 
@@ -70,7 +70,7 @@ Here's a diagram explaining the concept:
 
 3. Support for multiple content collections:  The plugin uses a frontmatter property (`type`) to determine the appropriate Astro content collection for the post. There's a setting for the default collection that's used if the frontmatter doesn't have a `type`.
 
-<Image src={courierSettings} alt="" />
+<Image src={courierSettings} alt="Plugin settings for output path and default subdirectory for files without a frontmatter type" />
 
    If I have a note with `type: "media"` in its frontmatter, the plugin will output it to `/content/media/my-post.mdx`. This corresponds to Astro's content collection structure, where each subdirectory under `/content` represents a collection.
 
