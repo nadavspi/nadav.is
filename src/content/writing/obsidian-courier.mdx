@@ -46,15 +46,16 @@ title: My cool post
    - Using MDX, the images are automatically imported and displayed from the new location.
 
    Example:
-   - In Obsidian: 
 ```markdown
 # My cool post
 
 Here's a diagram explaining the concept:
 
-<Image src={coolDiagram} alt="" />
+
+![[cool diagram.png]]
 ```
 
+this becomes
 
 ```mdx
 import { Image } from 'astro:assets';
