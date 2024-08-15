@@ -1,0 +1,152 @@
+---
+created: 2024-07-31T11:45:50-04:00
+title: Obsidian Courier
+subtitle: Publishing to my Astro site from Obsidian
+date: 2024-08-03
+tags:
+  - computers
+---
+import { Image } from "astro:assets";
+import courierCommand from "./obsidian-courier/courier command.png";
+import courierSettings from "./obsidian-courier/courier settings.png";
+
+
+Since 2020, I've been doing much of my thinking, writing, and note taking in [Obsidian](https://obsidian.md/), a Markdown editor that supports wiki-style links and has a robust plugin ecosystem. This website is built using [Astro](https://astro.build/), which can create pages or posts from Markdown files. The process of manually copying and reformatting stuff from Obsidian to Astro is time consuming and error prone enough that I decided to build myself a little Obsidian plugin to reduce that friction. (Plus, programming is kinda fun sometimes.) It took about a week to get it into a really useful state, and I'm calling it [Obsidian Courier](https://github.com/nadavspi/obsidian-courier).
+
+Since Courier is written specifically for my particular workflow, I'm not planning to officially release it as a community plugin. I may in the future if there's interest.
+
+The plugin adds a command to Obsidian that takes the current file, does some stuff to it, and copies it to my local Astro content directory. At that point, I can preview it in Astro, commit it to git, and push to deploy.
+
+<Image src={courierCommand} alt="" />
+
+## What it does
+
+1. Add a title to frontmatter: Ensures my post has a title, using the filename if necessary.
+
+   Example:
+   - Original frontmatter:
+```yaml
+---
+date: 2024-08-03
+---
+```
+   - If the file is named "My cool post.md", the frontmatter becomes:
+```yaml
+---
+date: 2024-08-03
+title: My cool post
+---
+```
+
+2. Image processing: The plugin takes any images embedded in the document and copies them to Astro, putting them into a directory named for the post.
+
+   Here's how it works:
+   - The plugin creates a directory named after the post's slug (a URL-friendly version of the post title generated automatically, or specified by me manually in frontmatter).
+   - All images embedded in that post are copied into this directory. (`/content/[collection]/[post-slug]/`)
+   - Using MDX, the images are automatically imported and displayed from the new location.
+
+   Example:
+```markdown
+# My cool post
+
+Here's a diagram explaining the concept:
+
+
+![[cool diagram.png]]
+```
+
+this becomes
+
+```mdx
+import { Image } from 'astro:assets';
+import coolDiagram from './cool-diagram.png';
+
+# My cool post
+
+Here's a diagram explaining the concept:
+
+<Image src={coolDiagram} alt="" />
+```
+
+3. Support for multiple content collections:  The plugin uses a frontmatter property (`type`) to determine the appropriate Astro content collection for the post. There's a setting for the default collection that's used if the frontmatter doesn't have a `type`.
+
+<Image src={courierSettings} alt="" />
+
+   If I have a note with `type: "media"` in its frontmatter, the plugin will output it to `/content/media/my-post.mdx`. This corresponds to Astro's content collection structure, where each subdirectory under `/content` represents a collection.
+
+   Here's an example of how my `media` collection is defined in `content/config.ts`:
+
+```typescript
+import { defineCollection, z } from 'astro:content';
+
+const media = defineCollection({
+ type: 'content', 
+ schema: z.object({
+   category: z.enum(["Movie", "TV"]),
+   date: z.date(),
+   link: z.string().optional(),
+   title: z.string(),
+   titleTranslated: z.string().optional(),
+   yearPublished: z.number(),
+ }),
+});
+
+export const collections = {
+ "media": media,
+ // ... other collections
+};
+```
+
+
+4. Remove wikilinks: It automatically converts Obsidian's wikilink format (`link`) to normal text. 
+
+   Example:
+   - In Obsidian: `Check out [[My Cool Project]]`
+   - Converted: `Check out My Cool Project`
+
+5. Remove private notes: I can put personal notes at the end of the file under a "Notes" heading and they'll be removed.
+
+   Example:
+   - In Obsidian: 
+```markdown
+Here's my public content.
+
+## Notes
+Remember to buy milk.
+```
+
+   - Converted:
+```
+Here's my public content.
+```
+
+
+## How it works
+
+The code is [available on GitHub](https://github.com/nadavspi/obsidian-courier).
+
+Obsidian Courier is built using TypeScript and leverages Obsidian's plugin API. [Unit tests](https://github.com/nadavspi/obsidian-courier/tree/main/tests) are written in Jest. 
+
+Here's a high-level overview of the process:
+
+1. When I trigger the publish command, the plugin grabs the content of my current note.
+2. It then runs the content through a series of [processors](https://github.com/nadavspi/obsidian-courier/tree/main/src/processors), as detailed above:
+   - `addTitleToFrontmatter`: Ensures the post has a title, using the filename if necessary
+   - `ImageCopier`: Copies images to a directory named for the post's slug
+   - `rewriteImages`: Converts image embeds to their respective `import` and `<Image />` lines
+   - `removeNotes`: Strips out any personal notes I don't want to publish
+   - `wikilinks`: Converts wiki-style links to plain text
+3. The processed content is then written to my specified output directory, ready for Astro's build process.
+
+## Future improvements
+
+This thing is already very useful for my needs, but some things I'm thinking about for the future:
+
+1. Alt texts for images: Obsidian's way of embedding images (`![[Name of image]]`) doesn't support alt text. I'm considering implementing a solution similar to the [Obsidian Image Captions plugin](https://github.com/alangrainger/obsidian-image-captions) to support alt text in a format like this: `![[Name of image|alt text]]`. For now, I'll be manually adding the alt text once the file is in Astro.
+
+2. Figure and figcaption support: I use figure and figcaption HTML elements quite often in my posts. I may develop a way to generate these without writing out the HTML, making it easier to add captions to images directly in Obsidian, although that would also require some non-standard Markdown.
+
+3. Smart link conversion: Currently, the plugin removes all wikilinks to other documents. It would be cool to support links to documents that have already been published on my website. For example, `[[Charlie Haden]]` would be converted to a proper link to [that post on my site](https://nadav.is/notes/charlie-haden) rather than being removed. 
+
+4. Process the entire vault: It might be nice to have a second command that looks through the entire vault for files that should be published. I'd probably make this an opt-in feature (e.g., by having `publish: true` in frontmatter). 
+
