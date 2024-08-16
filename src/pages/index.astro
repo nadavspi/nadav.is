@@ -30,7 +30,11 @@ import navLinks from "@components/navLinks.js";
       >
         Hello. I’m Nadav Spiegelman.
       </h1>
-      <Image src={Nadav} alt="here I am" class="md:max-w-[24rem] 2xl:max-w-[30rem] mb-6" />
+      <Image
+        src={Nadav}
+        alt="here I am"
+        class="md:max-w-[24rem] 2xl:max-w-[30rem] mb-6"
+      />
 
       <p>
         I’m an artist & computer geek living in New York City.<br />
@@ -63,13 +67,18 @@ import navLinks from "@components/navLinks.js";
   <footer
     class:list={[
       "mt-6 pt-6 max-w-80",
-      "xl:pt-0 xl:max-w-none",
+      "xl:pt-0 xl:mt-4 xl:max-w-none",
       "border-t-4",
       "border-tumbleweed dark:border-purple",
       "xl:border-t-0",
-      "xl:text-right",
+      "xl:flex justify-between items-center gap-2",
     ]}
   >
-    Want to talk? <a href="mailto:hello@nadav.is">hello@nadav.is</a>
+    <div class="mb-2 xl:mb-0 xl:order-last">
+      Want to talk? <a href="mailto:hello@nadav.is">hello@nadav.is</a>
+    </div>
+    <a class="text-sm md:text-xs" href="https://github.com/nadavspi/nadav.is">
+      View Source
+    </a>
   </footer>
 </Layout>
