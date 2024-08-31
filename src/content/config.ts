@@ -27,6 +27,8 @@ const media = defineCollection({
   type: 'content', 
   schema: ({ image }) => z.object({
     category: z.enum(["Movie", "TV"]),
+    cover: image().optional(),
+    coverAlt: z.string().optional(),
     date: z.date(),
     link: z.string().optional(),
     title: z.string(),
