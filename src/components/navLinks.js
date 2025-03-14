@@ -1,4 +1,4 @@
 export default [
   { href: "/notes", text: "Notes" },
-  { href: "/photography/wyoming", text: "Photography" },
+  { href: "/photography", text: "Photography" },
 ]
