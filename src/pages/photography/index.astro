@@ -1,0 +1,120 @@
+---
+import Layout from "./_layout.astro";
+
+import Persian from "./food/_persian cookbook club_Nadav Spiegelman_073.jpg";
+import Bread from "./food/_bread_Nadav Spiegelman_022.jpg";
+import Macaron from "./food/_2024-09-28 yuhe cocusocial macaron class_Nadav Spiegelman_046.jpg";
+import Class from "./food/_2024-09-28 yuhe cocusocial macaron class_Nadav Spiegelman_043.jpg";
+
+import PowerPlant from "./wyoming/_wyoming-website-21.jpg";
+import Riley from "./wyoming/_wyoming-website-20.jpg";
+import Simon from "./wyoming/_wyoming-website-09.jpg";
+import Train from "./wyoming/_wyoming-website-22.jpg";
+
+import NoWarCriminals from "./social-justice/2024-09-26 UN action_Nadav Spiegelman_032.jpg";
+import BadInvestment from "./social-justice/2024-11-11 JVP cipriani picket_Nadav Spiegelman_035.jpg";
+import Arrest from "./social-justice/JVP 2024-10-14 NYSE_Nadav Spiegelman_188.jpg";
+import Alan from "./social-justice/2024-11-17 zoa gala_Nadav Spiegelman_029.jpg";
+import Crucifix from "./social-justice/2025-03-03 ADL protest INN_Nadav Spiegelman_098.jpg";
+import Doge from "./social-justice/2025-03-03 ADL protest INN_Nadav Spiegelman_097.jpg";
+import SameHate from "./social-justice/2025-03-03 ADL protest INN_Nadav Spiegelman_099.jpg";
+
+import Bus from "./everything-is-fine/everything-is-fine-01.jpg";
+import Trash from "./everything-is-fine/everything-is-fine-08.jpg";
+import Punch from "./everything-is-fine/everything-is-fine-11.jpg";
+import Cops from "./everything-is-fine/everything-is-fine-14.jpg";
+
+import Terrorism from "./gaza-signs/gaza signs_Nadav Spiegelman_017.jpg";
+import NothingRadicalizes from "./gaza-signs/gaza signs_Nadav Spiegelman_025.jpg";
+import FreePalestine from "./gaza-signs/gaza signs_Nadav Spiegelman_023.jpg";
+import EndTheGenocides from "./gaza-signs/gaza signs_Nadav Spiegelman_024.jpg";
+
+import AndyPortrait from "./andy-miller/andy-miller-102.jpg";
+import AndyStudio from "./andy-miller/andy-miller-103.jpg";
+import EricPlate from "./eric-goldberg/eric-goldberg-1.jpg";
+import EricPortrait from "./eric-goldberg/eric-goldberg-7.jpg";
+
+import { Image } from "astro:assets";
+---
+
+<Layout pageTitle="Photography">
+  <h1 class="mb-0">Photography</h1>
+
+  <section>
+    <h2 class="text-center mb-4">Social justice</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <Image sizes="50vw" src={BadInvestment} alt="" />
+      <Image sizes="50vw" src={NoWarCriminals} alt="" />
+      <Image sizes="50vw" src={Arrest} alt="" />
+      <Image sizes="50vw" src={Alan} alt="" />
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+      <Image sizes="33vw" src={SameHate} alt="" />
+      <Image sizes="33vw" src={Doge} alt="" />
+      <Image sizes="33vw" src={Crucifix} alt="" />
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-center mb-4">Wyoming</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={Train} alt="" />
+      <Image sizes="50vw" src={Riley} alt="" />
+      <Image sizes="50vw" src={Simon} alt="" />
+      <Image sizes="50vw" src={PowerPlant} alt="" />
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-center mb-4">The streets speak</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={FreePalestine} alt="" />
+      <Image sizes="50vw" src={EndTheGenocides} alt="" />
+      <Image sizes="50vw" src={Terrorism} alt="" />
+      <Image sizes="50vw" src={NothingRadicalizes} alt="" />
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-center mb-4">Everything is fine</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={Bus} alt="" />
+      <Image sizes="50vw" src={Trash} alt="" />
+      <Image sizes="50vw" src={Punch} alt="" />
+      <Image sizes="50vw" src={Cops} alt="" />
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-center mb-4">Art & artists</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={AndyPortrait} alt="" />
+      <Image sizes="50vw" src={AndyStudio} alt="" />
+      <Image sizes="50vw" src={EricPlate} alt="" />
+      <Image sizes="50vw" src={EricPortrait} alt="" />
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-center mb-4">Food</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image
+        sizes="50vw"
+        src={Persian}
+        alt="Overhead shot of a Persian meal: a whole roast chicken, barbari bread, rice, feta cheese, nuts & herbs"
+      />
+      <Image sizes="50vw" src={Class} alt="" />
+      <Image
+        sizes="50vw"
+        src={Bread}
+        alt="Closeup shot of a darkly baked loaf of bread with another in the background"
+        class="aspect-[4/5] object-cover object-top"
+      />
+      <Image
+        sizes="50vw"
+        src={Macaron}
+        alt="A tray of macarons being put into a commercial oven"
+      />
+    </div>
+  </section>
+</Layout>
