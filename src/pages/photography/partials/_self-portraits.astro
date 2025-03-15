@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+// self portraits
+import SelfPortrait2017 from "../self-portraits/_2017 self portrait.jpg";
+import SelfPortrait2018 from "../self-portraits/_2018 self portrait.jpg";
+import SelfPortrait2019 from "../self-portraits/_2019 self portrait.jpg";
+import SelfPortrait2020 from "../self-portraits/_2020 self portrait.jpg";
+import SelfPortrait2021 from "../self-portraits/_2021 self portrait.jpg";
+import SelfPortrait2022 from "../self-portraits/_2022 self portrait.jpg";
+import SelfPortrait2023 from "../self-portraits/_2023 self portrait.jpg";
+import SelfPortrait2024 from "../../../content/photos/nadav-closet.jpg";
+
+const figures = [
+{ src: SelfPortrait2017, alt: "Mirror selfie with a small camera", caption: "2017" },
+{ src: SelfPortrait2018, alt: "Mirror selfie with a different small camera", caption: "2018" },
+{ src: SelfPortrait2019, alt: "Mirror selfie with yet another small camera, same background as 2017", caption: "2019" },
+{ src: SelfPortrait2020, alt: "Mirror selfie with a 4x5 view camera, same background as 2018", caption: "2020" },
+{ src: SelfPortrait2021, alt: "Mirror selfie with a medium format camera, wearing a face mask", caption: "2021" },
+{ src: SelfPortrait2022, alt: "Self portrait in hotel room, same shirt as 2019", caption: "2022" },
+{ src: SelfPortrait2023, alt: "Self portrait in front of drapes", caption: "2023" },
+{ src: SelfPortrait2024, alt: "Self portrait peering out of the darkroom closet", caption: "2024" },
+];
+---
+
+<section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
+  <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+    {
+      figures.map(({ alt, src, caption }) => (
+        <figure>
+          <>
+            <Image sizes="33vw" src={src} alt={alt} />
+            <figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">
+              {caption}
+            </figcaption>
+          </>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  figure {
+    display: grid;
+    grid-template: "container";
+    place-items: center;
+    place-content: center;
+  }
+
+  figure > * {
+    grid-area: container;
+  }
+
+  figcaption {
+    place-self: end right;
+  }
+</style>

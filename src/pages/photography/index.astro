@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import Layout from "@layouts/base.astro";
 
+import SelfPortraits from "./partials/_self-portraits.astro";
+
 // food
 import Persian from "./food/_persian cookbook club_Nadav Spiegelman_073.jpg";
 import Bread from "./food/_bread_Nadav Spiegelman_022.jpg";
@@ -41,35 +43,13 @@ import AndyStudio from "./andy-miller/_andy-miller-103.jpg";
 import EricPlate from "./eric-goldberg/_eric-goldberg-1.jpg";
 import EricPortrait from "./eric-goldberg/_eric-goldberg-7.jpg";
 
-// self portraits
-import SelfPortrait2017 from "./self-portraits/2017 self portrait.jpg";
-import SelfPortrait2018 from "./self-portraits/2018 self portrait.jpg";
-import SelfPortrait2019 from "./self-portraits/2019 self portrait.jpg";
-import SelfPortrait2020 from "./self-portraits/2020 self portrait.jpg";
-import SelfPortrait2021 from "./self-portraits/2021 self portrait.jpg";
-import SelfPortrait2022 from "./self-portraits/2022 self portrait.jpg";
-import SelfPortrait2023 from "./self-portraits/2023 self portrait.jpg";
-import SelfPortrait2024 from "../../content/photos/nadav-closet.jpg";
-
 ---
 
 <Layout pageTitle="Photography">
   <div class="grid gap-y-8">
     <h1 class="mb-0">Photography</h1>
 
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-        <figure><Image sizes="33vw" src={SelfPortrait2017} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2017</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2018} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2018</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2019} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2019</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2020} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2020</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2021} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2021</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2022} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2022</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2023} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2023</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2024} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2024</figcaption></figure>
-      </div>
-    </section>
-
+    <SelfPortraits />
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
       <h2 class="text-center mb-4">Social justice</h2>
       <div class="grid grid-cols-2 gap-4 mb-4">
@@ -164,20 +144,3 @@ import SelfPortrait2024 from "../../content/photos/nadav-closet.jpg";
     </section>
   </div>
 </Layout>
-
-<style>
-  figure {
-    display: grid;
-    grid-template: "container";
-    place-items: center;
-    place-content: center;
-  }
-
-  figure > * {
-    grid-area: container;
-  }
-
-  figcaption {
-    place-self: end right;
-  }
-</style>
