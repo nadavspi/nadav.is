@@ -5,7 +5,7 @@ import BaseLayout from "@layouts/base.astro";
 const { class: className } = Astro.props;
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} backTo="photography">
   <div class:list={["grid gap-y-8", className ]}>
     <slot />
   </div>

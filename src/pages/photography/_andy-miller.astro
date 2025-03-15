@@ -1,0 +1,97 @@
+---
+import CinderBlocks from "./andy-miller/_andy-miller-103.jpg";
+import GardenPortrait from "./andy-miller/_andy-miller-105.jpg";
+import Kitchen from "./andy-miller/_andy-miller-101.jpg";
+import Outside from "./andy-miller/_andy-miller-100.jpg";
+import Poem from "./andy-miller/_resnick-poem.jpg";
+import Storage from "./andy-miller/_andy-miller-104.jpg";
+import StudioPortrait from "./andy-miller/_andy-miller-102.jpg";
+import { Image } from "astro:assets";
+import P from "@components/P.astro";
+---
+
+<div class="grid xl:grid-cols-5 gap-6">
+  <Image
+    sizes="100vw"
+    src={Kitchen}
+    alt="Portrait of Andy in his kitchen"
+    class="xl:col-span-3"
+  />
+  <div class="xl:col-span-2">
+    <h1 class="mb-0">Andy Miller</h1>
+    <h2>Painter</h2>
+
+    <h2 class="my-6">
+      Brooklyn, NY
+      <br />
+      <time>2021</time>
+    </h2>
+    <P>
+      Andy, who&rsquo;s been living in New York City since 1968, moved into his
+      current home in the neighborhood in 1994 with his wife, Irene (pictured on
+      the wall, as a baby). Irene died in 2014.
+    </P>
+  </div>
+  <P class="xl:col-span-2 xl:mt-6">
+    We met in July 2021 when Andy was heading out for a walk with his dog,
+    Esmeralda, and I was photographing on his street. Esmeralda developed
+    extensive cancer and was euthanized at home on August 6, 2023 surrounded by
+    friends.
+  </P>
+  <Image
+    sizes="100vw"
+    src={Outside}
+    alt="Andy outside of his home with Esmeralda"
+    class="xl:col-span-3"
+  />
+</div>
+
+<div class="grid xl:grid-cols-2 gap-6">
+  <Image sizes="100vw" src={StudioPortrait} alt="Andy in his studio" />
+  <Image
+    sizes="100vw"
+    src={CinderBlocks}
+    alt="An in-progress painting resting on cinderblocks"
+  />
+  <Image sizes="100vw" src={Storage} alt="Stacks of paintings" />
+  <Image sizes="100vw" src={GardenPortrait} alt="Andy in his garden" />
+</div>
+
+<div class="grid xl:grid-cols-2 gap-6">
+  <div class="xl:col-span-2 grid gap-6">
+    <P
+      class="justify-self-center pt-12 mt-6 border-t-4 border-tumbleweed-600 dark:border-purple"
+    >
+      Through Andy, I learned about Milton Resnick and Pat Passlof, a married
+      couple and lesser known abstract expressionists from the mid-20th century
+      New York scene.
+    </P>
+    <P class="justify-self-center">
+      {" "}
+      From 1976 until his death in 2004, Milton Resnick lived and painted in an old
+      synagogue building on Eldridge Street. Andy says the building was a sanctuary
+      from the madness of the city, and that they used to make oil paints in the
+      basement (with wholly inadequate ventilation). These days,{" "}
+      <a href="https://www.resnickpasslof.org/">
+        The Milton Resnick and Pat Passlof Foundation
+      </a>{" "}
+      holds exhibits in the building.
+    </P>
+  </div>
+  <div
+    class="justify-self-center self-center p-16 border-8 shadow-md border-tumbleweed-600 dark:border-purple"
+  >
+    in the painting room
+    <br />
+    you forget pain
+    <br />
+    the spirit climbs <br />
+    you judge goddesses
+    <br />
+    how different a tree looks
+    <br />
+    the abstract way
+    <em class="block mt-4">(poem by Milton Resnick)</em>
+  </div>
+  <Image sizes="100vw" src={Poem} alt="" class="photo-poem vertical" />
+</div>

@@ -1,0 +1,56 @@
+---
+import P from "@components/P.astro";
+import PlateAndPrint from "./eric-goldberg/_eric-goldberg-5.jpg";
+import PlateCloseup from "./eric-goldberg/_eric-goldberg-4.jpg";
+import Portrait from "./eric-goldberg/_eric-goldberg-7.jpg";
+import Press from "./eric-goldberg/_eric-goldberg-3.jpg";
+import Prints from "./eric-goldberg/_eric-goldberg-6.jpg";
+import Wiping from "./eric-goldberg/_eric-goldberg-2.jpg";
+import WipingCloseup from "./eric-goldberg/_eric-goldberg-1.jpg";
+import { Image } from "astro:assets";
+---
+
+<div class="grid xl:grid-cols-5 gap-6">
+  <Image
+    sizes="100vw"
+    src={Portrait}
+    alt="Kind old man wearing glasses with art supplies behind him"
+    class="xl:col-span-3"
+  />
+  <div class="xl:col-span-2">
+    <h1 class="mb-0">Eric Goldberg</h1>
+    <h2>Painter &amp; Printmaker</h2>
+
+    <h2 class="my-6">
+      Philadelphia, PA
+      <br />
+      <time>January 2019</time>
+    </h2>
+  </div>
+</div>
+<P class="justify-self-center">
+  I photographed{" "}
+  <a href="https://www.ericgoldberg.net/">Eric Goldberg</a> during his{" "}
+  <a
+    href="https://6abc.com/philadelphia-art-of-aging-artist-in-residence-eric-goldberg/5149141/"
+  >
+    residency
+  </a>{" "}
+  at the{" "}
+  <a href="https://www.barnesfoundation.org/">Barnes Foundation</a>. He was 72
+  years old at the time. Eric died in 2021.
+</P>
+<P class="justify-self-center">
+  I was in Philly for the{" "}
+  <a href="https://phillypenshow.com/">pen show</a>, and I always walk to the
+  Barnes when I&rsquo;m there. It turned out that Eric was into pens too, and
+  was interested in the show. I wonder if he ended up going.
+</P>
+<div class="grid xl:grid-cols-2 gap-6">
+  <Image sizes="100vw" src={WipingCloseup} alt="" />
+  <Image sizes="100vw" src={Wiping} alt="" />
+  <Image sizes="100vw" src={Press} alt="" />
+  <Image sizes="100vw" src={PlateCloseup} alt="" />
+  <Image sizes="100vw" src={PlateAndPrint} alt="" />
+  <Image sizes="100vw" src={Prints} alt="" />
+</div>
