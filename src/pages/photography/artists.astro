@@ -1,0 +1,27 @@
+---
+import Layout from "./_layout.astro";
+import AndyMiller from "./_andy-miller.astro";
+import EricGoldberg from "./_eric-goldberg.astro";
+
+import PostTitle from "@components/PostTitle.astro";
+import Subnav from "@components/Subnav.astro";
+
+const links = [
+  { text: "Andy Miller", href: "#" },
+  { text: "Eric Goldberg", href: "#" },
+];
+---
+
+<Layout pageTitle="Photography / Artists">
+  <header>
+    <PostTitle>Artists</PostTitle>
+    <Subnav links={links} />
+  </header>
+
+  <section
+    class="border-b-4 border-tumbleweed dark:border-purple pb-12 grid gap-y-8"
+  >
+    <AndyMiller />
+  </section>
+  <EricGoldberg />
+</Layout>
