@@ -3,7 +3,7 @@ import "../styles/global.css";
 import "../styles/fonts.css";
 import Header from "../components/Header.astro";
 const { pageTitle, backTo, noHeader } = Astro.props;
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <html class="dark text-lg md:text-2xl/normal font-serif p-8 md:px-10" lang="en">
@@ -19,7 +19,7 @@ import { ViewTransitions } from "astro:transitions";
       href={new URL("rss.xml", Astro.site)}
     />
     <title>{pageTitle}</title>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body
     class="bg-tumbleweed-100 dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-[60rem] mx-auto"
