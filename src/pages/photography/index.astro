@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "@layouts/base.astro";
+import TOC from "@components/TOC.astro";
+
+import SelfPortraits from "./partials/_self-portraits.astro";
+import SocialJustice from "./partials/_social-justice.astro";
 
 // food
 import Persian from "./food/_persian cookbook club_Nadav Spiegelman_073.jpg";
@@ -14,20 +18,11 @@ import Riley from "./wyoming/_wyoming-website-20.jpg";
 import Simon from "./wyoming/_wyoming-website-09.jpg";
 import Train from "./wyoming/_wyoming-website-22.jpg";
 
-// social justice
-import NoWarCriminals from "./social-justice/_2024-09-26 UN action_Nadav Spiegelman_032.jpg";
-import BadInvestment from "./social-justice/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_035.jpg";
-import Arrest from "./social-justice/_JVP 2024-10-14 NYSE_Nadav Spiegelman_188.jpg";
-import Alan from "./social-justice/_2024-11-17 zoa gala_Nadav Spiegelman_029.jpg";
-import Crucifix from "./social-justice/_2025-03-03 ADL protest INN_Nadav Spiegelman_098.jpg";
-import Doge from "./social-justice/_2025-03-03 ADL protest INN_Nadav Spiegelman_097.jpg";
-import SameHate from "./social-justice/_2025-03-03 ADL protest INN_Nadav Spiegelman_099.jpg";
-
 // everything is fine
 import Bus from "./everything-is-fine/_everything-is-fine-01.jpg";
-import Trash from "./everything-is-fine/_everything-is-fine-08.jpg";
 import Punch from "./everything-is-fine/_everything-is-fine-11.jpg";
 import Cops from "./everything-is-fine/_everything-is-fine-14.jpg";
+import Beggar from "./everything-is-fine/_everything-is-fine-07.jpg";
 
 // the streets speak
 import Terrorism from "./gaza-signs/_gaza signs_Nadav Spiegelman_017.jpg";
@@ -41,49 +36,42 @@ import AndyStudio from "./andy-miller/_andy-miller-103.jpg";
 import EricPlate from "./eric-goldberg/_eric-goldberg-1.jpg";
 import EricPortrait from "./eric-goldberg/_eric-goldberg-7.jpg";
 
-// self portraits
-import SelfPortrait2017 from "./self-portraits/2017 self portrait.jpg";
-import SelfPortrait2018 from "./self-portraits/2018 self portrait.jpg";
-import SelfPortrait2019 from "./self-portraits/2019 self portrait.jpg";
-import SelfPortrait2020 from "./self-portraits/2020 self portrait.jpg";
-import SelfPortrait2021 from "./self-portraits/2021 self portrait.jpg";
-import SelfPortrait2022 from "./self-portraits/2022 self portrait.jpg";
-import SelfPortrait2023 from "./self-portraits/2023 self portrait.jpg";
-import SelfPortrait2024 from "../../content/photos/nadav-closet.jpg";
-
+const createFragment = (text) => `#:~:text=${encodeURIComponent(text)}`;
+const sections = [
+  {
+    href: "#:~:text=2024-,Social%20justice,-Wyoming%20%E2%86%92",
+    caption: "Social justice",
+  },
+  {
+    href: createFragment("Wyoming →"),
+    caption: "Wyoming",
+  },
+  {
+    href: createFragment("The streets speak →"),
+    caption: "The streets speak",
+  },
+  {
+    href: createFragment("Everything is fine →"),
+    caption: "Everything is fine",
+  },
+  {
+    href: createFragment("Artists →"),
+    caption: "Artists",
+  },
+  {
+    href: "#:~:text=more%20of%20%E2%80%9CArtists%E2%80%9D%20%E2%86%92-,Food",
+    caption: "Food",
+  },
+];
 ---
 
 <Layout pageTitle="Photography">
+  <h1>Photography</h1>
+  <TOC title="Collections" items={sections} />
+
   <div class="grid gap-y-8">
-    <h1 class="mb-0">Photography</h1>
-
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-        <figure><Image sizes="33vw" src={SelfPortrait2017} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2017</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2018} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2018</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2019} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2019</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2020} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2020</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2021} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2021</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2022} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2022</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2023} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2023</figcaption></figure>
-        <figure><Image sizes="33vw" src={SelfPortrait2024} alt="" /><figcaption class="mr-1 mb-1 px-1 bg-purple-dark/70 text-sm">2024</figcaption></figure>
-      </div>
-    </section>
-
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
-      <h2 class="text-center mb-4">Social justice</h2>
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <Image sizes="50vw" src={BadInvestment} alt="" />
-        <Image sizes="50vw" src={NoWarCriminals} alt="" />
-        <Image sizes="50vw" src={Arrest} alt="" />
-        <Image sizes="50vw" src={Alan} alt="" />
-      </div>
-      <div class="grid grid-cols-3 gap-4">
-        <Image sizes="33vw" src={SameHate} alt="" />
-        <Image sizes="33vw" src={Doge} alt="" />
-        <Image sizes="33vw" src={Crucifix} alt="" />
-      </div>
-    </section>
+    <SelfPortraits />
+    <SocialJustice />
 
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-8">
       <h2 class="text-center mb-4">
@@ -101,13 +89,18 @@ import SelfPortrait2024 from "../../content/photos/nadav-closet.jpg";
     </section>
 
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
-      <h2 class="text-center mb-4">The streets speak</h2>
+      <h2 class="text-center mb-4">
+        <a href="/photography/the-streets-speak">The streets speak →</a>
+      </h2>
       <div class="grid grid-cols-2 gap-4">
         <Image sizes="50vw" src={FreePalestine} alt="" />
         <Image sizes="50vw" src={EndTheGenocides} alt="" />
-        <Image sizes="50vw" src={Terrorism} alt="" />
-        <Image sizes="50vw" src={NothingRadicalizes} alt="" />
       </div>
+      <footer class="mt-8">
+        <a href="/photography/the-streets-speak"
+          >View more of “The streets speak” →</a
+        >
+      </footer>
     </section>
 
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
@@ -116,12 +109,14 @@ import SelfPortrait2024 from "../../content/photos/nadav-closet.jpg";
       </h2>
       <div class="grid grid-cols-2 gap-4">
         <Image sizes="50vw" src={Bus} alt="" />
-        <Image sizes="50vw" src={Trash} alt="" />
+        <Image sizes="50vw" src={Beggar} alt="" />
         <Image sizes="50vw" src={Punch} alt="" />
         <Image sizes="50vw" src={Cops} alt="" />
       </div>
       <footer class="mt-8">
-        <a href="/photography/everything-is-fine">View more of “Everything is fine” →</a>
+        <a href="/photography/everything-is-fine"
+          >View more of “Everything is fine” →</a
+        >
       </footer>
     </section>
 
@@ -164,20 +159,3 @@ import SelfPortrait2024 from "../../content/photos/nadav-closet.jpg";
     </section>
   </div>
 </Layout>
-
-<style>
-  figure {
-    display: grid;
-    grid-template: "container";
-    place-items: center;
-    place-content: center;
-  }
-
-  figure > * {
-    grid-area: container;
-  }
-
-  figcaption {
-    place-self: end right;
-  }
-</style>

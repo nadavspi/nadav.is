@@ -1,0 +1,33 @@
+---
+import Layout from "../_layout.astro";
+import { Image } from "astro:assets";
+
+import Terrorism from "../gaza-signs/_gaza signs_Nadav Spiegelman_017.jpg";
+import NothingRadicalizes from "../gaza-signs/_gaza signs_Nadav Spiegelman_025.jpg";
+import FreePalestine from "../gaza-signs/_gaza signs_Nadav Spiegelman_023.jpg";
+import EndTheGenocides from "../gaza-signs/_gaza signs_Nadav Spiegelman_024.jpg";
+import Wanted from '../gaza-signs/_gaza signs_Nadav Spiegelman_018.jpg'
+import FromTo from '../gaza-signs/_gaza signs_Nadav Spiegelman_019.jpg'
+import WindowSign from '../gaza-signs/_gaza signs_Nadav Spiegelman_020.jpg'
+import ResistColonialPower from '../gaza-signs/_gaza signs_Nadav Spiegelman_021.jpg'
+import SidewalkChalk from '../gaza-signs/_gaza signs_Nadav Spiegelman_022.jpg'
+
+
+import PostTitle from "@components/PostTitle.astro";
+---
+
+<Layout pageTitle="Photography / The streets speak">
+  <header>
+    <PostTitle>The streets speak</PostTitle>
+  </header>
+
+  <div class="grid lg:grid-cols-4 gap-10">
+    <Image sizes="" class="lg:col-span-4" src={SidewalkChalk} alt="" />
+    <Image sizes="" class="lg:col-span-2" src={EndTheGenocides} alt="" />
+    <Image sizes="" class="lg:col-span-2" src={FromTo} alt="" />
+    <Image sizes="" class="lg:col-span-2" src={Terrorism} alt="" />
+    <Image sizes="" src={NothingRadicalizes} class="lg:col-span-2 lg:col-start-3" alt="" />
+    <Image sizes="" class="lg:col-span-2 lg:col-start-2" src={ResistColonialPower} alt="" />
+    <Image sizes="" class="lg:col-span-2 lg:col-start-2" src={FreePalestine} alt="" />
+  </div>
+</Layout>
