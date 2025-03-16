@@ -4,14 +4,14 @@ import { Image } from "astro:assets";
 import NoWarCriminals from "../social-justice/_2024-09-26 UN action_Nadav Spiegelman_032.jpg";
 import BadInvestment from "../social-justice/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_035.jpg";
 import Arrest from "../social-justice/_JVP 2024-10-14 NYSE_Nadav Spiegelman_188.jpg";
-import Alan from "../social-justice/_2024-11-17 zoa gala_Nadav Spiegelman_029.jpg";
+import NotAnotherBomb from "../social-justice/_2024-08-18 not another bomb nyc rally_0342.jpg";
 import Crucifix from "../social-justice/_2025-03-03 ADL protest INN_Nadav Spiegelman_098.jpg";
 import Doge from "../social-justice/_2025-03-03 ADL protest INN_Nadav Spiegelman_097.jpg";
 import SameHate from "../social-justice/_2025-03-03 ADL protest INN_Nadav Spiegelman_099.jpg";
 ---
 
 <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
-  <h2 class="text-center mb-4">Social justice</h2>
+  <h2 class="text-center mb-4"><a href="/photography/social-justice">Social justice →</a></h2>
   <div class="grid grid-cols-2 gap-4 mb-4">
     <Image
       sizes="50vw"
@@ -19,12 +19,15 @@ import SameHate from "../social-justice/_2025-03-03 ADL protest INN_Nadav Spiege
       alt='Row of picketers led by an old woman carrying a sign that reads "genocide is a bad investment"'
     />
     <Image sizes="50vw" src={NoWarCriminals} alt='Protestors blocking a street with UN headquarters in the background, holding a sign that reads "No war criminals in NYC, stop the genocide!"' />
+    <Image sizes="50vw" src={NotAnotherBomb} alt='Front of a rally with large banners including "Not another bomb", "No funding for war crimes", "Fund schools, not weapons"' />
     <Image sizes="50vw" src={Arrest} alt='Young woman wearing a shirt that reads "not in our name" getting arrested by NYPD officers' />
-    <Image sizes="50vw" src={Alan} alt='Alan Dershowitz looking angry, holding up an upside down copy of his book, "The Ten Big Anti-Israel Lies"' />
   </div>
   <div class="grid grid-cols-3 gap-4">
     <Image sizes="33vw" src={SameHate} alt='Woman with two stickers on her coat: "Antizionism is racism!", and an illustration of masked men carrying the flag of Palestine with a swastika superimposed on it'  />
     <Image sizes="33vw" src={Doge} alt="Woman wearing a Make America Great Again hat and holding a sign" />
     <Image sizes="33vw" src={Crucifix} alt="Man with eyes closed, waving a flag, wearing an NYPD beanie, and holding a crucifix" />
   </div>
+      <footer class="mt-8">
+        <a href="/photography/social-justice">View more social justice photos →</a>
+      </footer>
 </section>

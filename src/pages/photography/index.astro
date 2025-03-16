@@ -1,9 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "@layouts/base.astro";
+import TOC from "@components/TOC.astro";
 
 import SelfPortraits from "./partials/_self-portraits.astro";
-import SocialJustice from "./partials/_social-justice.astro"
+import SocialJustice from "./partials/_social-justice.astro";
 
 // food
 import Persian from "./food/_persian cookbook club_Nadav Spiegelman_073.jpg";
@@ -19,9 +20,9 @@ import Train from "./wyoming/_wyoming-website-22.jpg";
 
 // everything is fine
 import Bus from "./everything-is-fine/_everything-is-fine-01.jpg";
-import Trash from "./everything-is-fine/_everything-is-fine-08.jpg";
 import Punch from "./everything-is-fine/_everything-is-fine-11.jpg";
 import Cops from "./everything-is-fine/_everything-is-fine-14.jpg";
+import Beggar from "./everything-is-fine/_everything-is-fine-07.jpg";
 
 // the streets speak
 import Terrorism from "./gaza-signs/_gaza signs_Nadav Spiegelman_017.jpg";
@@ -35,14 +36,43 @@ import AndyStudio from "./andy-miller/_andy-miller-103.jpg";
 import EricPlate from "./eric-goldberg/_eric-goldberg-1.jpg";
 import EricPortrait from "./eric-goldberg/_eric-goldberg-7.jpg";
 
+const createFragment = (text) => `#:~:text=${encodeURIComponent(text)}`;
+const sections = [
+  {
+    href: createFragment("Social justice →"),
+    caption: "Social justice",
+  },
+  {
+    href: createFragment("Wyoming →"),
+    caption: "Wyoming",
+  },
+  {
+    href: createFragment("The streets speak →"),
+    caption: "The streets speak",
+  },
+  {
+    href: createFragment("Everything is fine →"),
+    caption: "Everything is fine",
+  },
+  {
+    href: createFragment("Artists →"),
+    caption: "Artists",
+  },
+  {
+    href: createFragment("Food →"),
+    caption: "Food",
+  },
+];
 ---
 
 <Layout pageTitle="Photography">
-  <div class="grid gap-y-8">
-    <h1 class="mb-0">Photography</h1>
+  <h1>Photography</h1>
+  <TOC title="Collections" items={sections} />
 
+  <div class="grid gap-y-8">
     <SelfPortraits />
     <SocialJustice />
+
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-8">
       <h2 class="text-center mb-4">
         <a href="/photography/wyoming">Wyoming →</a>
@@ -59,13 +89,18 @@ import EricPortrait from "./eric-goldberg/_eric-goldberg-7.jpg";
     </section>
 
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
-      <h2 class="text-center mb-4">The streets speak</h2>
+      <h2 class="text-center mb-4">
+        <a href="/photography/the-streets-speak">The streets speak →</a>
+      </h2>
       <div class="grid grid-cols-2 gap-4">
         <Image sizes="50vw" src={FreePalestine} alt="" />
         <Image sizes="50vw" src={EndTheGenocides} alt="" />
-        <Image sizes="50vw" src={Terrorism} alt="" />
-        <Image sizes="50vw" src={NothingRadicalizes} alt="" />
       </div>
+      <footer class="mt-8">
+        <a href="/photography/the-streets-speak"
+          >View more of “The streets speak” →</a
+        >
+      </footer>
     </section>
 
     <section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
@@ -74,12 +109,14 @@ import EricPortrait from "./eric-goldberg/_eric-goldberg-7.jpg";
       </h2>
       <div class="grid grid-cols-2 gap-4">
         <Image sizes="50vw" src={Bus} alt="" />
-        <Image sizes="50vw" src={Trash} alt="" />
+        <Image sizes="50vw" src={Beggar} alt="" />
         <Image sizes="50vw" src={Punch} alt="" />
         <Image sizes="50vw" src={Cops} alt="" />
       </div>
       <footer class="mt-8">
-        <a href="/photography/everything-is-fine">View more of “Everything is fine” →</a>
+        <a href="/photography/everything-is-fine"
+          >View more of “Everything is fine” →</a
+        >
       </footer>
     </section>
 
