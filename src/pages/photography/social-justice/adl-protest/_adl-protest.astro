@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import P from "@components/P.astro";
+import Doge from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_097.jpg";
+import Crucifix from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_098.jpg";
+import Deporation from "./_2024-03-03 ADL protest INN_Nadav Spiegelman_002.jpg";
+import SameHate from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_099.jpg";
+import Photo091 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_091.jpg";
+import Photo092 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_092.jpg";
+import Photo093 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_093.jpg";
+import Photo094 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_094.jpg";
+import Photo095 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_095.jpg";
+import Photo096 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_096.jpg";
+---
+
+<div class="grid xl:grid-cols-5 gap-4">
+  <div class="xl:col-span-2">
+    <h2 class="mb-0">Protest of ADL's "Never is Now" conference</h2>
+    <h3>2025-03-03</h3>
+    <P
+      >Jewish groups @ifnotnow.nyc @rabbis4ceasefire @jfrejnyc protested ADL's
+      annual conference, happening this week at Javits Center. The ADL describes
+      itself as an "anti-hate" group but equates criticism of Israel to
+      anti-Semitism, has conducted espionage against American citizens, and
+      defended Elon Musk's Nazi salute. The rally had live ASL interpretation.
+      </P
+    >
+
+    <P
+      >A much, much smaller number of counter-protestors chanted "Donald Trump,
+      Donald Trump" and "NYPD NYPD" (?).</P
+    >
+  </div>
+  <Image class="xl:col-span-3" src={Photo091} alt="" />
+</div>
+
+<div class="grid grid-cols-2 gap-4">
+  <Image src={Photo092} alt="" />
+  <Image src={Photo093} alt="" />
+  <Image src={Deporation} alt="" />
+  <Image src={Photo094} alt="" />
+  <Image src={Photo095} alt="" />
+  <Image src={Photo096} alt="" />
+</div>
+<div class="grid grid-cols-3 gap-4">
+  <Image
+    sizes="33vw"
+    src={SameHate}
+    alt='Woman with two stickers on her coat: "Antizionism is racism!", and an illustration of masked men carrying the flag of Palestine with a swastika superimposed on it'
+  />
+  <Image
+    sizes="33vw"
+    src={Doge}
+    alt="Woman wearing a Make America Great Again hat and holding a sign"
+  />
+  <Image
+    sizes="33vw"
+    src={Crucifix}
+    alt="Man with eyes closed, waving a flag, wearing an NYPD beanie, and holding a crucifix"
+  />
+</div>

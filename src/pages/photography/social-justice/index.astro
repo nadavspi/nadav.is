@@ -1,0 +1,83 @@
+---
+import PostTitle from "@components/PostTitle.astro";
+import Layout from "../_layout.astro";
+import { Image } from "astro:assets";
+import TOC from "@components/TOC.astro";
+
+import UnAction from "./un-action/_un-action.astro";
+import AdlProtest from "./adl-protest/_adl-protest.astro";
+
+import BadInvestment from "./_2024-11-11 JVP cipriani picket_Nadav Spiegelman_035.jpg";
+import Arrest from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_188.jpg";
+import NotAnotherBomb from "./_2024-08-18 not another bomb nyc rally_0342.jpg";
+import Crucifix from "./adl-protest/_2025-03-03 ADL protest INN_Nadav Spiegelman_098.jpg";
+
+import Alan from "./_2024-11-17 zoa gala_Nadav Spiegelman_029.jpg";
+import Photo28 from "./_2024-11-17 zoa gala_Nadav Spiegelman_028.jpg";
+import Photo29 from "./_2024-11-17 zoa gala_Nadav Spiegelman_029.jpg";
+import Photo30 from "./_2024-11-17 zoa gala_Nadav Spiegelman_030.jpg";
+import Photo009 from "./_2025-02-03 protect trans kids rally_Nadav Spiegelman_009.jpg";
+import Photo010 from "./_2025-02-03 protect trans kids rally_Nadav Spiegelman_010.jpg";
+import Photo186 from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_186.jpg";
+import Photo187 from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_187.jpg";
+import Photo189 from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_189.jpg";
+import Photo164 from "./_oct 7 2024 every life a universe_Nadav Spiegelman_164.jpg";
+import Photo165 from "./_oct 7 2024 every life a universe_Nadav Spiegelman_165.jpg";
+import Photo166 from "./_oct 7 2024 every life a universe_Nadav Spiegelman_166.jpg";
+---
+
+<Layout pageTitle="Photography / Social justice">
+  <h1>Social justice</h1>
+
+  <section
+    class="border-b-4 border-tumbleweed dark:border-purple pb-12 grid gap-y-8"
+  >
+    <UnAction />
+  </section>
+  <section
+    class="border-b-4 border-tumbleweed dark:border-purple pb-12 grid gap-y-8"
+  >
+    <AdlProtest />
+  </section>
+  <div class="grid grid-cols-2 gap-4 mb-4">
+    <Image
+      sizes="50vw"
+      src={BadInvestment}
+      alt='Row of picketers led by an old woman carrying a sign that reads "genocide is a bad investment"'
+    />
+    <Image
+      sizes="50vw"
+      src={NotAnotherBomb}
+      alt='Front of a rally with large banners including "Not another bomb", "No funding for war crimes", "Fund schools, not weapons"'
+    />
+    <Image
+      sizes="50vw"
+      src={Arrest}
+      alt='Young woman wearing a shirt that reads "not in our name" getting arrested by NYPD officers'
+    />
+  </div>
+  <div class="grid grid-cols-3 gap-4">
+    <Image
+      sizes="33vw"
+      src={Crucifix}
+      alt="Man with eyes closed, waving a flag, wearing an NYPD beanie, and holding a crucifix"
+    />
+    <Image
+      sizes="50vw"
+      src={Alan}
+      alt='Alan Dershowitz looking angry, holding up an upside down copy of his book, "The Ten Big Anti-Israel Lies"'
+    />
+    <Image src={Photo28} alt="" />
+    <Image src={Photo29} alt="" />
+    <Image src={Photo30} alt="" />
+    <Image src={Photo009} alt="" />
+    <Image src={Photo010} alt="" />
+    <Image src={Photo186} alt="" />
+    <Image src={Photo187} alt="" />
+    <Image src={Photo189} alt="" />
+    <Image src={Photo164} alt="" />
+    <Image src={Photo165} alt="" />
+    <Image src={Photo165} alt="" />
+    <Image src={Photo166} alt="" />
+  </div>
+</Layout>
