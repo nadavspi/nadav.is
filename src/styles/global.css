@@ -1,9 +1,9 @@
 @tailwind base;
 @layer base {
   h1 {
-    @apply text-xl md:text-2xl font-bold;
+    @apply text-xl md:text-2xl;
     @apply text-purple-dark dark:text-purple-light;
-    @apply mb-8;
+    @apply mb-2;
   }
 
   h2 {
@@ -13,7 +13,6 @@
   }
 
   h3 {
-    @apply text-sm;
   }
 
   a {
