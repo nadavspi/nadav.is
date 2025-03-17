@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import P from "@components/P.astro";
+import Section from "@components/Section.astro";
+import SectionHeader from "@components/SectionHeader.astro";
 import NoWarCriminals from "./_2024-09-26 UN action_Nadav Spiegelman_032.jpg";
 import Un33 from "./_2024-09-26 UN action_Nadav Spiegelman_033.jpg";
 import Un17 from "./_2024-09-26 UN action_Nadav Spiegelman_017.jpg";
@@ -8,31 +10,27 @@ import Un24 from "./_2024-09-26 UN action_Nadav Spiegelman_024.jpg";
 import Un34 from "./_2024-09-26 UN action_Nadav Spiegelman_034.jpg";
 ---
 
-<div class="grid xl:grid-cols-5 gap-4">
-  <div class="xl:col-span-2">
-    <h2 class="mb-0">United Nations action</h2>
-    <h3>2024-09-06</h3>
-    <P
-      >A coalition of New York activists protested Benjamin Netanyahu's speech
-      to the United Nations General Assembly.</P
-    >
-  </div>
+<SectionHeader title="United Nations action" date="2024-09-06">
+  <P slot="description"
+    >A coalition of New York activists protested Benjamin Netanyahu's speech to
+    the United Nations General Assembly.</P
+  >
   <Image
-    sizes="50vw"
-    class="xl:col-span-3"
+    slot="banner"
     src={NoWarCriminals}
     alt='Protestors blocking a street with UN headquarters in the background, holding a sign that reads "No war criminals in NYC, stop the genocide!"'
   />
-</div>
-<div class="grid grid-cols-2 gap-4">
-  <Image
-    src={Un33}
-    alt="Protestors forming a human chain with NYPD officers holding zip ties seen in the background"
-  />
-  <Image
-    src={Un17}
-    alt="Protestors under arrest with hands zip tied behind their backs"
-  />
-  <Image src={Un34} alt="Banner crumpled up on the road" />
-  <Image src={Un24} alt="NYPD officers getting into police van" />
-</div>
+
+  <Fragment slot="images">
+    <Image
+      src={Un33}
+      alt="Protestors forming a human chain with NYPD officers holding zip ties seen in the background"
+    />
+    <Image
+      src={Un17}
+      alt="Protestors under arrest with hands zip tied behind their backs"
+    />
+    <Image src={Un34} alt="Banner crumpled up on the road" />
+    <Image src={Un24} alt="NYPD officers getting into police van" />
+  </Fragment>
+</SectionHeader>

@@ -1,14 +1,19 @@
 ---
-import PostTitle from "@components/PostTitle.astro";
+import P from "@components/P.astro";
 import Layout from "../_layout.astro";
 import { Image } from "astro:assets";
 import TOC from "@components/TOC.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import Section from "@components/Section.astro";
 
 import UnAction from "./un-action/_un-action.astro";
 import AdlProtest from "./adl-protest/_adl-protest.astro";
 
-import BadInvestment from "./_2024-11-11 JVP cipriani picket_Nadav Spiegelman_035.jpg";
-import Arrest from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_188.jpg";
+import BadInvestment from "./israel-bonds/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_035.jpg";
+import IsraelBonds36 from "./israel-bonds/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_036.jpg";
+import IsraelBonds37 from "./israel-bonds/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_037.jpg";
+import IsraelBonds38 from "./israel-bonds/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_038.jpg";
+import IsraelBonds39 from "./israel-bonds/_2024-11-11 JVP cipriani picket_Nadav Spiegelman_039.jpg";
 import NotAnotherBomb from "./_2024-08-18 not another bomb nyc rally_0342.jpg";
 import Crucifix from "./adl-protest/_2025-03-03 ADL protest INN_Nadav Spiegelman_098.jpg";
 
@@ -18,66 +23,103 @@ import Photo29 from "./_2024-11-17 zoa gala_Nadav Spiegelman_029.jpg";
 import Photo30 from "./_2024-11-17 zoa gala_Nadav Spiegelman_030.jpg";
 import Photo009 from "./_2025-02-03 protect trans kids rally_Nadav Spiegelman_009.jpg";
 import Photo010 from "./_2025-02-03 protect trans kids rally_Nadav Spiegelman_010.jpg";
-import Photo186 from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_186.jpg";
-import Photo187 from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_187.jpg";
-import Photo189 from "./_JVP 2024-10-14 NYSE_Nadav Spiegelman_189.jpg";
-import Photo164 from "./_oct 7 2024 every life a universe_Nadav Spiegelman_164.jpg";
-import Photo165 from "./_oct 7 2024 every life a universe_Nadav Spiegelman_165.jpg";
-import Photo166 from "./_oct 7 2024 every life a universe_Nadav Spiegelman_166.jpg";
+import NyseMain from "./nyse/_JVP 2024-10-14 NYSE_Nadav Spiegelman_190.jpg";
+import Arrest from "./nyse/_JVP 2024-10-14 NYSE_Nadav Spiegelman_188.jpg";
+import Photo186 from "./nyse/_JVP 2024-10-14 NYSE_Nadav Spiegelman_186.jpg";
+import Photo187 from "./nyse/_JVP 2024-10-14 NYSE_Nadav Spiegelman_187.jpg";
+import Photo189 from "./nyse/_JVP 2024-10-14 NYSE_Nadav Spiegelman_189.jpg";
+import Speaker from "./every-life-a-universe/_oct 7 2024 every life a universe_Nadav Spiegelman_164.jpg";
+import Photo165 from "./every-life-a-universe/_oct 7 2024 every life a universe_Nadav Spiegelman_165.jpg";
+import Photo166 from "./every-life-a-universe/_oct 7 2024 every life a universe_Nadav Spiegelman_166.jpg";
+import Elau167 from "./every-life-a-universe/_oct 7 2024 every life a universe_Nadav Spiegelman_167.jpg";
+import Elau168 from "./every-life-a-universe/_oct 7 2024 every life a universe_Nadav Spiegelman_168.jpg";
+import Elau169 from "./every-life-a-universe/_oct 7 2024 every life a universe_Nadav Spiegelman_169.jpg";
 ---
 
 <Layout pageTitle="Photography / Social justice">
   <h1>Social justice</h1>
 
-  <section
-    class="border-b-4 border-tumbleweed dark:border-purple pb-12 grid gap-y-8"
-  >
-    <UnAction />
-  </section>
-  <section
-    class="border-b-4 border-tumbleweed dark:border-purple pb-12 grid gap-y-8"
-  >
-    <AdlProtest />
-  </section>
-  <div class="grid grid-cols-2 gap-4 mb-4">
+  <AdlProtest />
+  <UnAction />
+
+  <SectionHeader date="2024-10-14" title="New York Stock Exchange disruption">
+    <P slot="description"
+      >Hundreds of activists organized by Jewish Voice for Peace disrupted the
+      NYSE to protest Israel's genocide in Gaza, the billions of dollars Israel
+      receives from the United States in military aid, and the American
+      companies that profit.</P
+    >
+    <Image slot="banner" src={NyseMain} alt="" />
+    <Fragment slot="images">
+      <Image src={Photo186} alt="" />
+      <Image src={Photo187} alt="" />
+      <Image
+        src={Arrest}
+        alt='Young person wearing a shirt that reads "not in our name" getting arrested by NYPD officers'
+      />
+      <Image src={Photo189} alt="" />
+    </Fragment>
+  </SectionHeader>
+
+  <SectionHeader title="Israel Bonds picket" date="2024-11-11">
+    <P slot="description"
+      >A picket of a fundraising luncheon for the Israel Bonds Real Estate &
+      Allied Division at Cipriani 42nd Street.</P
+    >
     <Image
-      sizes="50vw"
+      slot="banner"
       src={BadInvestment}
       alt='Row of picketers led by an old woman carrying a sign that reads "genocide is a bad investment"'
     />
+    <Fragment slot="images">
+      <Image src={IsraelBonds36} alt="" />
+      <Image src={IsraelBonds37} alt="" />
+      <Image src={IsraelBonds38} alt="" />
+      <Image src={IsraelBonds39} alt="" />
+    </Fragment>
+  </SectionHeader>
+
+  <SectionHeader
+    title="Zionist Organization of America Superstar Gala 2024"
+    date="2024-11-17"
+  >
     <Image
-      sizes="50vw"
-      src={NotAnotherBomb}
-      alt='Front of a rally with large banners including "Not another bomb", "No funding for war crimes", "Fund schools, not weapons"'
-    />
-    <Image
-      sizes="50vw"
-      src={Arrest}
-      alt='Young woman wearing a shirt that reads "not in our name" getting arrested by NYPD officers'
-    />
-  </div>
-  <div class="grid grid-cols-3 gap-4">
-    <Image
-      sizes="33vw"
-      src={Crucifix}
-      alt="Man with eyes closed, waving a flag, wearing an NYPD beanie, and holding a crucifix"
-    />
-    <Image
+      slot="banner"
       sizes="50vw"
       src={Alan}
       alt='Alan Dershowitz looking angry, holding up an upside down copy of his book, "The Ten Big Anti-Israel Lies"'
     />
-    <Image src={Photo28} alt="" />
-    <Image src={Photo29} alt="" />
-    <Image src={Photo30} alt="" />
-    <Image src={Photo009} alt="" />
-    <Image src={Photo010} alt="" />
-    <Image src={Photo186} alt="" />
-    <Image src={Photo187} alt="" />
-    <Image src={Photo189} alt="" />
-    <Image src={Photo164} alt="" />
-    <Image src={Photo165} alt="" />
-    <Image src={Photo165} alt="" />
-    <Image src={Photo166} alt="" />
-  </div>
+    <P slot="description"
+      >At the Zionist Organization of America Superstar Gala, Alan Dershowitz
+      came out to argue with and threaten to sue pro-Palestine protestors for
+      calling him a "pedophile for genocide".</P
+    >
+    <Fragment slot="images">
+      <Image src={Photo30} alt="" />
+      <Image src={Photo28} alt="" />
+    </Fragment>
+  </SectionHeader>
+  <SectionHeader title="Every Life, A Universe NYC 2024" date="2024-10-07">
+    <Fragment slot="description">
+      <P class="mb-4">
+        At a gathering organized by IfNotNow on the one year anniversary of
+        October 7th, hundreds of people mourned the lives lost and called for
+        the end of Israel's occupation and genocide of Palestinian people.
+      </P>
+      <P class="mb-4">
+        Members of IfNotNow, JFREJ, Shoresh, and community members such as city
+        council member Shahana Hanif spoke.
+      </P>
+    </Fragment>
+    <Image slot="banner" src={Photo165} alt="" />
+    <Fragment slot="images">
+      <Image src={Elau168} alt="" />
+      <Image src={Elau169} alt="" />
+      <div>
+        <Image class="mb-4" src={Elau167} alt="" />
+        <Image src={Photo166} alt="" />
+      </div>
+      <Image src={Speaker} alt="" />
+    </Fragment>
+  </SectionHeader>
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Section from "@components/Section.astro";
 // self portraits
 import SelfPortrait2017 from "../self-portraits/_2017 self portrait.jpg";
 import SelfPortrait2018 from "../self-portraits/_2018 self portrait.jpg";
@@ -22,7 +23,7 @@ const figures = [
 ];
 ---
 
-<section class="border-b-4 border-tumbleweed dark:border-purple pb-12">
+<Section>
   <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 items-end">
     {
       figures.map(({ alt, src, caption }) => (
@@ -37,7 +38,7 @@ const figures = [
       ))
     }
   </div>
-</section>
+</Section>
 
 <style>
   figure {

@@ -1,0 +1,15 @@
+---
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    "mb-16 xl:mb-24 pb-4",
+    "border-b-4",
+    "border-tumbleweed-200 dark:border-cyan-600",
+    "shadow-sm",
+    className,
+  ]}
+>
+  <slot />
+</section>

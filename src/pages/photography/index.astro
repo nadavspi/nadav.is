@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Layout from "@layouts/base.astro";
 import TOC from "@components/TOC.astro";
+import Section from "@components/Section.astro";
 
 import SelfPortraits from "./partials/_self-portraits.astro";
 import SocialJustice from "./partials/_social-justice.astro";
@@ -67,93 +68,91 @@ const sections = [
   <h1>Photography</h1>
   <TOC title="Collections" items={sections} />
 
-  <div class="grid gap-y-8">
-    <SelfPortraits />
-    <SocialJustice />
+  <SelfPortraits />
+  <SocialJustice />
 
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-8">
-      <h2 class="text-center mb-4">
-        <a href="/photography/wyoming">Wyoming →</a>
-      </h2>
-      <div class="grid grid-cols-2 gap-4">
-        <Image sizes="50vw" src={Train} alt="" />
-        <Image sizes="50vw" src={Riley} alt="" />
-        <Image sizes="50vw" src={Simon} alt="" />
-        <Image sizes="50vw" src={PowerPlant} alt="" />
-      </div>
-      <footer class="mt-8">
-        <a href="/photography/wyoming">View more Wyoming photos →</a>
-      </footer>
-    </section>
+  <Section>
+    <h2>
+      <a href="/photography/wyoming">Wyoming →</a>
+    </h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={Train} alt="" />
+      <Image sizes="50vw" src={Riley} alt="" />
+      <Image sizes="50vw" src={Simon} alt="" />
+      <Image sizes="50vw" src={PowerPlant} alt="" />
+    </div>
+    <footer class="mt-8">
+      <a href="/photography/wyoming">View more Wyoming photos →</a>
+    </footer>
+  </Section>
 
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-8">
-      <h2 class="text-center mb-4">
-        <a href="/photography/the-streets-speak">The streets speak →</a>
-      </h2>
-      <div class="grid grid-cols-2 gap-4">
-        <Image sizes="50vw" src={FreePalestine} alt="" />
-        <Image sizes="50vw" src={EndTheGenocides} alt="" />
-      </div>
-      <footer class="mt-8">
-        <a href="/photography/the-streets-speak"
-          >View more of “The streets speak” →</a
-        >
-      </footer>
-    </section>
+  <Section>
+    <h2>
+      <a href="/photography/the-streets-speak">The streets speak →</a>
+    </h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={FreePalestine} alt="" />
+      <Image sizes="50vw" src={EndTheGenocides} alt="" />
+    </div>
+    <footer class="mt-8">
+      <a href="/photography/the-streets-speak"
+        >View more of “The streets speak” →</a
+      >
+    </footer>
+  </Section>
 
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-8">
-      <h2 class="text-center mb-4">
-        <a href="/photography/everything-is-fine">Everything is fine →</a>
-      </h2>
-      <div class="grid grid-cols-2 gap-4">
-        <Image sizes="50vw" src={Bus} alt="" />
-        <Image sizes="50vw" src={Beggar} alt="" />
-        <Image sizes="50vw" src={Punch} alt="" />
-        <Image sizes="50vw" src={Cops} alt="" />
-      </div>
-      <footer class="mt-8">
-        <a href="/photography/everything-is-fine"
-          >View more of “Everything is fine” →</a
-        >
-      </footer>
-    </section>
+  <Section>
+    <h2>
+      <a href="/photography/everything-is-fine">Everything is fine →</a>
+    </h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={Bus} alt="" />
+      <Image sizes="50vw" src={Beggar} alt="" />
+      <Image sizes="50vw" src={Punch} alt="" />
+      <Image sizes="50vw" src={Cops} alt="" />
+    </div>
+    <footer class="mt-8">
+      <a href="/photography/everything-is-fine"
+        >View more of “Everything is fine” →</a
+      >
+    </footer>
+  </Section>
 
-    <section class="border-b-4 border-tumbleweed dark:border-purple pb-8">
-      <h2 class="text-center mb-4">
-        <a href="/photography/artists">Artists →</a>
-      </h2>
-      <div class="grid grid-cols-2 gap-4">
-        <Image sizes="50vw" src={AndyPortrait} alt="" />
-        <Image sizes="50vw" src={AndyStudio} alt="" />
-        <Image sizes="50vw" src={EricPlate} alt="" />
-        <Image sizes="50vw" src={EricPortrait} alt="" />
-      </div>
-      <footer class="mt-8">
-        <a href="/photography/artists">View more of “Artists” →</a>
-      </footer>
-    </section>
+  <Section>
+    <h2>
+      <a href="/photography/artists">Artists →</a>
+    </h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image sizes="50vw" src={AndyPortrait} alt="" />
+      <Image sizes="50vw" src={AndyStudio} alt="" />
+      <Image sizes="50vw" src={EricPlate} alt="" />
+      <Image sizes="50vw" src={EricPortrait} alt="" />
+    </div>
+    <footer class="mt-8">
+      <a href="/photography/artists">View more of “Artists” →</a>
+    </footer>
+  </Section>
 
-    <section>
-      <h2 class="text-center mb-4">Food</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <Image
-          sizes="50vw"
-          src={Persian}
-          alt="Overhead shot of a Persian meal: a whole roast chicken, barbari bread, rice, feta cheese, nuts & herbs"
-        />
-        <Image sizes="50vw" src={Class} alt="" />
-        <Image
-          sizes="50vw"
-          src={Bread}
-          alt="Closeup shot of a darkly baked loaf of bread with another in the background"
-          class="aspect-[4/5] object-cover object-top"
-        />
-        <Image
-          sizes="50vw"
-          src={Macaron}
-          alt="A tray of macarons being put into a commercial oven"
-        />
-      </div>
-    </section>
-  </div>
+  <Section class="border-b-0">
+    <h2>Food</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <Image
+        sizes="50vw"
+        src={Persian}
+        alt="Overhead shot of a Persian meal: a whole roast chicken, barbari bread, rice, feta cheese, nuts & herbs"
+      />
+      <Image sizes="50vw" src={Class} alt="" />
+      <Image
+        sizes="50vw"
+        src={Bread}
+        alt="Closeup shot of a darkly baked loaf of bread with another in the background"
+        class="aspect-[4/5] object-cover object-top"
+      />
+      <Image
+        sizes="50vw"
+        src={Macaron}
+        alt="A tray of macarons being put into a commercial oven"
+      />
+    </div>
+  </Section>
 </Layout>
