@@ -2,20 +2,11 @@
 import Layout from "./_layout.astro";
 import AndyMiller from "./_andy-miller.astro";
 import EricGoldberg from "./_eric-goldberg.astro";
-
-import PostTitle from "@components/PostTitle.astro";
-import Subnav from "@components/Subnav.astro";
-
-const links = [
-  { text: "Andy Miller", href: "#" },
-  { text: "Eric Goldberg", href: "#" },
-];
 ---
 
 <Layout pageTitle="Photography / Artists">
   <header>
-    <PostTitle>Artists</PostTitle>
-    <Subnav links={links} />
+    <h1>Artists</h1>
   </header>
 
   <section
