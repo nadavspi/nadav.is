@@ -26,7 +26,7 @@ const { category, date, title, titleTranslated, yearPublished } = item.data;
       {titleTranslated}
     </PostTitle>
     <div class="flex gap-2">
-      <WrittenLongAgo date={date} server:defer />
+      <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
       ⋅
       <div>{yearPublished}, {category}</div>
     </div>

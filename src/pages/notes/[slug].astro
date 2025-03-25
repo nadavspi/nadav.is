@@ -23,7 +23,7 @@ const { date, title, subtitle } = item.data;
   <PostHeader>
     <PostTitle>{title}</PostTitle>
     {subtitle && <h2>{subtitle}</h2>}
-    <WrittenLongAgo date={date} server:defer />
+    <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
   </PostHeader>
 
   <Prose>
