@@ -88,7 +88,7 @@ const href = (() => {
     <time
       class="absolute bottom-2 right-2 block text-sm text-purple-dark dark:text-purple-light"
     >
-      <WrittenLongAgo date={date} />
+      <WrittenLongAgo date={date} server:defer />
     </time>
   </div>
   {cover && <Image src={cover} alt={coverAlt} class="mb-2" />}
