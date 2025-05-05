@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import SectionHeader from "@components/SectionHeader.astro";
+import P from "@components/P.astro";
+
+import BenGvir10 from "./10_2025-04-27_Z5A_7023_Nadav Spiegelman.jpg";
+import BenGvir11 from "./11_2025-04-27_Z5A_7031_Nadav Spiegelman.jpg";
+import BenGvir12 from "./12_2025-04-27_Z5A_6988_Nadav Spiegelman.jpg";
+import BenGvir13 from "./13_2025-04-27_Z5A_6542_Nadav Spiegelman.jpg";
+import BenGvir16 from "./16_2025-04-27_Z5A_6429_Nadav Spiegelman.jpg";
+import BenGvir17 from "./17_2025-04-27_Z5A_7168_Nadav Spiegelman.jpg";
+import BenGvir18 from "./18_2025-04-27_Z5A_7170_Nadav Spiegelman.jpg";
+---
+
+<SectionHeader title="Ben-Gvir comes to Midwood, Brooklyn" date="2025-04-27">
+  <Fragment slot="description">
+    <P class="mb-4">
+    The fascist Israeli minister <a href="https://en.wikipedia.org/wiki/Itamar_Ben-Gvir">Itamar Ben-Gvir</a> was scheduled to come to
+      brunch at real estate investor Harry Adjmi's house in Midwood, Brooklyn.
+      (Harry's brother, Alex Adjmi, was <a href="https://archive.ph/Qm9Jf">convicted for money laundering on behalf
+        of a Colombian drug cartel</a> in the 1990's, and was <a href="https://www.justice.gov/pardon/media/1117706/dl">pardoned by Donald Trump</a> on the last day of his first term.)
+    </P>
+    <P>
+      Ben-Gvir's political party, עוצמה יהודית Jewish Power, carries on the
+      genocidal ideology of Rabbi Meir Kahane who was a convicted terrorist &
+      Knesset member, and grew up nearby in Flatbush.
+    </P>
+  </Fragment>
+
+  <Image
+    slot="banner"
+    src={BenGvir10}
+    alt="Man spills coffee on protestor wearing a keffiyeh and a face cover"
+  />
+  <Fragment slot="images">
+    <Image
+      src={BenGvir11}
+      alt="Another protestor wearing a keffiyeh jumps the coffee spiller"
+    />
+    <Image
+      src={BenGvir12}
+      alt="Three protestors face a man wearing a Trump hat"
+    />
+    <Image
+      src={BenGvir13}
+      alt="Multiple NYPD officers pin down a protestor to arrest them"
+    />
+    <Image
+      src={BenGvir16}
+      alt="Woman wearing Israeli flag pants, a Trump pin, holding multiple Israeli flags"
+    />
+    <Image
+      src={BenGvir17}
+      alt="Group of Neuturei Karta hasidic Jews holding anti-Zionist signs"
+    />
+    <Image
+      src={BenGvir18}
+      alt="More than a dozen NYPD officers face storefronts above which a man leans out the window"
+    />
+  </Fragment>
+</SectionHeader>
