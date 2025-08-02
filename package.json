@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "pre-push": "husky"
+    "pre-push": "husky",
+    "generate-schema": "./scripts/generate-schema.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.8",
@@ -28,6 +29,7 @@
     "@biomejs/biome": "^1.5.3",
     "@tailwindcss/typography": "^0.5.10",
     "biome": "^0.3.3",
+    "directus-typeforge": "^0.16.3",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
