@@ -53,7 +53,6 @@ const writing = defineCollection({
 });
 
 export const collections = {
-  "reading": reading,
   "photoCollection": photoCollection,
   "writing": writing,
   "media": media,
