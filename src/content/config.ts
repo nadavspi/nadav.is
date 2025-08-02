@@ -1,26 +1,10 @@
 import { defineCollection, z } from 'astro:content';
+import { getPhotoGalleries, } from 'src/lib/directus';
 
-const photoCollection = defineCollection({
-  type: 'content', 
-  schema: z.object({
-    title: z.string(),
-    tags: z.array(z.string()).optional(),
-  }),
-});
-
-const reading = defineCollection({
-  type: 'content', 
-  schema: z.object({
-    author: z.string(),
-    category: z.enum(["articles", "books"]),
-    // readwise will return "None" for undefined date
-    datePublished: z.date().or(z.string()).optional(),
-    date: z.date().optional(),
-    link: z.string().url().optional(),
-    // coerce because we may have numerical titles
-    title: z.coerce.string(),
-    titleTranslated: z.string().optional(),
-  }),
+const photoGalleries = defineCollection({
+    loader: async () => {
+      return getPhotoGalleries();
+    }
 });
 
 const media = defineCollection({
@@ -53,7 +37,7 @@ const writing = defineCollection({
 });
 
 export const collections = {
-  "photoCollection": photoCollection,
+  "photoGalleries": photoGalleries,
   "writing": writing,
   "media": media,
 };
