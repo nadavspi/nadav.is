@@ -1,0 +1,31 @@
+---
+ import type {
+   BlockPhoto,
+   BlockRichtext,
+   Note,
+ } from "src/types/directus-schema";
+ import BlockPhotoRenderer from "./directus/BlockPhotoRenderer.astro";
+ import BlockGridRenderer from "./directus/BlockGridRenderer.astro";
+ const note: Note = Astro.props.item.data;
+ const { blocks } = note;
+---
+{
+  note.blocks.map((block) => {
+    const { collection, item } = block;
+
+    if (collection === "block_richtext") {
+      const richtext = item as BlockRichtext;
+      return <div data-id={richtext.id} set:html={richtext.content} />;
+    }
+
+    if (collection === "block_photo") {
+      const photo = item as BlockPhoto;
+      return <BlockPhotoRenderer photo={photo} />;
+    }
+
+    if (collection === "block_grid") {
+      const grid = item as BlockGrid;
+      return <BlockGridRenderer grid={grid} />
+    }
+  })
+}

@@ -1,0 +1,17 @@
+---
+import { getEntries } from "astro:content";
+import type { BlockGrid } from "src/types/directus-schema";
+import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+import Grid from "@components/Grid.astro";
+
+const grid: BlockGrid = Astro.props.grid;
+const entries = grid.files.map((file) => ({
+  id: file.directus_files_id,
+  collection: "files",
+}));
+const files = await getEntries(entries);
+---
+
+<Grid>
+  {files.map(file => <DirectusFileRenderer file={file.data}) />)}
+</Grid>

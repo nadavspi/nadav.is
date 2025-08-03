@@ -5,17 +5,25 @@ import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import Layout from "@layouts/base.astro";
 import Prose from "@components/Prose.astro";
 import { getCollection } from "astro:content";
+import DirectusBlocks from "@components/DirectusBlocks.astro";
+import Content from "@components/Content.astro";
 
 export async function getStaticPaths() {
-  const items = await getCollection("writing");
-  return items.map((item) => ({
-    params: { slug: item.slug },
-    props: { item },
-  }));
+  const writing = await getCollection("writing");
+  const notes = await getCollection("notes");
+  return [
+    ...writing.map((item) => ({
+      params: { slug: item.slug },
+      props: { item, source: "astro" },
+    })),
+    ...notes.map((item) => ({
+      params: { slug: item.data.slug },
+      props: { item, source: "directus" },
+    })),
+  ];
 }
 
-const { item } = Astro.props;
-const { Content } = await item.render();
+const { item, source } = Astro.props;
 const { date, title, subtitle } = item.data;
 ---
 
@@ -27,6 +35,7 @@ const { date, title, subtitle } = item.data;
   </PostHeader>
 
   <Prose>
-    <Content />
+    {source === "astro" && <Content item={item} />}
+    {source === "directus" && <DirectusBlocks item={item} />}
   </Prose>
 </Layout>
