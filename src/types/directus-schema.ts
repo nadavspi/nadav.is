@@ -1,4 +1,20 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-03T17:33:49.422Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-04T02:55:43.750Z */
+export interface Block {
+  id: string;
+}
+
+export interface Content {
+  id: string;
+}
+
+export interface Ignore {
+  id: string;
+}
+
+export interface Metadatum {
+  id: string;
+}
+
 export interface LitestreamLock {
   id: string;
 }
@@ -23,6 +39,11 @@ export interface BlockGridBlock {
   sort: number;
 }
 
+export interface BlockMarkdown {
+  id: string;
+  content: string;
+}
+
 export interface BlockPhoto {
   id: string;
   image: string | DirectusFile;
@@ -33,6 +54,25 @@ export interface BlockRichtext {
   content: string;
 }
 
+export interface Note {
+  id: string;
+  title: string;
+  subtitle: string;
+  date: 'datetime';
+  cover: string | DirectusFile;
+  blocks: unknown;
+  slug: string;
+  tags: number[] | NotesTag[];
+}
+
+export interface NotesBlock {
+  id: number;
+  notes_id: string | Note;
+  item: string;
+  collection: string;
+  sort: number;
+}
+
 export interface PhotoGallery {
   id: string;
   title: string;
@@ -40,6 +80,8 @@ export interface PhotoGallery {
   date: 'datetime';
   cover: string | DirectusFile;
   blocks: unknown;
+  private: boolean;
+  password: string;
 }
 
 export interface PhotoGalleriesBlock {
@@ -48,6 +90,12 @@ export interface PhotoGalleriesBlock {
   item: string;
   sort: number;
   collection: string;
+}
+
+export interface Tag {
+  id: string;
+  title: string;
+  slug: string;
 }
 
 export interface DirectusFile {
@@ -129,14 +177,22 @@ export interface DirectusRole {
 }
 
 export interface ApiCollections {
+  Blocks: Block[];
+  Content: Content[];
+  Ignore: Ignore[];
+  Metadata: Metadatum[];
   _litestream_lock: LitestreamLock[];
   _litestream_seq: LitestreamSeq[];
   block_grid: BlockGrid[];
   block_grid_blocks: BlockGridBlock[];
+  block_markdown: BlockMarkdown[];
   block_photo: BlockPhoto[];
   block_richtext: BlockRichtext[];
+  notes: Note[];
+  notes_blocks: NotesBlock[];
   photo_galleries: PhotoGallery[];
   photo_galleries_blocks: PhotoGalleriesBlock[];
+  tags: Tag[];
   directus_files: DirectusFile[];
 }
 
