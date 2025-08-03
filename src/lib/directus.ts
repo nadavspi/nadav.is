@@ -1,14 +1,33 @@
-import { createDirectus, readFiles, readItems, rest } from "@directus/sdk";
+import {
+  authentication,
+  createDirectus,
+  readFiles,
+  readItems,
+  rest,
+} from "@directus/sdk";
 import type { ApiCollections } from "../types/directus-schema.ts";
 
-export const initDirectus = () => {
-  return createDirectus<ApiCollections>(import.meta.env.DIRECTUS_URL).with(
-    rest(),
-  );
+const { DIRECTUS_URL, DIRECTUS_USER, DIRECTUS_PASSWORD } = import.meta.env;
+
+const initDirectus = async () => {
+  const directus = createDirectus<ApiCollections>(DIRECTUS_URL)
+    .with(authentication())
+    .with(rest());
+  await directus.login(DIRECTUS_USER, DIRECTUS_PASSWORD);
+  return directus;
+};
+
+let directusClient: Awaited<ReturnType<typeof initDirectus>> | null = null;
+export const getDirectusClient = async () => {
+  if (!directusClient) {
+    directusClient = await initDirectus();
+  }
+  return directusClient;
 };
 
 export const getPhotoGalleries = async () => {
-  return await initDirectus().request(
+  const directus = await getDirectusClient();
+  return await directus.request(
     readItems("photo_galleries", {
       fields: ["id", "title", "cover"],
     }),
@@ -17,7 +36,8 @@ export const getPhotoGalleries = async () => {
 export type PhotoGallery = Awaited<ReturnType<typeof getPhotoGalleries>>;
 
 export const getNotes = async () => {
-  return await initDirectus().request(
+  const directus = await getDirectusClient();
+  return await directus.request(
     readItems("notes", {
       fields: [
         "*",
@@ -47,4 +67,7 @@ export const getNotes = async () => {
 };
 export type Note = Awaited<ReturnType<typeof getNotes>>;
 
-export const getFiles = async () => await initDirectus().request(readFiles());
+export const getFiles = async () => {
+  const directus = await getDirectusClient();
+  return await directus.request(readFiles());
+};
