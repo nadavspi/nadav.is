@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { getNotes, getPhotoGalleries } from "src/lib/directus";
+import { getFiles, getNotes, getPhotoGalleries } from "src/lib/directus";
 
 const photoGalleries = defineCollection({
   loader: async () => {
@@ -9,6 +9,10 @@ const photoGalleries = defineCollection({
 
 const notes = defineCollection({
   loader: async () => getNotes(),
+});
+
+const files = defineCollection({
+  loader: async () => getFiles(),
 });
 
 const media = defineCollection({
@@ -42,8 +46,9 @@ const writing = defineCollection({
 });
 
 export const collections = {
-  photoGalleries: photoGalleries,
-  writing: writing,
+  files: files,
   media: media,
   notes: notes,
+  photoGalleries: photoGalleries,
+  writing: writing,
 };

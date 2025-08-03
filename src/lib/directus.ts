@@ -1,4 +1,4 @@
-import { createDirectus, readItems, rest } from "@directus/sdk";
+import { createDirectus, readFiles, readItems, rest } from "@directus/sdk";
 import type { ApiCollections } from "../types/directus-schema.ts";
 
 export const initDirectus = () => {
@@ -45,3 +45,6 @@ export const getNotes = async () => {
     }),
   );
 };
+export type Note = Awaited<ReturnType<typeof getNotes>>;
+
+export const getFiles = async () => await initDirectus().request(readFiles());
