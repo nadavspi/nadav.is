@@ -39,6 +39,13 @@ export interface BlockGridBlock {
   sort: number;
 }
 
+export interface BlockGridFile {
+  id: number;
+  block_grid_id: string | BlockGrid;
+  directus_files_id: string | DirectusFile;
+  sort: number;
+}
+
 export interface BlockMarkdown {
   id: string;
   content: string;
@@ -71,6 +78,12 @@ export interface NotesBlock {
   item: string;
   collection: string;
   sort: number;
+}
+
+export interface NotesTag {
+  id: number;
+  notes_id: string | Note;
+  tags_id: string | Tag;
 }
 
 export interface PhotoGallery {
@@ -185,11 +198,13 @@ export interface ApiCollections {
   _litestream_seq: LitestreamSeq[];
   block_grid: BlockGrid[];
   block_grid_blocks: BlockGridBlock[];
+  block_grid_files: BlockGridFile[];
   block_markdown: BlockMarkdown[];
   block_photo: BlockPhoto[];
   block_richtext: BlockRichtext[];
   notes: Note[];
   notes_blocks: NotesBlock[];
+  notes_tags: NotesTag[];
   photo_galleries: PhotoGallery[];
   photo_galleries_blocks: PhotoGalleriesBlock[];
   tags: Tag[];
