@@ -1,5 +1,4 @@
 ---
-import { excludedTags } from "./allTags.ts";
 const { collection, data, slug } = Astro.props;
 const { date, title, titleTranslated, subtitle } = data;
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
@@ -26,18 +25,6 @@ const hasTag = (tag) => {
 const isArchived = hasTag("archived");
 const isFeatured = hasTag("featured");
 
-const displayTags = (() => {
-  if (!tags) return;
-  const displayableTags = tags.filter((tag) => !excludedTags.includes(tag));
-  if ((collection == "writing" || collection == "notes") && displayableTags) {
-    return displayableTags;
-  }
-  if (collection == "media") {
-    return ["media"];
-  }
-  return [collection];
-})();
-
 const href = (() => {
   if (collection == "writing") {
     return `/notes/${slug}`;
@@ -60,7 +47,7 @@ const cover = (() => {
   if (data.cover?.id) {
     const { id, description: alt, width, height } = data.cover;
     return {
-      src: `https://cms.nadav.is/assets/${id}`,
+      src: `${import.meta.env.DIRECTUS_URL}/assets/${id}`,
       alt: alt || "",
       width,
       height,
@@ -99,17 +86,6 @@ const cover = (() => {
     { "row-span-2": cover },
   ]}
 >
-  {
-    displayTags?.length > 0 && (
-      <span
-        class:list={[
-          "absolute top-2 left-2 italic text-purple-dark dark:text-purple-light",
-        ]}
-      >
-        tags: {displayTags.join(", ")}
-      </span>
-    )
-  }
   {
     isArchived && (
       <span

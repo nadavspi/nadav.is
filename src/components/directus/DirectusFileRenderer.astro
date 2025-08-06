@@ -7,7 +7,7 @@ const file: DirectusFile = Astro.props.file;
 {
   file && file.width && file.height && (
     <Image
-      src={`https://cms.nadav.is/assets/${file.id}`}
+      src={`${import.meta.env.DIRECTUS_URL}/assets/${file.id}`}
       alt={file.description || ""}
       width={file.width}
       height={file.height}

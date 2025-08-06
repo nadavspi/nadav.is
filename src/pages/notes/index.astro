@@ -1,7 +1,6 @@
 ---
 import Items from "./_items.astro";
 import Layout from "@layouts/base.astro";
-import TagNav from "@components/TagNav.astro";
 import { getCollection } from "astro:content";
 
 const writing = await getCollection("writing");
@@ -13,7 +12,6 @@ const items = [...writing, ...media, ...notes].sort(
 ---
 
 <Layout pageTitle="Writing">
-  <TagNav />
   <Items items={items} />
   <footer class="mt-6 text-sm text-right">
     <a href="/rss.xml">Subscribe (RSS feed)</a>
