@@ -20,7 +20,7 @@ const showCaptions = options.includes("captions");
   {
     files.map((file) => {
       return (
-        <figure class="my-0">
+        <figure>
           <DirectusFileRenderer file={file.data} />
           {showCaptions && (
             <figcaption class="pb-3 border-b-2 border-tumbleweed dark:border-purple">

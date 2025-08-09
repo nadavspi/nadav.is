@@ -40,3 +40,9 @@
     font-variant-caps: small-caps;
   }
 }
+
+.masonry img,
+.masonry figure {
+  margin-top: 0;
+  margin-bottom: 0;
+}
