@@ -12,10 +12,23 @@ const entries = grid.files.map((file) => ({
 const files = await getEntries(entries);
 
 const { options } = grid;
-const fullbleed = options.includes('fullbleed')
-
+const fullbleed = options.includes("fullbleed");
+const showCaptions = options.includes("captions");
 ---
 
-<Grid class:list={{ 'lg:fullbleed lg:px-8': fullbleed }}>
-  {files.map(file => <DirectusFileRenderer file={file.data}) />)}
+<Grid fullbleed={fullbleed}>
+  {
+    files.map((file) => {
+      return (
+        <figure class="my-0">
+          <DirectusFileRenderer file={file.data} />
+          {showCaptions && (
+            <figcaption class="pb-3 border-b-2 border-tumbleweed dark:border-purple">
+              {file.data.description}
+            </figcaption>
+          )}
+        </figure>
+      );
+    })
+  }
 </Grid>
