@@ -1,7 +1,17 @@
 ---
+import { Masonry } from "astro-masonry";
 
+const { fullbleed } = Astro.props;
 ---
 
-<div class:list={["grid gap-4 md:grid-cols-2 my-8 md:my-10 not-prose", Astro.props.class]}>
+<Masonry
+  breakpointCols={{
+    default:  fullbleed ? 3 : 2,
+    1280: 2,
+    768: 1,
+  }}
+  class:list={["flex gap-4 my-8 md:my-10", { "lg:fullbleed lg:px-8": fullbleed }, Astro.props.class]}
+  columnClass="grid gap-4"
+>
   <slot />
-</div>
+</Masonry>

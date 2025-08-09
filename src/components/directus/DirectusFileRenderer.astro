@@ -11,6 +11,7 @@ const file: DirectusFile = Astro.props.file;
       alt={file.description || ""}
       width={file.width}
       height={file.height}
+      loading="lazy"
     />
   )
 }
