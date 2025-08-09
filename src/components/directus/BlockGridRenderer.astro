@@ -1,0 +1,34 @@
+---
+import { getEntries } from "astro:content";
+import type { BlockGrid } from "src/types/directus-schema";
+import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+import Grid from "@components/Grid.astro";
+
+const grid: BlockGrid = Astro.props.grid;
+const entries = grid.files.map((file) => ({
+  id: file.directus_files_id,
+  collection: "files",
+}));
+const files = await getEntries(entries);
+
+const { options } = grid;
+const fullbleed = options.includes("fullbleed");
+const showCaptions = options.includes("captions");
+---
+
+<Grid fullbleed={fullbleed}>
+  {
+    files.map((file) => {
+      return (
+        <figure class="my-0">
+          <DirectusFileRenderer file={file.data} />
+          {showCaptions && (
+            <figcaption class="pb-3 border-b-2 border-tumbleweed dark:border-purple">
+              {file.data.description}
+            </figcaption>
+          )}
+        </figure>
+      );
+    })
+  }
+</Grid>

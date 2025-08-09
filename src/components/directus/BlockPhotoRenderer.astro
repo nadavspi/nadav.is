@@ -1,0 +1,14 @@
+---
+import type { DirectusFile } from "@directus/sdk";
+import { getEntry } from "astro:content";
+import type { BlockPhoto } from "src/types/directus-schema";
+import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+
+const photo: BlockPhoto = Astro.props.photo;
+// @ts-ignore
+const file = await getEntry("files", photo.image);
+// @ts-ignore
+const data: DirectusFile = file?.data;
+---
+
+{data && data.width && data.height && <DirectusFileRenderer file={data} />}

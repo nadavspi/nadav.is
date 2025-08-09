@@ -26,5 +26,8 @@ export default defineConfig({
       expiration: 60 * 60 * 24,
     },
   }),
+  image: {
+    domains: ["cms.nadav.is"],
+  }
 });
 

@@ -1,0 +1,17 @@
+---
+import { Image } from "astro:assets";
+import type { DirectusFile } from "@directus/sdk";
+const file: DirectusFile = Astro.props.file;
+---
+
+{
+  file && file.width && file.height && (
+    <Image
+      src={`${import.meta.env.DIRECTUS_URL}/assets/${file.id}`}
+      alt={file.description || ""}
+      width={file.width}
+      height={file.height}
+      loading="lazy"
+    />
+  )
+}

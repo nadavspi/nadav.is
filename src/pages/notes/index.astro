@@ -1,17 +1,19 @@
 ---
 import Items from "./_items.astro";
 import Layout from "@layouts/base.astro";
-import TagNav from "@components/TagNav.astro";
 import { getCollection } from "astro:content";
 
 const writing = await getCollection("writing");
 const media = await getCollection("media");
-const reading = await getCollection("reading");
-const items = [...writing, ...reading, ...media].sort((a, b) => b.data.date - a.data.date);
+const notes = await getCollection("notes");
+const items = [...writing, ...media, ...notes].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
 ---
 
 <Layout pageTitle="Writing">
-  <TagNav />
   <Items items={items} />
-  <footer class="mt-6 text-sm text-right"><a href="/rss.xml">Subscribe (RSS feed)</a></footer>
+  <footer class="mt-6 text-sm text-right">
+    <a href="/rss.xml">Subscribe (RSS feed)</a>
+  </footer>
 </Layout>

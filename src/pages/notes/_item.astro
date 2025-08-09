@@ -1,9 +1,22 @@
 ---
-import { excludedTags } from "./allTags.ts";
 const { collection, data, slug } = Astro.props;
-const { cover, coverAlt, date, tags = [], title, titleTranslated, subtitle } = data;
+const { date, title, titleTranslated, subtitle } = data;
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import { Image } from "astro:assets";
+
+const tags = (() => {
+  if (!data.tags) {
+    return [];
+  }
+
+  // directus
+  if (data.tags[0]?.id) {
+    return data.tags.map((tag) => tag.tags_id.title);
+  }
+
+  // astro
+  return data.tags;
+})();
 
 const hasTag = (tag) => {
   if (!tags) return false;
@@ -12,20 +25,12 @@ const hasTag = (tag) => {
 const isArchived = hasTag("archived");
 const isFeatured = hasTag("featured");
 
-const displayTags = (() => {
-  const displayableTags = tags.filter((tag) => !excludedTags.includes(tag));
-  if (collection == "writing" && displayableTags) {
-    return displayableTags;
-  }
-  if (collection == "media") {
-    return ["media"];
-  }
-  return [collection];
-})();
-
 const href = (() => {
   if (collection == "writing") {
     return `/notes/${slug}`;
+  }
+  if (collection == "notes") {
+    return `/notes/${data.slug}`;
   }
   if (collection == "media") {
     return `/notes/media/${slug}`;
@@ -35,6 +40,29 @@ const href = (() => {
   }
 
   throw new Error(`Missing href logic for collection \`${collection}\``);
+})();
+
+const cover = (() => {
+  // directus
+  if (data.cover?.id) {
+    const { id, description: alt, width, height } = data.cover;
+    return {
+      src: `${import.meta.env.DIRECTUS_URL}/assets/${id}`,
+      alt: alt || "",
+      width,
+      height,
+    };
+  }
+
+  // astro
+  if (data.cover) {
+    return {
+      src: data.cover,
+      alt: data.coverAlt,
+    };
+  }
+
+  return;
 })();
 ---
 
@@ -59,17 +87,6 @@ const href = (() => {
   ]}
 >
   {
-    displayTags?.length > 0 && (
-      <span
-        class:list={[
-          "absolute top-2 left-2 italic text-purple-dark dark:text-purple-light",
-        ]}
-      >
-        tags: {displayTags.join(", ")}
-      </span>
-    )
-  }
-  {
     isArchived && (
       <span
         class:list={[
@@ -91,5 +108,5 @@ const href = (() => {
       <WrittenLongAgo date={date} server:defer />
     </time>
   </div>
-  {cover && <Image src={cover} alt={coverAlt} class="mb-2" />}
+  {cover && <Image {...cover} class="mb-2" />}
 </a>

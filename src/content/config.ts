@@ -1,59 +1,54 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
+import { getFiles, getNotes, getPhotoGalleries } from "src/lib/directus";
 
-const photoCollection = defineCollection({
-  type: 'content', 
-  schema: z.object({
-    title: z.string(),
-    tags: z.array(z.string()).optional(),
-  }),
+const photoGalleries = defineCollection({
+  loader: async () => {
+    return getPhotoGalleries();
+  },
 });
 
-const reading = defineCollection({
-  type: 'content', 
-  schema: z.object({
-    author: z.string(),
-    category: z.enum(["articles", "books"]),
-    // readwise will return "None" for undefined date
-    datePublished: z.date().or(z.string()).optional(),
-    date: z.date().optional(),
-    link: z.string().url().optional(),
-    // coerce because we may have numerical titles
-    title: z.coerce.string(),
-    titleTranslated: z.string().optional(),
-  }),
+const notes = defineCollection({
+  loader: async () => getNotes(),
+});
+
+const files = defineCollection({
+  loader: async () => getFiles(),
 });
 
 const media = defineCollection({
-  type: 'content', 
-  schema: ({ image }) => z.object({
-    category: z.enum(["Movie", "TV"]),
-    cover: image().optional(),
-    coverAlt: z.string().optional(),
-    date: z.date(),
-    link: z.string().optional(),
-    title: z.string(),
-    titleTranslated: z.string().optional(),
-    yearPublished: z.number(),
-  }),
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      category: z.enum(["Movie", "TV"]),
+      cover: image().optional(),
+      coverAlt: z.string().optional(),
+      date: z.date(),
+      link: z.string().optional(),
+      title: z.string(),
+      titleTranslated: z.string().optional(),
+      yearPublished: z.number(),
+    }),
 });
 
-
 const writing = defineCollection({
-  type: 'content', 
-  schema: ({ image }) => z.object({
-    blurb: z.string().optional(),
-    date: z.date(),
-    cover: image().optional(),
-    coverAlt: z.string().optional(),
-    dateUpdated: z.date().optional(),
-    tags: z.array(z.string()).optional(),
-    title: z.string(),
-    subtitle: z.string().optional(),
-  }),
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      blurb: z.string().optional(),
+      date: z.date(),
+      cover: image().optional(),
+      coverAlt: z.string().optional(),
+      dateUpdated: z.date().optional(),
+      tags: z.array(z.string()).optional(),
+      title: z.string(),
+      subtitle: z.string().optional(),
+    }),
 });
 
 export const collections = {
-  "photoCollection": photoCollection,
-  "writing": writing,
-  "media": media,
+  files: files,
+  media: media,
+  notes: notes,
+  photoGalleries: photoGalleries,
+  writing: writing,
 };
