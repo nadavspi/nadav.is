@@ -10,8 +10,12 @@ const entries = grid.files.map((file) => ({
   collection: "files",
 }));
 const files = await getEntries(entries);
+
+const { options } = grid;
+const fullbleed = options.includes('fullbleed')
+
 ---
 
-<Grid>
+<Grid class:list={{ 'lg:fullbleed lg:px-8': fullbleed }}>
   {files.map(file => <DirectusFileRenderer file={file.data}) />)}
 </Grid>
