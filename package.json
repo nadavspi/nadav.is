@@ -20,6 +20,7 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "astro": "^5.2.5",
+    "astro-masonry": "^1.2.2",
     "date-fns": "^3.3.1",
     "preact": "^10.23.1",
     "react-lite-youtube-embed": "^2.4.0",
