@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-04T02:55:43.750Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-09T04:05:18.272Z */
 export interface Block {
   id: string;
 }
@@ -29,6 +29,7 @@ export interface BlockGrid {
   columns: number;
   blocks: unknown;
   files: number[] | BlockGridFile[];
+  options: Record<string, unknown>;
 }
 
 export interface BlockGridBlock {
