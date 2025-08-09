@@ -46,7 +46,11 @@ export const getNotes = async () => {
             "collection",
             {
               item: {
-                block_grid: [{ files: ["directus_files_id"], blocks: "*" }],
+                block_grid: [
+                  { files: ["directus_files_id"] },
+                  "options",
+                  "columns",
+                ],
                 block_markdown: ["*"],
                 block_photo: ["image"],
                 block_richtext: ["*"],
