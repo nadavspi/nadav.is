@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-09T04:05:18.272Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-10T02:21:53.841Z */
 export interface Block {
   id: string;
 }
@@ -71,6 +71,7 @@ export interface Note {
   blocks: unknown;
   slug: string;
   tags: number[] | NotesTag[];
+  status: string;
 }
 
 export interface NotesBlock {
