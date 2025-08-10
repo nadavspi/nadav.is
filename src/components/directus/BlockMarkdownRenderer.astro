@@ -1,0 +1,11 @@
+---
+import type { BlockMarkdown } from "src/types/directus-schema";
+import { Marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
+
+const block: BlockMarkdown = Astro.props.block;
+const marked = new Marked();
+const content = DOMPurify.sanitize(await marked.parse(block.content || ""));
+---
+
+<div data-id={block.id} set:html={content} />

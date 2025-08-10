@@ -8,7 +8,14 @@ const photoGalleries = defineCollection({
 });
 
 const notes = defineCollection({
-  loader: async () => getNotes(),
+  loader: async () =>
+    getNotes({
+      filter: {
+        status: {
+          _eq: "published",
+        },
+      },
+    }),
 });
 
 const files = defineCollection({
