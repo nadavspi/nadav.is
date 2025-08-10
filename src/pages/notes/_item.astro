@@ -3,6 +3,7 @@ const { collection, data, slug } = Astro.props;
 const { date, title, titleTranslated, subtitle } = data;
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import { Image } from "astro:assets";
+const { class: className } = Astro.props;
 
 const tags = (() => {
   if (!data.tags) {
@@ -84,6 +85,7 @@ const cover = (() => {
     { "border-tumbleweed-800 dark:border-purple-pale": isFeatured },
     { "border-tumbleweed-800 dark:border-purple-pale": isFeatured },
     { "row-span-2": cover },
+    className,
   ]}
 >
   {

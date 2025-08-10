@@ -4,6 +4,17 @@ import Nadav from "../content/photos/nadav-closet.jpg";
 import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 import { Image } from "astro:assets";
 import navLinks from "@components/navLinks.js";
+
+import { getCollection } from "astro:content";
+import Item from "./notes/_item.astro";
+
+const writing = await getCollection("writing");
+const media = await getCollection("media");
+const notes = await getCollection("notes");
+const items = [...writing, ...media, ...notes].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
+const latest = items[0];
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman">
@@ -62,6 +73,16 @@ import navLinks from "@components/navLinks.js";
           );
         })
       }
+
+      <article class="mt-8 xl:mt-16 2xl:mt-32 grid max-w-60">
+        <h2>Latest</h2>
+        <Item
+          data={latest.data}
+          slug={latest.slug}
+          collection={latest.collection}
+          class="!m-0"
+        />
+      </article>
     </nav>
   </main>
   <footer
