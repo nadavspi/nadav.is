@@ -66,6 +66,11 @@ export const getNotes = async () => {
           ],
         },
       ],
+      filter: {
+        status: {
+          _eq: 'published'
+        },
+      },
     }),
   );
 };
