@@ -14,6 +14,9 @@ const notes = defineCollection({
         status: {
           _eq: "published",
         },
+        password: {
+          _empty: true
+        }
       },
     }),
 });
