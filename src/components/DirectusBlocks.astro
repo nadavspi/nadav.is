@@ -1,5 +1,6 @@
 ---
 import type {
+  BlockGrid,
   BlockMarkdown,
   BlockPhoto,
   BlockRichtext,
@@ -9,7 +10,6 @@ import BlockPhotoRenderer from "./directus/BlockPhotoRenderer.astro";
 import BlockGridRenderer from "./directus/BlockGridRenderer.astro";
 import BlockMarkdownRenderer from "./directus/BlockMarkdownRenderer.astro";
 const note: Note = Astro.props.item.data;
-const { blocks } = note;
 ---
 
 {
@@ -17,8 +17,8 @@ const { blocks } = note;
     const { collection, item } = block;
 
     if (collection === "block_richtext") {
-      const richtext = item as BlockRichtext;
-      return <div data-id={richtext.id} set:html={richtext.content} />;
+      const block = item as BlockRichtext;
+      return <div data-id={block.id} set:html={block.content} />;
     }
 
     if (collection === "block_markdown") {
@@ -27,13 +27,11 @@ const { blocks } = note;
     }
 
     if (collection === "block_photo") {
-      const photo = item as BlockPhoto;
-      return <BlockPhotoRenderer photo={photo} />;
+      return <BlockPhotoRenderer photo={item as BlockPhoto} />;
     }
 
     if (collection === "block_grid") {
-      const grid = item as BlockGrid;
-      return <BlockGridRenderer grid={grid} />;
+      return <BlockGridRenderer grid={item as BlockGrid} />;
     }
   })
 }
