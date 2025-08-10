@@ -1,14 +1,17 @@
 ---
- import type {
-   BlockPhoto,
-   BlockRichtext,
-   Note,
- } from "src/types/directus-schema";
- import BlockPhotoRenderer from "./directus/BlockPhotoRenderer.astro";
- import BlockGridRenderer from "./directus/BlockGridRenderer.astro";
- const note: Note = Astro.props.item.data;
- const { blocks } = note;
+import type {
+  BlockMarkdown,
+  BlockPhoto,
+  BlockRichtext,
+  Note,
+} from "src/types/directus-schema";
+import BlockPhotoRenderer from "./directus/BlockPhotoRenderer.astro";
+import BlockGridRenderer from "./directus/BlockGridRenderer.astro";
+import BlockMarkdownRenderer from "./directus/BlockMarkdownRenderer.astro";
+const note: Note = Astro.props.item.data;
+const { blocks } = note;
 ---
+
 {
   note.blocks.map((block) => {
     const { collection, item } = block;
@@ -18,6 +21,11 @@
       return <div data-id={richtext.id} set:html={richtext.content} />;
     }
 
+    if (collection === "block_markdown") {
+      const block = item as BlockMarkdown;
+      return <BlockMarkdownRenderer block={block} />;
+    }
+
     if (collection === "block_photo") {
       const photo = item as BlockPhoto;
       return <BlockPhotoRenderer photo={photo} />;
@@ -25,7 +33,7 @@
 
     if (collection === "block_grid") {
       const grid = item as BlockGrid;
-      return <BlockGridRenderer grid={grid} />
+      return <BlockGridRenderer grid={grid} />;
     }
   })
 }
