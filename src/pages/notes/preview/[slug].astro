@@ -1,0 +1,23 @@
+---
+import { getNotes } from "src/lib/directus";
+import Page from "../[slug].astro";
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+const items = await getNotes({
+  filter: {
+    slug: {
+      _eq: slug,
+    },
+  },
+});
+
+const item = { data: items[0] };
+---
+
+<h2>Preview mode</h2>
+Status: {item.data.status}
+
+<Page item={item} source="directus" />

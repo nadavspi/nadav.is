@@ -3,7 +3,7 @@ import {
   createDirectus,
   readFiles,
   readItems,
-  rest,
+  rest
 } from "@directus/sdk";
 import type { ApiCollections } from "../types/directus-schema.ts";
 
@@ -35,7 +35,7 @@ export const getPhotoGalleries = async () => {
 };
 export type PhotoGallery = Awaited<ReturnType<typeof getPhotoGalleries>>;
 
-export const getNotes = async () => {
+export const getNotes = async (params?: {}) => {
   const directus = await getDirectusClient();
   return await directus.request(
     readItems("notes", {
@@ -66,11 +66,7 @@ export const getNotes = async () => {
           ],
         },
       ],
-      filter: {
-        status: {
-          _eq: 'published'
-        },
-      },
+      ...params,
     }),
   );
 };
