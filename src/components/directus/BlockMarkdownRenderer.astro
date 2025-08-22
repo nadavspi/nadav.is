@@ -2,15 +2,23 @@
 import type { BlockMarkdown } from "src/types/directus-schema";
 
 const block: BlockMarkdown = Astro.props.block;
-import rehypeStringify from 'rehype-stringify'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import {unified} from 'unified'
+import rehypeShiki from "@shikijs/rehype";
+import rehypeStringify from "rehype-stringify";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
 
 const html = await unified()
   .use(remarkParse)
   .use(remarkRehype)
-  .use(rehypeStringify).process(block.content)
+  .use(rehypeShiki, {
+    themes: {
+      light: "rose-pine-dawn",
+      dark: "catppuccin-mocha",
+    },
+  })
+  .use(rehypeStringify)
+  .process(block.content);
 ---
 
 <div data-id={block.id} set:html={html} />
