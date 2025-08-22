@@ -1,11 +1,16 @@
 ---
 import type { BlockMarkdown } from "src/types/directus-schema";
-import { Marked } from "marked";
-import DOMPurify from "isomorphic-dompurify";
 
 const block: BlockMarkdown = Astro.props.block;
-const marked = new Marked();
-const content = DOMPurify.sanitize(await marked.parse(block.content || ""));
+import rehypeStringify from 'rehype-stringify'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import {unified} from 'unified'
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeStringify).process(block.content)
 ---
 
-<div data-id={block.id} set:html={content} />
+<div data-id={block.id} set:html={html} />
