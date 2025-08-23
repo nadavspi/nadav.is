@@ -1,4 +1,5 @@
 @tailwind base;
+
 @layer base {
   h1 {
     @apply text-xl md:text-2xl;
@@ -12,8 +13,7 @@
     @apply leading-tight;
   }
 
-  h3 {
-  }
+  h3 {}
 
   a {
     @apply italic;
@@ -25,11 +25,25 @@
   .prose aside {
     @apply text-xs p-4;
   }
+
+  details {
+    @apply text-sm;
+  }
+
+  summary {
+    /* same as h2 */
+    @apply text-greenlake-800 dark:text-purple-pale;
+  }
+
+  summary::marker {
+    @apply text-greenlake dark:text-tumbleweed;
+  }
 }
 
 @tailwind components;
 
-@tailwind utilities; 
+@tailwind utilities;
+
 @layer utilities {
   .fullbleed {
     width: 100vw;
