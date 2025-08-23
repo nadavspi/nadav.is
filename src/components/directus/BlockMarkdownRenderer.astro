@@ -4,12 +4,30 @@ import type { BlockMarkdown } from "src/types/directus-schema";
 const block: BlockMarkdown = Astro.props.block;
 import rehypeShiki from "@shikijs/rehype";
 import rehypeStringify from "rehype-stringify";
+import remarkDirective from "remark-directive";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { h } from "hastscript";
+import { visit } from "unist-util-visit";
+
+const asideDirective = () => (tree) =>
+  visit(tree, (node) => {
+    if (node.type === "containerDirective") {
+      if (node.name !== "aside") return;
+
+      const data = node.data || (node.data = {});
+      const tagName = "aside";
+
+      data.hName = tagName;
+      data.hProperties = h(tagName, node.attributes || {}).properties;
+    }
+  });
 
 const html = await unified()
   .use(remarkParse)
+  .use(remarkDirective)
+  .use(asideDirective)
   .use(remarkRehype)
   .use(rehypeShiki, {
     themes: {
