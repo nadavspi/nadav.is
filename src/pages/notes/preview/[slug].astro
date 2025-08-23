@@ -15,9 +15,17 @@ const items = await getNotes({
 });
 
 const item = { data: items[0] };
+import { Debug } from "astro:components";
 ---
 
+<div class="flex justify-between">
 <h2>Preview mode</h2>
 Status: {item.data.status}
+</div>
 
 <Page item={item} source="directus" />
+
+<details class="mb-4 border-t border-tumbleweed dark:border-purple mt-12 pt-2" open>
+  <summary>Debug</summary>
+  <Debug item={item} />
+</details>
