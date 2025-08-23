@@ -15,10 +15,10 @@ import { visit } from "unist-util-visit";
 const containerDirectives = () => (tree: Root) =>
   visit(tree, (node) => {
     if (node.type === "containerDirective") {
-      const allowed = ["aside", "details"];
+      const allowed = ["aside", "details", "figure"];
       if (!allowed.includes(node.name)) return;
     } else if (node.type === "leafDirective") {
-      const allowed = ["summary"];
+      const allowed = ["summary", "figcaption"];
       if (!allowed.includes(node.name)) return;
     } else {
       return;
