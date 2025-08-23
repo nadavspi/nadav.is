@@ -24,11 +24,12 @@ export async function getStaticPaths() {
 }
 
 const { item, source } = Astro.props;
-const { date, title, subtitle } = item.data;
+const { date, title, subtitle, tags } = item.data;
 ---
 
 <Layout backTo="notes" pageTitle={title}>
   <PostHeader>
+  {(tags && source === "directus") && tags[0].tags_id.title}
     <PostTitle>{title}</PostTitle>
     {subtitle && <h2>{subtitle}</h2>}
     <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
