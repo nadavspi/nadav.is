@@ -7,27 +7,33 @@ import rehypeStringify from "rehype-stringify";
 import remarkDirective from "remark-directive";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import { unified } from "unified";
+import type { Root } from "mdast";
 import { h } from "hastscript";
+import { unified } from "unified";
 import { visit } from "unist-util-visit";
 
-const asideDirective = () => (tree) =>
+const containerDirectives = () => (tree: Root) =>
   visit(tree, (node) => {
     if (node.type === "containerDirective") {
-      if (node.name !== "aside") return;
-
-      const data = node.data || (node.data = {});
-      const tagName = "aside";
-
-      data.hName = tagName;
-      data.hProperties = h(tagName, node.attributes || {}).properties;
+      const allowed = ["aside", "details"];
+      if (!allowed.includes(node.name)) return;
+    } else if (node.type === "leafDirective") {
+      const allowed = ["summary"];
+      if (!allowed.includes(node.name)) return;
+    } else {
+      return;
     }
+
+    const tagName = node.name;
+    const data = node.data || (node.data = {});
+    data.hName = tagName;
+    data.hProperties = h(tagName, node.attributes || {}).properties;
   });
 
 const html = await unified()
   .use(remarkParse)
   .use(remarkDirective)
-  .use(asideDirective)
+  .use(containerDirectives)
   .use(remarkRehype)
   .use(rehypeShiki, {
     themes: {
