@@ -1,50 +1,39 @@
-@tailwind base;
-
-@layer base {
   h1 {
-    @apply text-xl md:text-2xl;
-    @apply text-purple-dark dark:text-purple-light;
-    @apply mb-2;
+    /* @apply text-xl md:text-2xl; */
+    /* @apply text-purple-dark dark:text-purple-light; */
+    /* @apply mb-2; */
   }
 
   h2 {
-    @apply text-lg text-greenlake-800 dark:text-purple-pale;
-    @apply mb-2;
-    @apply leading-tight;
+    /* @apply text-lg text-greenlake-800 dark:text-purple-pale; */
+    /* @apply mb-2; */
+    /* @apply leading-tight; */
   }
 
-  h3 {}
-
   a {
-    @apply italic;
-    @apply text-greenlake dark:text-tumbleweed;
-    @apply hover:text-tumbleweed-600 dark:hover:text-cyan;
-    @apply transition-all;
+    /* @apply italic; */
+    /* @apply text-greenlake dark:text-tumbleweed; */
+    /* @apply hover:text-tumbleweed-600 dark:hover:text-cyan; */
+    /* @apply transition-all; */
   }
 
   .prose aside {
-    @apply text-xs p-4;
+    /* @apply text-xs p-4; */
   }
 
   details {
-    @apply text-sm;
+    /* @apply text-sm; */
   }
 
   summary {
     /* same as h2 */
-    @apply text-greenlake-800 dark:text-purple-pale;
+    /* @apply text-greenlake-800 dark:text-purple-pale; */
   }
 
   summary::marker {
-    @apply text-greenlake dark:text-tumbleweed;
+    /* @apply text-greenlake dark:text-tumbleweed; */
   }
-}
 
-@tailwind components;
-
-@tailwind utilities;
-
-@layer utilities {
   .fullbleed {
     width: 100vw;
     position: relative;
@@ -57,21 +46,20 @@
   .small-caps {
     font-variant-caps: small-caps;
   }
-}
 
-.masonry img,
-.masonry figure {
-  margin-top: 0;
-  margin-bottom: 0;
-}
+  .masonry img,
+  .masonry figure {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-html.dark .shiki,
-html.dark .shiki span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  /* Optional, if you also want font styles */
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-  @apply text-xs;
-}
+  html.dark .shiki,
+  html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+    /* @apply text-xs; */
+  }
