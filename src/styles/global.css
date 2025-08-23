@@ -21,6 +21,10 @@
     @apply hover:text-tumbleweed-600 dark:hover:text-cyan;
     @apply transition-all;
   }
+
+  .prose aside {
+    @apply text-xs p-4;
+  }
 }
 
 @tailwind components;
