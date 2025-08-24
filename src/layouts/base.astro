@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "../styles/fonts.css";
 import Header from "../components/Header.astro";
+import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 const { pageTitle, backTo, noHeader, class: className } = Astro.props;
 ---
 
@@ -22,5 +23,7 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
   <body class:list={["flow", className]}>
     {!noHeader && <Header backTo={backTo} />}
     <slot />
+
+    <footer><ThemeSwitcher /></footer>
   </body>
 </html>

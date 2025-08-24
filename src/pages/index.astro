@@ -1,7 +1,6 @@
 ---
 import Layout from "@layouts/base.astro";
 import Nadav from "../content/photos/nadav-closet.jpg";
-import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 import { Image } from "astro:assets";
 import navLinks from "@components/navLinks.js";
 
@@ -20,9 +19,6 @@ import "../styles/home.css";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman">
-  <header class="mb-4">
-    <ThemeSwitcher class="md:absolute top-2 right-4" />
-  </header>
   <main
     class:list={[
       "flow gutters",
