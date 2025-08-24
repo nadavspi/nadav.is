@@ -18,7 +18,7 @@ const note: Note = Astro.props.item.data;
 
     if (collection === "block_richtext") {
       const block = item as BlockRichtext;
-      return <div data-id={block.id} set:html={block.content} />;
+      return <div class="flow" data-id={block.id} set:html={block.content} />;
     }
 
     if (collection === "block_markdown") {

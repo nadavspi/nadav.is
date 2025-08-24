@@ -17,12 +17,13 @@ const items = [...writing, ...media, ...notes].sort(
 const latest = items[0];
 ---
 
-<Layout noHeader={true} pageTitle="Nadav Spiegelman">
+<Layout class="flow" noHeader={true} pageTitle="Nadav Spiegelman">
   <header class="mb-4">
     <ThemeSwitcher class="md:absolute top-2 right-4" />
   </header>
   <main
     class:list={[
+      "flow gutters",
       "xl:relative",
       "xl:grid xl:grid-cols-3",
       "xl:border-tumbleweed xl:dark:border-purple",
@@ -31,6 +32,7 @@ const latest = items[0];
   >
     <article
       class:list={[
+        "flow",
         "xl:justify-self-end xl:mr-12 xl:col-span-2",
         "xl:border-r-4 xl:pr-12 xl:py-6",
         "border-tumbleweed dark:border-purple",
@@ -54,27 +56,28 @@ const latest = items[0];
       </p>
     </article>
 
-    <nav
-      class:list={[
-        "mt-6 pt-6 max-w-80",
-        "xl:pt-0",
-        "border-t-4",
-        "border-tumbleweed dark:border-purple",
-        "xl:border-t-0",
-        "text-lg xl:text-3xl",
-      ]}
-    >
-      {
-        navLinks.map((link) => {
-          return (
-            <a class="block mb-2 lg:mb-3 xl:mb-6" href={link.href}>
-              {link.text}
-            </a>
-          );
-        })
-      }
-
-      <article class="mt-8 xl:mt-16 2xl:mt-32 grid max-w-60">
+    <div class="flow">
+      <nav
+        class:list={[
+          "mt-6 pt-6 max-w-80",
+          "xl:pt-0",
+          "border-t-4",
+          "border-tumbleweed dark:border-purple",
+          "xl:border-t-0",
+          "text-lg xl:text-3xl",
+        ]}
+      >
+        {
+          navLinks.map((link) => {
+            return (
+              <div>
+                <a href={link.href}>{link.text}</a>
+              </div>
+            );
+          })
+        }
+      </nav>
+      <article class="note-card flow mt-8 xl:mt-16 2xl:mt-32 grid max-w-60">
         <h2>Latest</h2>
         <Item
           data={latest.data}
@@ -83,7 +86,7 @@ const latest = items[0];
           class="!m-0"
         />
       </article>
-    </nav>
+    </div>
   </main>
   <footer
     class:list={[

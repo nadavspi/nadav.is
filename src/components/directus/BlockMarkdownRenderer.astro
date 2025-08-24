@@ -45,4 +45,4 @@ const html = await unified()
   .process(block.content);
 ---
 
-<div data-id={block.id} set:html={html} />
+<div class="flow" data-id={block.id} set:html={html} />
