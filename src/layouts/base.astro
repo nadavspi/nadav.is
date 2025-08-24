@@ -19,7 +19,7 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     />
     <title>{pageTitle}</title>
   </head>
-  <body class:list={[className, "flow"]}>
+  <body class:list={["flow", className]}>
     {!noHeader && <Header backTo={backTo} />}
     <slot />
   </body>

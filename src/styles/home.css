@@ -1,0 +1,23 @@
+main {
+  --column-gap: var(--space-xl);
+
+  display: flex;
+  column-gap: var(--column-gap);
+  align-items: baseline;
+  flex-wrap: wrap;
+  max-width: max(1800px, 75vw);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--column-gap);
+}
+
+.nav-links {
+    --flow-space: var(--space-3xs);
+}
+
+.hello {
+  letter-spacing: -0.01em;
+}
