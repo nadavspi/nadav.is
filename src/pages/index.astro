@@ -28,19 +28,8 @@ import "../styles/home.css";
       "xl:pb-12 xl:border-b-4",
     ]}
   >
-    <article
-      class:list={[
-        "flow",
-        "xl:justify-self-end xl:mr-12 xl:col-span-2",
-        "xl:border-r-4 xl:pr-12 xl:py-6",
-        "border-tumbleweed dark:border-purple",
-      ]}
-    >
-      <h1
-        class="hello"
-      >
-        Hello. I’m Nadav Spiegelman.
-      </h1>
+    <article class:list={["flow", "intro"]}>
+      <h1>Hello. I’m Nadav Spiegelman.</h1>
       <Image
         src={Nadav}
         alt="here I am"
@@ -59,7 +48,11 @@ import "../styles/home.css";
         <h2>Navigation</h2>
         {
           navLinks.map((link) => {
-            return <a href={link.href} class="block">{link.text}</a>;
+            return (
+              <a href={link.href} class="block">
+                {link.text}
+              </a>
+            );
           })
         }
       </div>

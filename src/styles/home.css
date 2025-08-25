@@ -5,19 +5,26 @@ main {
   column-gap: var(--column-gap);
   align-items: baseline;
   flex-wrap: wrap;
-  max-width: max(1800px, 75vw);
+  max-inline-size: 1800px;
+  margin-inline: auto;
+}
+
+.intro {
+  flex: 0 1 clamp(400px, 60%, 1024px);
 }
 
 nav {
+  flex: 1 1 clamp(10em, 30%, 800px);
   display: flex;
   flex-wrap: wrap;
-  column-gap: var(--column-gap);
+  column-gap: var(--space-l-2xl);
+  row-gap: var(--space-s-l);
 }
 
 .nav-links {
-    --flow-space: var(--space-3xs);
+  --flow-space: var(--space-3xs);
 }
 
-.hello {
+h1 {
   letter-spacing: -0.01em;
 }
