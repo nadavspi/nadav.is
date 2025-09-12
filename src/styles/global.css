@@ -194,23 +194,6 @@ summary::marker {
   --flow-space: 0.5em;
 }
 
-.note-card {
-  display: block;
-  max-width: 20rem;
-}
-
-.notes-list {
-  display: flex;
-  gap: 2rem;
-  padding: 2rem;
-  flex-wrap: wrap;
-
-  >li {
-    max-width: 20rem;
-    border: 2px solid;
-  }
-}
-
 .lead {
   font-size: var(--size-step-1);
 }

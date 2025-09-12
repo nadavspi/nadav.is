@@ -2,7 +2,6 @@
 const { collection, data, slug } = Astro.props;
 const { date, title, titleTranslated, subtitle } = data;
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
-import { Image } from "astro:assets";
 const { class: className } = Astro.props;
 
 const tags = (() => {
@@ -42,73 +41,17 @@ const href = (() => {
 
   throw new Error(`Missing href logic for collection \`${collection}\``);
 })();
-
-const cover = (() => {
-  // directus
-  if (data.cover?.id) {
-    const { id, description: alt, width, height } = data.cover;
-    return {
-      src: `${import.meta.env.DIRECTUS_URL}/assets/${id}`,
-      alt: alt || "",
-      width,
-      height,
-    };
-  }
-
-  // astro
-  if (data.cover) {
-    return {
-      src: data.cover,
-      alt: data.coverAlt,
-    };
-  }
-
-  return;
-})();
 ---
 
-<a
-  href={href}
-  class:list={[
-    "relative group",
-    "text-sm",
-    "transition-all",
-    "motion-reduce:transition-none",
-    "p-8 m-4",
-    "shadow-md",
-    "border-4 rounded",
-    "border-tumbleweed-600 dark:border-purple",
-    "hover:border-greenlake dark:hover:border-cyan",
-    { "border-tumbleweed-600/50 hover:border-tumbleweed-600/100": isArchived },
-    { "dark:border-purple/70": isArchived },
-    { "row-span-2": isFeatured },
-    { "border-tumbleweed-800 dark:border-purple-pale": isFeatured },
-    { "border-tumbleweed-800 dark:border-purple-pale": isFeatured },
-    { "row-span-2": cover },
-    className,
-  ]}
->
-  {
-    isArchived && (
-      <span
-        class:list={[
-          "transition-all absolute top-2 right-2 rotate-12 group-hover:rotate-0 italic text-greenlake-800 dark:text-purple-pale",
-          "motion-reduce:transform-none",
-        ]}
-      >
-        Archived
-      </span>
-    )
-  }
-  <div class="block text-center text-lg/tight my-5">
+<div>
+  {isArchived && <span>Archived</span>}
+  <a href={href} class:list={[className]}>
     {title}
     {titleTranslated && <div>{titleTranslated}</div>}
     {subtitle && <div class="text-xs mt-2">{subtitle}</div>}
-    <time
-      class="absolute bottom-2 right-2 block text-sm text-purple-dark dark:text-purple-light"
-    >
-      <WrittenLongAgo date={date} server:defer />
-    </time>
-  </div>
-  {cover && <Image {...cover} class="mb-2" />}
-</a>
+  </a>
+</div>
+
+<time>
+  <WrittenLongAgo date={date} server:defer />
+</time>

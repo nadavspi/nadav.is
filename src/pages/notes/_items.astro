@@ -5,7 +5,7 @@ const unarchived = items.filter((item: CollectionConfig) => !item.data.tags?.inc
 const archived = items.filter(item => item.data.tags?.includes("archived"))
 ---
 
-<ol class="[ notes-list ]" role="list">
+<ol class="flow" role="list">
   {
     [...unarchived, ...archived].map(({ collection, data, slug }) => {
     return <li><Item data={data} slug={slug} collection={collection} /></li>;
