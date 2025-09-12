@@ -21,9 +21,22 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body class:list={["flow", className]}>
-    {!noHeader && <Header backTo={backTo} />}
-    <slot />
+    <div class="wrapper">
+      <header>
+        {!noHeader && <Header backTo={backTo} />}
+      </header>
 
-    <footer><ThemeSwitcher /></footer>
+      <div class="page-body">
+        <slot />
+      </div>
+
+      <footer><ThemeSwitcher /></footer>
+    </div>
   </body>
 </html>
+
+<style>
+  .wrapper {
+    min-height: 100vh;
+  }
+</style>

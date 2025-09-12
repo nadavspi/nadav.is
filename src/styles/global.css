@@ -89,7 +89,6 @@
 }
 
 body {
-  padding: var(--space-m-xl);
   font-family: 'FF Tundra', Georgia, serif;
   font-size: var(--size-step-0);
   line-height: 1.5;
@@ -100,6 +99,10 @@ body {
 .dark body {
   color: var(--color-purple-light);
   background-color: var(--color-purple-dark);
+}
+
+.page-body {
+  padding: var(--space-m-xl);
 }
 
 h1,
