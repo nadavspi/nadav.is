@@ -22,19 +22,25 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
   </head>
   <body>
     <div class="page-wrapper">
-      <header class="wrapper">
-        {!noHeader && <BackTo backTo={backTo} />}
-      </header>
-
-      <div class:list={['page-content', 'flow', className]}>
-        <slot />
+      <div>
+        <header class="wrapper">
+          {!noHeader && <BackTo backTo={backTo} />}
+        </header>
       </div>
 
-      <footer class="wrapper">
-        <ThemeSwitcher />
+      <div>
+        <div class:list={["page-content", "flow", className]}>
+          <slot />
+        </div>
+      </div>
 
-        <a href="/rss.xml">Subscribe (RSS)</a>
-      </footer>
+      <div>
+        <footer class="wrapper">
+          <ThemeSwitcher />
+
+          <a href="/rss.xml">Subscribe (RSS)</a>
+        </footer>
+      </div>
     </div>
   </body>
 </html>
@@ -42,6 +48,8 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
 <style>
   .page-wrapper {
     min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
   }
 
   header,
