@@ -43,6 +43,20 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
+* {
+  max-inline-size: var(--measure);
+}
+
+html,
+body,
+div,
+header,
+nav,
+main,
+section {
+  max-inline-size: none;
+}
+
 /* Make images easier to work with */
 img,
 picture {
