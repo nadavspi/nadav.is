@@ -24,7 +24,7 @@ const figures = [
 ---
 
 <Section>
-  <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+  <div>
     {
       figures.map(({ alt, src, caption }) => (
         <figure>
@@ -41,6 +41,13 @@ const figures = [
 </Section>
 
 <style>
+  div {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: end;
+  }
+
   figure {
     display: grid;
     grid-template: "container";
