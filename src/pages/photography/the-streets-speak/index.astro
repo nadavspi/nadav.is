@@ -14,14 +14,15 @@ import SidewalkChalk from '../gaza-signs/_gaza signs_Nadav Spiegelman_022.jpg'
 
 
 import PostTitle from "@components/PostTitle.astro";
+import Grid from "@components/Grid.astro";
 ---
 
-<Layout pageTitle="Photography / The streets speak">
+<Layout class="wrapper" pageTitle="Photography / The streets speak">
   <header>
     <PostTitle>The streets speak</PostTitle>
   </header>
 
-  <div class="grid lg:grid-cols-4 gap-10">
+  <Grid>
     <Image sizes="" class="lg:col-span-4" src={SidewalkChalk} alt="" />
     <Image sizes="" class="lg:col-span-2" src={EndTheGenocides} alt="" />
     <Image sizes="" class="lg:col-span-2" src={FromTo} alt="" />
@@ -29,5 +30,5 @@ import PostTitle from "@components/PostTitle.astro";
     <Image sizes="" src={NothingRadicalizes} class="lg:col-span-2 lg:col-start-3" alt="" />
     <Image sizes="" class="lg:col-span-2 lg:col-start-2" src={ResistColonialPower} alt="" />
     <Image sizes="" class="lg:col-span-2 lg:col-start-2" src={FreePalestine} alt="" />
-  </div>
+  </Grid>
 </Layout>
