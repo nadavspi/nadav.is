@@ -10,8 +10,8 @@ const { fullbleed } = Astro.props;
     1280: 2,
     768: 1,
   }}
-  class:list={["masonry flex gap-4 my-8 md:my-10", { "lg:fullbleed lg:px-8": fullbleed }, Astro.props.class]}
-  columnClass="grid gap-4"
+  class:list={["masonry | grid", { "full-bleed": fullbleed }, Astro.props.class]}
+  columnClass="grid"
 >
   <slot />
 </Masonry>
