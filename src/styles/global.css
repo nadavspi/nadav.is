@@ -64,6 +64,13 @@
   --color-grey: #937c8b;
 }
 
+:root {
+  --color-border: var(--color-tumbleweed);
+}
+.dark {
+  --color-border: var(--color-purple);
+}
+
 /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|l-2xl|m-xl&g=s,l,xl,12 */
 
 :root {
@@ -166,6 +173,12 @@ a {
   }
 }
 
+figcaption {
+  font-size: var(--size-step--1);
+  border-block-end: 3px solid var(--color-border);
+  padding-block-end: var(--space-s);
+}
+
 summary {
   color: var(--color-greenlake-800);
 
@@ -189,7 +202,6 @@ summary::marker {
 .flow>*+* {
   margin-block-start: var(--flow-space, var(--space-s));
 }
-
 
 :is(h1, h2, h3, blockquote) {
   --flow-space: 1.4em;
