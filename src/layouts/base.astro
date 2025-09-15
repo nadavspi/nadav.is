@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/fonts.css";
-import Header from "../components/Header.astro";
+import BackTo from "../components/BackTo.astro";
 import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 const { pageTitle, backTo, noHeader, class: className } = Astro.props;
 ---
@@ -20,17 +20,21 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     />
     <title>{pageTitle}</title>
   </head>
-  <body class:list={["flow", className]}>
+  <body class:list={[className]}>
     <div class="wrapper">
       <header>
-        {!noHeader && <Header backTo={backTo} />}
+        {!noHeader && <BackTo backTo={backTo} />}
       </header>
 
       <div class="page-body">
         <slot />
       </div>
 
-      <footer><ThemeSwitcher /></footer>
+      <footer>
+        <ThemeSwitcher />
+
+        <a href="/rss.xml">Subscribe (RSS)</a>
+      </footer>
     </div>
   </body>
 </html>
@@ -38,5 +42,13 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
 <style>
   .wrapper {
     min-height: 100vh;
+  }
+
+  header,
+  footer {
+    display: flex;
+    padding: var(--space-xs);
+    gap: var(--space-xs);
+    font-size: var(--size-step--1);
   }
 </style>

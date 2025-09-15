@@ -28,3 +28,7 @@ nav {
 h1 {
   letter-spacing: -0.01em;
 }
+
+.page-body {
+  padding: var(--space-m-xl);
+}
