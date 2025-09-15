@@ -2,11 +2,13 @@
 const { class: className } = Astro.props;
 ---
 
-<div
-  class:list={[
-    "flow",
-    className,
-  ]}
->
+<div class:list={["prose | wrapper flow", className]}>
   <slot />
 </div>
+
+<style is:global>
+  .prose img {
+    max-block-size: 50vh;
+    inline-size: auto;
+  }
+</style>
