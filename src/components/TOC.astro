@@ -12,17 +12,9 @@ interface Props {
 const { items, title } = Astro.props;
 ---
 
-<div
-  class:list={[
-    "sm:inline-block",
-    "mt-4 mb-24 pl-8 px-14 py-8",
-    "shadow-md",
-    "border-4 rounded",
-    "border-tumbleweed-800 dark:border-cyan-600",
-  ]}
->
-  <h2 class="mb-4">{title}</h2>
-  <ol class="list-decimal list-inside grid gap-y-1">
+<div class="toc">
+  <h2>{title}</h2>
+  <ol>
     {
       items.map(({ caption, href }) => (
         <li>
@@ -32,3 +24,9 @@ const { items, title } = Astro.props;
     }
   </ol>
 </div>
+
+<style>
+  .toc {
+    --flow-space: var(--space-xl);
+  }
+</style>

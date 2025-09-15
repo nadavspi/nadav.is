@@ -4,14 +4,7 @@ import Layout from "@layouts/base.astro";
 import TOC from "@components/TOC.astro";
 import Section from "@components/Section.astro";
 
-import SelfPortraits from "./partials/_self-portraits.astro";
 import SocialJustice from "./partials/_social-justice.astro";
-
-// food
-import Persian from "./food/_persian cookbook club_Nadav Spiegelman_073.jpg";
-import Bread from "./food/_bread_Nadav Spiegelman_022.jpg";
-import Macaron from "./food/_2024-09-28 yuhe cocusocial macaron class_Nadav Spiegelman_046.jpg";
-import Class from "./food/_2024-09-28 yuhe cocusocial macaron class_Nadav Spiegelman_043.jpg";
 
 // wyoming
 import PowerPlant from "./wyoming/_wyoming-website-21.jpg";
@@ -57,24 +50,21 @@ const sections = [
     href: createFragment("Social justice →"),
     caption: "Social justice",
   },
-  {
-    href: "#:~:text=more%20of%20%E2%80%9CArtists%E2%80%9D%20%E2%86%92-,Food",
-    caption: "Food",
-  },
 ];
 ---
 
-<Layout pageTitle="Photography">
+<Layout class="flow | photography-page" pageTitle="Photography">
   <h1>Photography</h1>
-  <TOC title="Collections" items={sections} />
 
-  <SelfPortraits />
+  <p>This portfolio is where I organize the projects and themes that emerge in my photography. It's been a creative practice of mine <a href="/notes/self-portraits">since 2017</a>. More casual photos are scattered in the <a href="/notes">notes section</a> too.</p>
+
+  <TOC title="Collections" items={sections} />
 
   <Section>
     <h2>
       <a href="/photography/everything-is-fine">Everything is fine →</a>
     </h2>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2">
       <Image sizes="50vw" src={Bus} alt="" />
       <Image sizes="50vw" src={Beggar} alt="" />
       <Image sizes="50vw" src={Punch} alt="" />
@@ -133,27 +123,14 @@ const sections = [
   </Section>
 
   <SocialJustice />
-
-  <Section class="border-b-0">
-    <h2>Food</h2>
-    <div class="grid grid-cols-2 gap-4">
-      <Image
-        sizes="50vw"
-        src={Persian}
-        alt="Overhead shot of a Persian meal: a whole roast chicken, barbari bread, rice, feta cheese, nuts & herbs"
-      />
-      <Image sizes="50vw" src={Class} alt="" />
-      <Image
-        sizes="50vw"
-        src={Bread}
-        alt="Closeup shot of a darkly baked loaf of bread with another in the background"
-        class="aspect-[4/5] object-cover object-top"
-      />
-      <Image
-        sizes="50vw"
-        src={Macaron}
-        alt="A tray of macarons being put into a commercial oven"
-      />
-    </div>
-  </Section>
 </Layout>
+
+<style is:global>
+  .photography-page {
+    --flow-space: var(--space-l);
+  }
+
+  .photography-page footer {
+    --flow-space: var(--space-2xs);
+  }
+</style>

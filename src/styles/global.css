@@ -2,6 +2,7 @@
 @import './utilities.css';
 @import './code-blocks.css';
 @import './masonry.css';
+@import './blocks/grid.css';
 
 :root {
   /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,2000,28,1.333,3,2,1268&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
@@ -184,7 +185,7 @@ summary::marker {
 }
 
 .flow>*+* {
-  margin-block-start: var(--flow-space, 1em);
+  margin-block-start: var(--flow-space, var(--space-s));
 }
 
 

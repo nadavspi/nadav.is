@@ -20,13 +20,13 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     />
     <title>{pageTitle}</title>
   </head>
-  <body class:list={[className]}>
+  <body>
     <div class="wrapper">
       <header>
         {!noHeader && <BackTo backTo={backTo} />}
       </header>
 
-      <div class="page-body">
+      <div class:list={['page-body', className]}>
         <slot />
       </div>
 
