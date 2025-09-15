@@ -27,26 +27,21 @@ import Train from "./wyoming/_wyoming-website-22.jpg";
 ---
 
 <Layout pageTitle="Photography / Wyoming" backTo="photography">
-  <header class="mb-6 text-center">
-    <h1 class="mb-2">Wyoming</h1>
+  <header class="flow">
+    <h1>Wyoming</h1>
     <h2>Work in progress</h2>
   </header>
 
-  <div class="grid gap-6 justify-center mb-12">
-    <Prose>
-      <figure>
-        <Image src={Map} alt="Map of Wyoming" />
-        <figcaption>
-          <em>People's Cyclopedia of Universal Knowledge</em>, 1882.
-          <a href="https://wyoshpo.wyo.gov/homestead/maps.html">
-            View source
-          </a>
-        </figcaption>
-      </figure>
-    </Prose>
-  </div>
+  <Prose>
+    <figure>
+      <Image src={Map} alt="Map of Wyoming" />
+      <figcaption>
+        <em>People's Cyclopedia of Universal Knowledge</em>, 1882.
+        <a href="https://wyoshpo.wyo.gov/homestead/maps.html"> View source </a>
+      </figcaption>
+    </figure>
 
-  <div class="grid gap-12 justify-center xl:fullbleed xl:px-12">
+
     <Image src={Highway} alt="" class="" />
 
     <Image src={Jason} alt="" class="lg:max-w-[40rem] mx-auto" />
@@ -80,7 +75,11 @@ import Train from "./wyoming/_wyoming-website-22.jpg";
       <Image src={Spaceship} alt="" />
       <Image src={Ranchers} alt="" />
       <div class="grid lg:grid-cols-4 lg:col-span-2">
-        <Image src={PrayerFence} alt="" class="lg:col-start-2 lg:col-span-2" />
+        <Image
+        src={PrayerFence}
+        alt=""
+        class="lg:col-start-2 lg:col-span-2"
+        />
       </div>
     </div>
 
@@ -88,5 +87,6 @@ import Train from "./wyoming/_wyoming-website-22.jpg";
 
     <Image src={PowerPlant} alt="" />
     <Image src={Train} alt="" class="" />
-  </div>
+
+  </Prose>
 </Layout>
