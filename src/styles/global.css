@@ -67,6 +67,7 @@
 :root {
   --color-border: var(--color-tumbleweed);
 }
+
 .dark {
   --color-border: var(--color-purple);
 }
@@ -104,7 +105,7 @@ body {
   font-family: 'FF Tundra', Georgia, serif;
   font-size: var(--size-step-0);
   line-height: 1.5;
-  color: var(--color-purple-dark);
+  color: var(--color-tumbleweed-950);
   background-color: var(--color-tumbleweed-100);
 }
 
