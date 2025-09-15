@@ -197,6 +197,10 @@ summary::marker {
   --flow-space: 0.5em;
 }
 
+.small {
+  font-size: var(--size-step--1);
+}
+
 .lead {
   font-size: var(--size-step-1);
 }

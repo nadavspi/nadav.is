@@ -1,3 +1,10 @@
-  <header class="mb-8 max-w-[95ch] mx-auto">
+  <header class="post-header | wrapper flow">
     <slot />
   </header>
+
+<style is:global>
+  .post-header h1,
+  .post-header h1 + * {
+    --flow-space: var(--space-2xs);
+  }
+</style>
