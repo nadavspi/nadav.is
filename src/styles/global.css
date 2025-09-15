@@ -219,3 +219,8 @@ figure>*+* {
 .lead {
   font-size: var(--size-step-1);
 }
+
+blockquote {
+  padding-inline-start: var(--space-s);
+  border-inline-start: 3px solid var(--color-border);
+}
