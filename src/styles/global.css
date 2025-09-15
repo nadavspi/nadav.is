@@ -199,7 +199,8 @@ summary::marker {
   font-variant-caps: small-caps;
 }
 
-.flow>*+* {
+.flow>*+*,
+figure>*+* {
   margin-block-start: var(--flow-space, var(--space-s));
 }
 
