@@ -5,7 +5,7 @@ main {
   column-gap: var(--column-gap);
   align-items: baseline;
   flex-wrap: wrap;
-  max-inline-size: 1800px;
+  max-inline-size: var(--content-max-width);
   margin-inline: auto;
 }
 
@@ -29,6 +29,6 @@ h1 {
   letter-spacing: -0.01em;
 }
 
-.page-body {
+.page-content {
   padding: var(--space-m-xl);
 }

@@ -21,8 +21,8 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <div class="wrapper">
-      <header>
+    <div class="page-wrapper">
+      <header class="wrapper">
         {!noHeader && <BackTo backTo={backTo} />}
       </header>
 
@@ -30,7 +30,7 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
         <slot />
       </div>
 
-      <footer>
+      <footer class="wrapper">
         <ThemeSwitcher />
 
         <a href="/rss.xml">Subscribe (RSS)</a>
@@ -40,7 +40,7 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
 </html>
 
 <style>
-  .wrapper {
+  .page-wrapper {
     min-height: 100vh;
   }
 
