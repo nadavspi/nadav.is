@@ -101,6 +101,11 @@
   --space-m-xl: clamp(1.6875rem, 0.8438rem + 3.75vw, 3.75rem);
 }
 
+:root {
+  --images-max-height: 40vh;
+  --images-max-height--tall: 70vh;
+}
+
 body {
   font-family: 'FF Tundra', Georgia, serif;
   font-size: var(--size-step-0);

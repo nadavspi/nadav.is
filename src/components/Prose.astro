@@ -1,14 +1,29 @@
 ---
-const { class: className } = Astro.props;
+interface Props {
+  class?: string;
+  imagesHeight?: "tall";
+}
+
+const { class: className, imagesHeight } = Astro.props;
 ---
 
-<div class:list={["prose | wrapper flow", className]}>
+<div
+  class:list={[
+    "prose | wrapper flow",
+    { "prose--tall-images": imagesHeight === "tall" },
+    className,
+  ]}
+>
   <slot />
 </div>
 
 <style is:global>
   .prose img {
-    max-block-size: 40vh;
+    max-block-size: var(--images-max-height);
     inline-size: auto;
+  }
+
+  .prose--tall-images img {
+    max-block-size: var(--images-max-height--tall);
   }
 </style>

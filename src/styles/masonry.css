@@ -5,7 +5,7 @@
 }
 
 .prose .masonry img {
-  max-block-size: 70vh;
+  max-block-size: var(--images-max-height--tall);
 }
 
 /* justify first column to the center line */
