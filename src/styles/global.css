@@ -214,8 +214,16 @@ figure>*+* {
   --flow-space: 1.4em;
 }
 
-:is(h1, h2, h3)+* {
+:is(h2, h3)+* {
   --flow-space: 0.5em;
+}
+
+h1+* {
+  --flow-space: var(--space-m-l);
+}
+
+h1+*>* {
+  --flow-space: inherit;
 }
 
 .small {
