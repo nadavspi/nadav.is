@@ -102,6 +102,9 @@
 }
 
 :root {
+  --flow-space--default: var(--space-s);
+  --gap: var(--space-s);
+
   --images-max-height: 40vh;
   --images-max-height--tall: 70vh;
 }
@@ -207,7 +210,7 @@ summary::marker {
 
 .flow>*+*,
 figure>*+* {
-  margin-block-start: var(--flow-space, var(--space-s));
+  margin-block-start: var(--flow-space, var(--flow-space--default));
 }
 
 :is(h1, h2, h3, blockquote) {

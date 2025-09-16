@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  gap: var(--space-s);
+  gap: var(--gap);
   align-items: end;
 }
 

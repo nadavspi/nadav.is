@@ -13,23 +13,37 @@ const { class: className } = Astro.props;
 ---
 
 <section class:list={[className]}>
-  <Prose>
-    <div class="mb-4 grid xl:grid-cols-5 gap-4">
-      <div class="xl:col-span-2">
-        <header class="mb-4">
-          <h2 class="mb-0">{title}</h2>
-          <time>{date}</time>
-        </header>
+  <Prose imagesHeight="tall">
+    <header class="flow">
+      <div class="metadata flow">
+        <h2>{title}</h2>
+        <time>{date}</time>
         <slot name="description" />
       </div>
 
-      <div class="xl:col-span-3">
+      <div class="banner">
         <slot name="banner" />
       </div>
-    </div>
+    </header>
 
     <Grid>
       <slot name="images" />
     </Grid>
   </Prose>
 </section>
+
+<style>
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--flow-space);
+  }
+
+  .metadata {
+    flex: 1 1 max(20em, 40%);
+  }
+
+  .banner {
+    flex: 0 1 max(400px, 55%);
+  }
+</style>
