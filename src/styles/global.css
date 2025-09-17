@@ -1,7 +1,10 @@
 @import './reset.css';
+
 @import './utilities.css';
 @import './code-blocks.css';
 @import './masonry.css';
+
+@import './blocks/flex.css';
 @import './blocks/grid.css';
 @import './blocks/wrapper.css';
 
@@ -236,6 +239,10 @@ h1+*>* {
 
 .lead {
   font-size: var(--size-step-1);
+}
+
+.chinese {
+  font-family: ui-system, sans-serif;
 }
 
 blockquote {
