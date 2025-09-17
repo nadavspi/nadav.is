@@ -106,7 +106,7 @@
   --gap: var(--space-s);
 
   --images-max-height: 40vh;
-  --images-max-height--tall: 70vh;
+  --images-max-height--tall: 80vh;
 }
 
 body {
