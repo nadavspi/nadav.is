@@ -9,7 +9,8 @@
     1fr;
 }
 
-.wrapper > * {
+.wrapper > *,
+:where(astro-island, astro-slot) > * {
   grid-column: 2;
 }
 
