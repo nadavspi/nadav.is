@@ -52,7 +52,8 @@ div,
 header,
 nav,
 main,
-section {
+section,
+figcaption {
   max-inline-size: none;
 }
 
