@@ -209,6 +209,7 @@ summary::marker {
 }
 
 .flow>*+*,
+.flow>*+:where(astro-island, astro-slot)>*,
 figure>*+* {
   margin-block-start: var(--flow-space, var(--flow-space--default));
 }
