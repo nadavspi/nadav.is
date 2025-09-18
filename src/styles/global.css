@@ -8,6 +8,8 @@
 @import './blocks/grid.css';
 @import './blocks/wrapper.css';
 
+@import './elements/table.css';
+
 :root {
   /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,2000,28,1.333,3,2,1268&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
   --size-step--2: clamp(0.7813rem, 0.7366rem + 0.1987vw, 0.9849rem);
@@ -217,6 +219,10 @@ figure>*+* {
   margin-block-start: var(--flow-space, var(--flow-space--default));
 }
 
+.flow>*+table {
+  margin-block-start: var(--space-m);
+}
+
 :is(h1, h2, h3, blockquote) {
   --flow-space: 1.4em;
 }
@@ -226,11 +232,7 @@ figure>*+* {
 }
 
 h1+* {
-  --flow-space: var(--space-m-l);
-}
-
-h1+*>* {
-  --flow-space: inherit;
+  margin-block-start: var(--space-m-l);
 }
 
 .small {

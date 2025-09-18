@@ -1,0 +1,41 @@
+table {
+  border-collapse: collapse;
+  font-size: var(--size-step--1);
+}
+
+caption {
+  padding-block-end: var(--space-2xs);
+  text-align: left;
+  font-style: italic;
+}
+
+thead {
+  border-block: 2px solid var(--color-border);
+}
+
+thead th {
+  padding-block-end: var(--space-2xs);
+}
+
+th {
+  padding-block-start: var(--space-2xs);
+  padding-block-end: var(--space-3xs);
+  text-align: left;
+  font-size: var(--size-step-0);
+  font-weight: normal;
+}
+
+tbody tr {
+/**/
+  border-bottom: 1px solid var(--color-grey);
+}
+
+tbody tr:first-child td,
+tbody tr:first-child:has(th) + tr td {
+  padding-block-start: var(--space-2xs);
+}
+
+td {
+  padding-block-start: var(--space-3xs);
+  padding-block-end: var(--space-3xs);
+}
