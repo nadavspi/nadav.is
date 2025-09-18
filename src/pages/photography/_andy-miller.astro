@@ -8,45 +8,44 @@ import Storage from "./andy-miller/_andy-miller-104.jpg";
 import StudioPortrait from "./andy-miller/_andy-miller-102.jpg";
 import { Image } from "astro:assets";
 import P from "@components/P.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import Grid from "@components/Grid.astro";
 ---
 
-<div class="grid xl:grid-cols-5 gap-4">
+<SectionHeader title="Andy Miller">
   <Image
+    slot="banner"
     sizes="100vw"
     src={Kitchen}
     alt="Portrait of Andy in his kitchen"
     class="xl:col-span-3"
   />
-  <div class="xl:col-span-2">
-    <h2 class="mb-0">Andy Miller</h2>
-    <h3>Painter</h3>
-
-    <h3 class="my-6">
-      Brooklyn, NY
-      <br />
-      <time>2021</time>
-    </h3>
-    <P>
+  <Fragment slot="description">
+    <p>Brooklyn, NY <br /> <time>2021</time></p>
+    <p>
       Andy, who&rsquo;s been living in New York City since 1968, moved into his
       current home in the neighborhood in 1994 with his wife, Irene (pictured on
       the wall, as a baby). Irene died in 2014.
-    </P>
-  </div>
-  <P class="xl:col-span-2 xl:mt-6">
+    </p>
+  </Fragment>
+</SectionHeader>
+<SectionHeader>
+  <p slot="description">
     We met in July 2021 when Andy was heading out for a walk with his dog,
     Esmeralda, and I was photographing on his street. Esmeralda developed
     extensive cancer and was euthanized at home on August 6, 2023 surrounded by
     friends.
-  </P>
+  </p>
   <Image
+  slot="banner"
     sizes="100vw"
     src={Outside}
     alt="Andy outside of his home with Esmeralda"
     class="xl:col-span-3"
   />
-</div>
+</SectionHeader>
 
-<div class="grid xl:grid-cols-2 gap-4">
+<Grid>
   <Image sizes="100vw" src={StudioPortrait} alt="Andy in his studio" />
   <Image
     sizes="100vw"
@@ -55,7 +54,7 @@ import P from "@components/P.astro";
   />
   <Image sizes="100vw" src={Storage} alt="Stacks of paintings" />
   <Image sizes="100vw" src={GardenPortrait} alt="Andy in his garden" />
-</div>
+</Grid>
 
 <div class="grid xl:grid-cols-2 gap-4">
   <div class="xl:col-span-2 grid gap-4">
