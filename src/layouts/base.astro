@@ -29,9 +29,9 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
       </div>
 
       <div>
-        <div class:list={["page-content", "flow", className]}>
+        <main class:list={["page-content", "flow", className]}>
           <slot />
-        </div>
+        </main>
       </div>
 
       <div>
