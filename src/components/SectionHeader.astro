@@ -5,23 +5,35 @@ interface Props {
   title: string;
   date: string;
   class?: string;
+  layout?: "reverse";
 }
 
-const { title, date } = Astro.props;
-const { class: className } = Astro.props;
+const { title, date, class: className, layout } = Astro.props;
 ---
 
 <Prose class={className} imagesHeight="tall">
   <header class="flow">
+    {
+      layout === "reverse" && (
+        <div class="banner">
+          <slot name="banner" />
+        </div>
+      )
+    }
+
     <div class="metadata flow">
       <h2>{title}</h2>
       <time>{date}</time>
       <slot name="description" />
     </div>
 
-    <div class="banner">
-      <slot name="banner" />
-    </div>
+    {
+      layout !== "reverse" && (
+        <div class="banner">
+          <slot name="banner" />
+        </div>
+      )
+    }
   </header>
 </Prose>
 
