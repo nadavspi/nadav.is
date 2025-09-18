@@ -24,15 +24,16 @@ import PrayerFence from "./wyoming/_wyoming-website-19.jpg";
 import Riley from "./wyoming/_wyoming-website-20.jpg";
 import PowerPlant from "./wyoming/_wyoming-website-21.jpg";
 import Train from "./wyoming/_wyoming-website-22.jpg";
+import PostHeader from "@components/PostHeader.astro";
 ---
 
 <Layout pageTitle="Photography / Wyoming" backTo="photography">
-  <header class="flow">
+  <PostHeader>
     <h1>Wyoming</h1>
     <h2>Work in progress</h2>
-  </header>
+  </PostHeader>
 
-  <Prose>
+  <Prose imagesHeight="tall">
     <figure>
       <Image src={Map} alt="Map of Wyoming" />
       <figcaption>
