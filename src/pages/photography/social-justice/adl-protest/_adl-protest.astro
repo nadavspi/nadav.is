@@ -13,28 +13,31 @@ import Photo093 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_093.jpg";
 import Photo094 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_094.jpg";
 import Photo095 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_095.jpg";
 import Photo096 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_096.jpg";
+import Grid from "@components/Grid.astro";
 ---
 
-<SectionHeader
-  title=`Protest of ADL's "Never is Now" conference`
-  date="2025-03-03"
->
-  <Fragment slot="description">
-    <P class="mb-4">
-      Jewish groups IfNotNow, Rabbis for Ceasefire, and Jews for Racial &
-      Economic Justice protested ADL's annual conference at Javits Center. The
-      ADL describes itself as an "anti-hate" group but equates criticism of
-      Israel to anti-Semitism, has conducted espionage against American
-      citizens, and defended Elon Musk's Nazi salute. The rally had live ASL
-      interpretation.
-    </P>
-    <P>
-      A much smaller number of counter-protestors chanted "Donald Trump, Donald
-      Trump" and "NYPD NYPD" (?).
-    </P>
-  </Fragment>
-  <Image slot="banner" src={Photo091} alt="" />
-  <Fragment slot="images">
+<Section>
+  <SectionHeader
+    title=`Protest of ADL's "Never is Now" conference`
+    date="2025-03-03"
+  >
+    <Fragment slot="description">
+      <P class="mb-4">
+        Jewish groups IfNotNow, Rabbis for Ceasefire, and Jews for Racial &
+        Economic Justice protested ADL's annual conference at Javits Center. The
+        ADL describes itself as an "anti-hate" group but equates criticism of
+        Israel to anti-Semitism, has conducted espionage against American
+        citizens, and defended Elon Musk's Nazi salute. The rally had live ASL
+        interpretation.
+      </P>
+      <P>
+        A much smaller number of counter-protestors chanted "Donald Trump,
+        Donald Trump" and "NYPD NYPD" (?).
+      </P>
+    </Fragment>
+    <Image slot="banner" src={Photo091} alt="" />
+  </SectionHeader>
+  <Grid>
     <Image src={Photo092} alt="" />
     <Image src={Photo093} alt="" />
     <Image src={Deporation} alt="" />
@@ -59,5 +62,5 @@ import Photo096 from "./_2025-03-03 ADL protest INN_Nadav Spiegelman_096.jpg";
 
     <Image src={Photo095} alt="" />
     <Image src={Photo096} alt="" />
-  </Fragment>
-</SectionHeader>
+  </Grid>
+</Section>

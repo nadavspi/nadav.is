@@ -1,5 +1,4 @@
 ---
-import Grid from "./Grid.astro";
 import Prose from "./Prose.astro";
 
 interface Props {
@@ -12,31 +11,25 @@ const { title, date } = Astro.props;
 const { class: className } = Astro.props;
 ---
 
-<section class:list={[className]}>
-  <Prose imagesHeight="tall">
-    <header class="flow">
-      <div class="metadata flow">
-        <h2>{title}</h2>
-        <time>{date}</time>
-        <slot name="description" />
-      </div>
+<Prose class={className} imagesHeight="tall">
+  <header class="flow">
+    <div class="metadata flow">
+      <h2>{title}</h2>
+      <time>{date}</time>
+      <slot name="description" />
+    </div>
 
-      <div class="banner">
-        <slot name="banner" />
-      </div>
-    </header>
-
-    <Grid>
-      <slot name="images" />
-    </Grid>
-  </Prose>
-</section>
+    <div class="banner">
+      <slot name="banner" />
+    </div>
+  </header>
+</Prose>
 
 <style>
   header {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--flow-space);
+    gap: var(--gap);
   }
 
   .metadata {
