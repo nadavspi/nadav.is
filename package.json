@@ -21,7 +21,7 @@
     "@types/react-dom": "^18.2.19",
     "astro": "^5.2.5",
     "astro-masonry": "^1.2.2",
-    "date-fns": "^3.3.1",
+    "date-fns": "^4.0.0",
     "isomorphic-dompurify": "^2.26.0",
     "marked": "^16.1.2",
     "preact": "^10.23.1",
