@@ -17,43 +17,36 @@ const items = [...writing, ...media, ...notes].sort(
 import "../styles/home.css";
 ---
 
-<Layout noHeader={true} pageTitle="Nadav Spiegelman">
-  <div class="content | flow gutters">
-    <article class:list={["flow", "intro"]}>
-      <h1>Hello. I’m Nadav Spiegelman.</h1>
-
-      <p>
-        I made <a href="/notes/my-first-website">my first website</a> when I was
-        10 years old and haven't stopped.
-      </p>
-      <p>
-        I’m an artist & computer geek living in New York City.<br />
-        I make websites, photos, and sometimes music.<br />
-        I’m <a href="/notes/about">a person of many interests.</a>
-      </p>
-    </article>
-
-    <p>Want to talk? <a href="mailto:hello@nadav.is">hello@nadav.is</a></p>
-
-    <Image
-      src={Nadav}
-      alt="here I am"
-      class="md:max-w-[24rem] 2xl:max-w-[30rem] mb-6"
-    />
-  </div>
-
-  <nav>
-    <div class="nav-links lead flow">
-      <h2>Navigation</h2>
-      {
-        navLinks.map((link) => {
-          return (
-            <a href={link.href} class="block">
-              {link.text}
-            </a>
-          );
-        })
-      }
-    </div>
-  </nav>
+<Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
+  <section class="hello">
+    <h1>Hello. I’m Nadav Spiegelman and this is my home on the web.</h1>
+  </section>
 </Layout>
+
+<style>
+  .hello {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-inline: var(--space-s);
+
+    &::after {
+      content: "";
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      height: 0;
+      border-top: var(--border-width-thick) solid;
+      transform: translatey(-50%);
+    }
+  }
+
+  h1 {
+    max-width: 16em;
+    padding: var(--space-l);
+    line-height: 1.6;
+    border: var(--border-width-thick) solid;
+    background-color: var(--background-color);
+    z-index: 1;
+  }
+</style>
