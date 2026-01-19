@@ -18,6 +18,7 @@ import Fine041 from "./_everything is fine_Nadav Spiegelman_041.jpg";
 import Fine042 from "./_everything is fine_Nadav Spiegelman_042.jpg";
 
 import { Image } from "astro:assets";
+import Grid from "@components/Grid.astro";
 ---
 
 <Layout
@@ -26,19 +27,21 @@ import { Image } from "astro:assets";
 >
   <Prose>
     <h1>Everything is fine</h1>
-    <Image src={Fine029} alt="" />
-    <Image src={Fine030} alt="" />
-    <Image src={Fine031} alt="" />
-    <Image src={Fine032} alt="" />
-    <Image src={Fine033} alt="" />
-    <Image src={Fine034} alt="" />
-    <Image src={Fine035} alt="" />
-    <Image src={Fine036} alt="" />
-    <Image src={Fine037} alt="" />
-    <Image src={Fine038} alt="" />
-    <Image src={Fine039} alt="" />
-    <Image src={Fine040} alt="" />
-    <Image src={Fine041} alt="" />
-    <Image src={Fine042} alt="" />
+    <Grid>
+      <Image src={Fine029} alt="" />
+      <Image src={Fine030} alt="" />
+      <Image src={Fine031} alt="" />
+      <Image src={Fine032} alt="" />
+      <Image src={Fine033} alt="" />
+      <Image src={Fine034} alt="" />
+      <Image src={Fine035} alt="" />
+      <Image src={Fine036} alt="" />
+      <Image src={Fine037} alt="" />
+      <Image src={Fine038} alt="" />
+      <Image src={Fine039} alt="" />
+      <Image src={Fine040} alt="" />
+      <Image src={Fine041} alt="" />
+      <Image src={Fine042} alt="" />
+    </Grid>
   </Prose>
 </Layout>
