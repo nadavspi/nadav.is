@@ -1,4 +1,4 @@
-main {
+.content {
   --column-gap: var(--space-xl);
 
   display: flex;

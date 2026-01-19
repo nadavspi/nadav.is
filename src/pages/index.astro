@@ -18,15 +18,7 @@ import "../styles/home.css";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman">
-  <main
-    class:list={[
-      "flow gutters",
-      "xl:relative",
-      "xl:grid xl:grid-cols-3",
-      "xl:border-tumbleweed xl:dark:border-purple",
-      "xl:pb-12 xl:border-b-4",
-    ]}
-  >
+  <div class="content | flow gutters">
     <article class:list={["flow", "intro"]}>
       <h1>Hello. I’m Nadav Spiegelman.</h1>
 
@@ -43,7 +35,6 @@ import "../styles/home.css";
         alt="here I am"
         class="md:max-w-[24rem] 2xl:max-w-[30rem] mb-6"
       />
-
     </article>
 
     <nav>
@@ -60,6 +51,5 @@ import "../styles/home.css";
         }
       </div>
     </nav>
-  </main>
-  
+  </div>
 </Layout>
