@@ -21,7 +21,7 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <div class="page-wrapper">
+    <div class:list={["page-wrapper", { "page-wrapper--no-header": noHeader }]}>
       {
         !noHeader && (
           <div>
@@ -54,6 +54,10 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+  }
+
+  .page-wrapper--no-header {
+    grid-template-rows: 1fr auto;
   }
 
   header,
