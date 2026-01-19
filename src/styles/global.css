@@ -107,7 +107,7 @@
 }
 
 :root {
-  --flow-space--default: var(--space-s);
+  --flow-space--default: var(--space-m);
   --gap: var(--space-s);
 
   --images-max-height: 40vh;
