@@ -6,12 +6,6 @@ import Section from "@components/Section.astro";
 
 import SocialJustice from "./partials/_social-justice.astro";
 
-// wyoming
-import PowerPlant from "./wyoming/_wyoming-website-21.jpg";
-import Riley from "./wyoming/_wyoming-website-20.jpg";
-import Simon from "./wyoming/_wyoming-website-09.jpg";
-import Train from "./wyoming/_wyoming-website-22.jpg";
-
 // everything is fine
 import Bus from "./everything-is-fine/_everything is fine_Nadav Spiegelman_029.jpg";
 import Punch from "./everything-is-fine/_everything is fine_Nadav Spiegelman_034.jpg";
@@ -33,10 +27,6 @@ const sections = [
   {
     href: createFragment("Everything is fine →"),
     caption: "Everything is fine",
-  },
-  {
-    href: createFragment("Wyoming →"),
-    caption: "Wyoming",
   },
   {
     href: createFragment("Artists →"),
@@ -81,21 +71,6 @@ const sections = [
         <a href="/photography/everything-is-fine"
           >View more of “Everything is fine” →</a
         >
-      </footer>
-    </Section>
-
-    <Section>
-      <h2>
-        <a href="/photography/wyoming">Wyoming →</a>
-      </h2>
-      <div class="grid grid-cols-2 gap-4">
-        <Image sizes="50vw" src={Train} alt="" />
-        <Image sizes="50vw" src={Riley} alt="" />
-        <Image sizes="50vw" src={Simon} alt="" />
-        <Image sizes="50vw" src={PowerPlant} alt="" />
-      </div>
-      <footer class="mt-8">
-        <a href="/photography/wyoming">View more Wyoming photos →</a>
       </footer>
     </Section>
 
