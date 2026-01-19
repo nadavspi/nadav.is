@@ -127,10 +127,6 @@ body {
   background-color: var(--color-purple-dark);
 }
 
-.page-content {
-  padding: var(--space-m-xl);
-}
-
 h1,
 h2,
 h3,
