@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2025-08-10T03:48:57.632Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-19T21:35:21.383Z */
 export interface Block {
   id: string;
 }
@@ -50,11 +50,13 @@ export interface BlockGridFile {
 export interface BlockMarkdown {
   id: string;
   content: string;
+  filename: string;
 }
 
 export interface BlockPhoto {
   id: string;
   image: string | DirectusFile;
+  options: Record<string, unknown>;
 }
 
 export interface BlockRichtext {
