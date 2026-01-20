@@ -9,3 +9,7 @@
 .center {
   margin-inline: auto;
 }
+
+.no-measure {
+  max-inline-size: 100%;
+}

@@ -221,6 +221,10 @@ figure>*+* {
   margin-block-start: var(--flow-space, var(--flow-space--default));
 }
 
+.flow-default {
+  --flow-space: --flow-space--default;
+}
+
 .flow>*+table {
   margin-block-start: var(--space-m);
 }
@@ -229,7 +233,7 @@ figure>*+* {
   --flow-space: 1.4em;
 }
 
-:is(h2, h3)+* {
+:is(h2, h3, h4)+* {
   --flow-space: 0.5em;
 }
 

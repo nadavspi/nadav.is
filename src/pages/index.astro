@@ -33,10 +33,129 @@ import "../styles/home.css";
     </article>
 
     <section class="tile">
-      <div>
+      <div class="photos | flow">
         <h2>Photography</h2>
 
-        <h3>Everything is fine</h3>
+        <div class="flow">
+          <h4>Featured</h4>
+          <div>
+            <h3 class="featured">Everything is fine</h3>
+            <ol class="no-measure">
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+<li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+            </ol>
+          </div>
+
+          <div>
+            <h3 class="featured">Artists</h3>
+            <ol class="no-measure">
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="flow">
+          <h4>Latest</h4>
+
+          <div>
+            <h3>Fourteen days ago</h3>
+            <ol class="no-measure">
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+            </ol>
+          </div>
+
+          <div>
+            <h3>Something that happened</h3>
+            <ol class="no-measure">
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+              <li>
+                <img src="https://placehold.co/600x400" alt="" />
+              </li>
+            </ol>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -62,7 +181,6 @@ import "../styles/home.css";
     }
 
     > :first-child {
-      margin-inline-end: 20%;
       padding: var(--space-l);
       border: var(--border-width-thick) solid;
       background-color: var(--background-color);
@@ -72,10 +190,57 @@ import "../styles/home.css";
 
   h1 {
     max-width: 16em;
+    margin-inline-end: 20%;
     line-height: 1.6;
   }
 
   article {
     padding: var(--space-l);
+  }
+
+  ol {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: var(--space-xs) 0;
+    gap: var(--gap);
+    overflow-x: auto;
+  }
+
+  li {
+    flex-shrink: 0;
+  }
+
+  .photos {
+    --flow-space: var(--space-xl);
+    margin-inline-start: 5%;
+
+    h2 {
+      margin-block-end: var(--space-l);
+    }
+
+    img {
+      width: auto;
+      height: 100px;
+    }
+
+    .flow {
+      --flow-space: var(--flow-space--default);
+    }
+  }
+
+  .tile .photos {
+    padding-inline: var(--space-xl);
+  }
+
+  .featured {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      left: -1.2em;
+      content: "✰";
+      font-weight: normal;
+    }
   }
 </style>
