@@ -40,7 +40,7 @@ import "../styles/home.css";
           <h4>Featured</h4>
           <div>
             <h3 class="featured">Everything is fine</h3>
-            <ol class="no-measure">
+            <ol class="feed | no-measure">
               <li>
                 <img src="https://placehold.co/600x400" alt="" />
               </li>
@@ -91,7 +91,7 @@ import "../styles/home.css";
 
           <div>
             <h3 class="featured">Artists</h3>
-            <ol class="no-measure">
+            <ol class="feed | no-measure">
               <li>
                 <img src="https://placehold.co/600x400" alt="" />
               </li>
@@ -119,7 +119,7 @@ import "../styles/home.css";
 
           <div>
             <h3>Fourteen days ago</h3>
-            <ol class="no-measure">
+            <ol class="feed | no-measure">
               <li>
                 <img src="https://placehold.co/600x400" alt="" />
               </li>
@@ -134,7 +134,7 @@ import "../styles/home.css";
 
           <div>
             <h3>Something that happened</h3>
-            <ol class="no-measure">
+            <ol class="feed | no-measure">
               <li>
                 <img src="https://placehold.co/600x400" alt="" />
               </li>
@@ -198,13 +198,14 @@ import "../styles/home.css";
     padding: var(--space-l);
   }
 
-  ol {
+  .feed {
     display: flex;
     list-style: none;
     margin: 0;
     padding: var(--space-xs) 0;
     gap: var(--gap);
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
   }
 
   li {
