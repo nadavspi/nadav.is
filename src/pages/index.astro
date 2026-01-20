@@ -50,7 +50,7 @@ import "../styles/home.css";
               <li>
                 <img src="https://placehold.co/600x400" alt="" />
               </li>
-<li>
+              <li>
                 <img src="https://placehold.co/600x400" alt="" />
               </li>
               <li>
@@ -163,6 +163,19 @@ import "../styles/home.css";
 
 <style>
   .tile {
+    --top-offset: 50%;
+    --background-color: #fdf5eb;
+
+    /* 50% opacity of var(--text-color) */
+    --border-color: #958278;
+
+    .dark & {
+      --background-color: #221b31;
+
+      /* 50% opacity of var(--text-color) */
+      --border-color: #777581;
+    }
+
     position: relative;
     display: flex;
     margin-block: var(--space-2xl);
@@ -173,16 +186,15 @@ import "../styles/home.css";
       content: "";
       width: 100%;
       position: absolute;
-      top: 50%;
+      top: var(--top-offset);
       height: 0;
-      border-top: var(--border-width-thick) solid;
+      border-top: var(--border-width-thick) solid var(--border-color);
       transform: translatey(-50%);
-      opacity: 0.5;
     }
 
     > :first-child {
       padding: var(--space-l);
-      border: var(--border-width-thick) solid;
+      border: var(--border-width-thick) solid var(--border-color);
       background-color: var(--background-color);
       z-index: 1;
     }
@@ -210,6 +222,10 @@ import "../styles/home.css";
 
   li {
     flex-shrink: 0;
+  }
+
+  .tile:has(.photos) {
+    --top-offset: 10%;
   }
 
   .photos {
