@@ -16,7 +16,7 @@ import "../styles/home.css";
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
   <div class="flow">
-    <section class="hello">
+    <section class="tile">
       <h1>Hello. I’m Nadav Spiegelman and this is my home on the web.</h1>
     </section>
     <article class="flow center">
@@ -32,16 +32,18 @@ import "../styles/home.css";
       </p>
     </article>
 
-    <section>
-      <h2>Photography</h2>
+    <section class="tile">
+      <div>
+        <h2>Photography</h2>
 
-      <h3>Everything is fine</h3>
+        <h3>Everything is fine</h3>
+      </div>
     </section>
   </div>
 </Layout>
 
 <style>
-  .hello {
+  .tile {
     position: relative;
     display: flex;
     margin-block: var(--space-2xl);
@@ -58,16 +60,19 @@ import "../styles/home.css";
       transform: translatey(-50%);
       opacity: 0.5;
     }
+
+    > :first-child {
+      margin-inline-end: 20%;
+      padding: var(--space-l);
+      border: var(--border-width-thick) solid;
+      background-color: var(--background-color);
+      z-index: 1;
+    }
   }
 
   h1 {
     max-width: 16em;
-    margin-inline-end: 20%;
-    padding: var(--space-l);
     line-height: 1.6;
-    border: var(--border-width-thick) solid;
-    background-color: var(--background-color);
-    z-index: 1;
   }
 
   article {
