@@ -119,17 +119,18 @@
 
 body {
   --background-color: var(--color-tumbleweed-100);
+  --text-color: var(--color-tumbleweed-950);
 
   font-family: 'FF Tundra', Georgia, serif;
   font-size: var(--size-step-0);
   line-height: 1.5;
-  color: var(--color-tumbleweed-950);
+  color: var(--text-color);
   background-color: var(--background-color);
 }
 
 .dark body {
   --background-color: var(--color-purple-dark);
-  color: var(--color-purple-light);
+  --text-color: var(--color-purple-light);
 }
 
 h1,
