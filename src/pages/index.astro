@@ -195,8 +195,11 @@ import "../styles/home.css";
 
   h1 {
     max-width: 16em;
-    margin-inline-end: 20%;
     line-height: 1.6;
+
+    @media (min-width: 500px) {
+      margin-inline-end: 20%;
+    }
   }
 
   article {
@@ -223,7 +226,10 @@ import "../styles/home.css";
 
   .photos {
     --flow-space: var(--space-xl);
-    margin-inline-start: 5%;
+
+    @media (min-width: 500px) {
+      margin-inline-start: 5%;
+    }
 
     h2 {
       margin-block-end: var(--space-l);
