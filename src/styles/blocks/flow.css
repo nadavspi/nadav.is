@@ -16,8 +16,8 @@ figure>*+* {
   --flow-space: --flow-space--default;
 }
 
-.flow-large {
-  --flow-space: var(--space-xl);
+.flow-large>*+* {
+  margin-block-start: var(--space-xl);
 }
 
 .flow>*+table {
