@@ -2,14 +2,22 @@
   --flow-space--default: var(--space-m);
 }
 
-.flow>*+*,
-.flow>*+:where(astro-island, astro-slot)>*,
+[class*='flow']>*+*,
+[class*='flow']>*+:where(astro-island, astro-slot)>*,
 figure>*+* {
   margin-block-start: var(--flow-space, var(--flow-space--default));
 }
 
+.flow-small {
+  --flow-space: var(--space-xs);
+}
+
 .flow-default {
   --flow-space: --flow-space--default;
+}
+
+.flow-large {
+  --flow-space: var(--space-xl);
 }
 
 .flow>*+table {
