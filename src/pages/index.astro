@@ -129,6 +129,14 @@ import Feed from "@components/Feed.astro";
         --border-color: #777581;
       }
 
+      opacity: .9;
+      transition: opacity var(--transition-duration);
+      &:hover,
+      &:focus-within {
+        opacity: 1;
+        --border-color: var(--color-border);
+      }
+
       position: relative;
       display: flex;
       margin-block: var(--space-2xl);

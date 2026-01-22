@@ -24,7 +24,7 @@
   --measure: 66ch;
 
   --color-purple-dark: #1b191f;
-  --color-purple: #5d178f;
+  --color-purple: hsl(276 74% 29%);
   --color-purple-pale: #ead3ff;
   --color-purple-light: #d2d0e2;
 
@@ -71,6 +71,8 @@
 
   --border-width-thin: 3px;
   --border-width-thick: 4px;
+
+  --transition-duration: .25s;
 }
 
 :root {
