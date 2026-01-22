@@ -6,6 +6,7 @@
 
 @import './blocks/flex.css';
 @import './blocks/grid.css';
+@import './blocks/flow.css';
 @import './blocks/wrapper.css';
 
 @import './elements/table.css';
@@ -110,7 +111,6 @@
 }
 
 :root {
-  --flow-space--default: var(--space-m);
   --gap: var(--space-s);
 
   --images-max-height: 40vh;
@@ -215,32 +215,6 @@ summary::marker {
 
 .small-caps {
   font-variant-caps: small-caps;
-}
-
-.flow>*+*,
-.flow>*+:where(astro-island, astro-slot)>*,
-figure>*+* {
-  margin-block-start: var(--flow-space, var(--flow-space--default));
-}
-
-.flow-default {
-  --flow-space: --flow-space--default;
-}
-
-.flow>*+table {
-  margin-block-start: var(--space-m);
-}
-
-:is(h1, h2, h3, blockquote) {
-  --flow-space: 1.4em;
-}
-
-:is(h2, h3, h4)+* {
-  --flow-space: 0.5em;
-}
-
-h1+* {
-  margin-block-start: var(--space-m-l);
 }
 
 .small {
