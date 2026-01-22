@@ -3,7 +3,7 @@ import {
   createDirectus,
   readFiles,
   readItems,
-  rest
+  rest,
 } from "@directus/sdk";
 import type { ApiCollections } from "../types/directus-schema.ts";
 
@@ -29,7 +29,7 @@ export const getPhotoGalleries = async () => {
   const directus = await getDirectusClient();
   return await directus.request(
     readItems("photo_galleries", {
-      fields: ["id", "title", "cover"],
+      fields: ["id", "title", "options", { files: ["directus_files_id"] }],
     }),
   );
 };

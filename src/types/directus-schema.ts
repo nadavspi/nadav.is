@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-19T21:35:21.383Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-22T01:38:17.886Z */
 export interface Block {
   id: string;
 }
@@ -98,8 +98,8 @@ export interface PhotoGallery {
   date: 'datetime';
   cover: string | DirectusFile;
   blocks: unknown;
-  private: boolean;
-  password: string;
+  files: number[] | PhotoGalleriesFile[];
+  options: Record<string, unknown>;
 }
 
 export interface PhotoGalleriesBlock {
@@ -108,6 +108,12 @@ export interface PhotoGalleriesBlock {
   item: string;
   sort: number;
   collection: string;
+}
+
+export interface PhotoGalleriesFile {
+  id: number;
+  photo_galleries_id: string | PhotoGallery;
+  directus_files_id: string | DirectusFile;
 }
 
 export interface Tag {
@@ -212,6 +218,7 @@ export interface ApiCollections {
   notes_tags: NotesTag[];
   photo_galleries: PhotoGallery[];
   photo_galleries_blocks: PhotoGalleriesBlock[];
+  photo_galleries_files: PhotoGalleriesFile[];
   tags: Tag[];
   directus_files: DirectusFile[];
 }
