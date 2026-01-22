@@ -2,15 +2,23 @@
 import { Image } from "astro:assets";
 import type { DirectusFile } from "@directus/sdk";
 const file: DirectusFile = Astro.props.file;
+
+const image = {
+  ...file,
+  // depends on whether the file is from the content collection
+  // or from a directus block
+  width: file.data?.width || file.width,
+  height: file.data?.height || file.height,
+};
 ---
 
 {
-  file && file.width && file.height && (
+  image && image.width && image.height && (
     <Image
-      src={`${import.meta.env.DIRECTUS_URL}/assets/${file.id}`}
-      alt={file.title || ""}
-      width={file.width}
-      height={file.height}
+      src={`${import.meta.env.DIRECTUS_URL}/assets/${image.id}`}
+      alt={image.title || ""}
+      width={image.width}
+      height={image.height}
     />
   )
 }

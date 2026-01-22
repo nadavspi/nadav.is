@@ -165,7 +165,8 @@ h2 {
   }
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-weight: normal;
 }
 
@@ -232,4 +233,15 @@ summary::marker {
 blockquote {
   padding-inline-start: var(--space-s);
   border-inline-start: 3px solid var(--color-border);
+}
+
+.featured {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: -1.2em;
+    content: "✰";
+    font-weight: normal;
+  }
 }

@@ -11,18 +11,8 @@ const items = [...writing, ...media, ...notes].sort(
 
 const jobYears = new Date().getFullYear() - 2014;
 
-import { Image } from "astro:assets";
-import Fine029 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_029.jpg";
-import Fine030 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_030.jpg";
-import Fine031 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_031.jpg";
-import Fine032 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_032.jpg";
-import Fine033 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_033.jpg";
-import Fine034 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_034.jpg";
-import Fine035 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_035.jpg";
-import Fine036 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_036.jpg";
-import Fine037 from "./photography/everything-is-fine/_everything is fine_Nadav Spiegelman_037.jpg";
-
 import "../styles/home.css";
+import Feed from "@components/Feed.astro";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
@@ -50,38 +40,7 @@ import "../styles/home.css";
         <div class="feeds | flow-large">
           <div class="feed-group | flow">
             <h4>Featured</h4>
-            <div class="feed-container">
-              <h3 class="featured">Everything is fine</h3>
-              <ol class="feed | no-measure">
-                <li>
-                  <Image src={Fine029} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine030} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine031} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine032} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine033} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine034} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine035} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine036} alt="" />
-                </li>
-                <li>
-                  <Image src={Fine037} alt="" />
-                </li>
-              </ol>
-            </div>
+            <Feed id="94e6159e-9c3f-4188-9b9e-081c9bd2f708" />
 
             <div>
               <h3 class="featured">Artists</h3>
@@ -207,20 +166,6 @@ import "../styles/home.css";
       padding: var(--space-l);
     }
 
-    .feed {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: var(--space-xs) 0;
-      gap: var(--space-2xs);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-    }
-
-    li {
-      flex-shrink: 0;
-    }
-
     .tile:has(.photos) {
       --top-offset: 10%;
     }
@@ -248,17 +193,6 @@ import "../styles/home.css";
 
     .tile .photos {
       padding-inline: var(--space-xl);
-    }
-
-    .featured {
-      position: relative;
-
-      &::before {
-        position: absolute;
-        left: -1.2em;
-        content: "✰";
-        font-weight: normal;
-      }
     }
 
     h4 {

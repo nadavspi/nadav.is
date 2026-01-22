@@ -1,0 +1,13 @@
+---
+import { getEntry } from "astro:content";
+import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const file = await getEntry("files", id);
+---
+
+{file && <DirectusFileRenderer file={file} />}
