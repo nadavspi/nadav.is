@@ -4,10 +4,11 @@ import DirectusFileRenderer from "./DirectusFileRenderer.astro";
 
 interface Props {
   id: string;
+  galleryId?: string;
 }
 
-const { id } = Astro.props;
+const { galleryId, id } = Astro.props;
 const file = await getEntry("files", id);
 ---
 
-{file && <DirectusFileRenderer file={file} />}
+{file && <DirectusFileRenderer galleryId={galleryId} file={file} />}

@@ -1,24 +1,79 @@
 ---
+interface Props {
+  galleryId?: string;
+  file: DirectusFile;
+}
+
 import { Image } from "astro:assets";
 import type { DirectusFile } from "@directus/sdk";
-const file: DirectusFile = Astro.props.file;
+const { file, galleryId } = Astro.props;
+
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const image = {
   ...file,
   // depends on whether the file is from the content collection
   // or from a directus block
+  // @ts-ignore
   width: file.data?.width || file.width,
+  // @ts-ignore
   height: file.data?.height || file.height,
+  src: `${import.meta.env.DIRECTUS_URL}/assets/${file.id}`,
 };
 ---
 
 {
   image && image.width && image.height && (
-    <Image
-      src={`${import.meta.env.DIRECTUS_URL}/assets/${image.id}`}
-      alt={image.title || ""}
-      width={image.width}
-      height={image.height}
-    />
+    <a href={image.src} data-fancybox={galleryId || "gallery"}>
+      <Image
+        src={image.src}
+        alt={image.title || ""}
+        width={image.width}
+        height={image.height}
+      />
+    </a>
   )
 }
+
+<script>
+  import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+  // doesn't work if the theme changed after load
+  const isDarkMode = document.querySelector("html")?.classList.contains("dark");
+
+  Fancybox.bind("[data-fancybox]", {
+    theme: isDarkMode ? "dark" : "light",
+    mainStyle: {
+      "--f-thumb-selected-shadow": "none",
+      "--f-thumb-selected-border":
+        "var(--border-width-thin) solid var(--color-border)",
+      "--f-thumb-border-radius": "0",
+    },
+    Carousel: {
+      Autoplay: {
+        timeout: "5000",
+      },
+      Arrows: false,
+      Toolbar: {
+        absolute: false,
+        display: {
+          left: ["counter"],
+          middle: [],
+          right: ["fullscreen", "thumbs", "autoplay", "close"],
+        },
+      },
+      Thumbs: {
+        type: "classic",
+      },
+    },
+  });
+</script>
+
+<style is:global>
+  .f-thumbs__slide:not(.is-selected) {
+    opacity: 0.7;
+  }
+
+  .f-thumbs__slide button::after {
+    inset: -3px;
+  }
+</style>

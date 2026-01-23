@@ -1,12 +1,11 @@
 ---
-import "../styles/blocks/feed.css";
-
 interface Props {
   id: string;
 }
 
-import FileById from "./directus/FileById.astro";
+import "../styles/blocks/feed.css";
 
+import FileById from "./directus/FileById.astro";
 import { getEntry } from "astro:content";
 import type { PhotoGallery } from "src/types/directus-schema";
 const { id } = Astro.props;
@@ -19,12 +18,12 @@ const isFeatured = data.options.includes("featured");
 ---
 
 <div class="feed-container">
-  <h3 class:list={[{"featured": isFeatured}]}>{data.title}</h3>
+  <h3 class:list={[{ featured: isFeatured }]}>{data.title}</h3>
   <ol class="feed | no-measure">
     {
       data.files.map((file) => (
         <li>
-          <FileById id={file.directus_files_id} />
+          <FileById galleryId={data.title} id={file.directus_files_id} />
         </li>
       ))
     }
