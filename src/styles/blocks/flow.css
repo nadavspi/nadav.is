@@ -29,7 +29,8 @@ figure>*+* {
 }
 
 :is(h2, h3, h4)+* {
-  --flow-space: 0.5em;
+  --flow-space: .5em;
+  margin-block-start: 0.5em;
 }
 
 h1+* {

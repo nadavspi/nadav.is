@@ -13,6 +13,8 @@ const jobYears = new Date().getFullYear() - 2014;
 
 import "../styles/home.css";
 import Feed from "@components/Feed.astro";
+import Items from "./notes/_items.astro";
+import { makeHref } from "src/lib/slugs";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
@@ -112,56 +114,74 @@ import Feed from "@components/Feed.astro";
         </div>
       </div>
     </section>
+
+    <section class="tile">
+      <div class="notes | flow" transition:name="notes">
+        <a href="/notes"><h2>Notes</h2></a>
+
+        <div>
+          <h4>Latest</h4>
+          <Items items={items.slice(0, 5)} />
+
+          <a class="view-all" href={makeHref("notes")}>View all notes →</a>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <style>
-    h1 {
-      max-width: 16em;
-      line-height: 1.6;
-
-      @media (min-width: 500px) {
-        margin-inline-end: 20%;
-      }
-    }
-
-    article {
-      padding: var(--space-l);
-    }
-
-    .tile:has(.photos) {
-      --top-offset: 10%;
-    }
-
-    .photos {
-      --flow-space: var(--space-xl);
-
-      padding-inline: var(--space-xl);
-
-      @media (min-width: 1000px) {
-        margin-inline-start: 5%;
-      }
-
-      h2 {
-        margin-block-end: var(--space-l);
-      }
-
-      img {
-        width: auto;
-        height: min(38vw, 280px);
-      }
-
-      .flow {
-        --flow-space: var(--flow-space--default);
-      }
-    }
-
-    h4 {
-      font-family: sans-serif;
-      font-weight: normal;
-      opacity: 0.8;
-      text-transform: uppercase;
-      font-size: 0.7em;
-      letter-spacing: 0.03em;
-    }
-  </style>
 </Layout>
+
+<style>
+  h1 {
+    max-width: 16em;
+    line-height: 1.6;
+
+    @media (min-width: 500px) {
+      margin-inline-end: 20%;
+    }
+  }
+
+  article {
+    padding: var(--space-l);
+  }
+
+  .tile:has(.photos) {
+    --top-offset: 10%;
+  }
+
+  .photos {
+    --flow-space: var(--space-xl);
+
+    padding-inline: var(--space-xl);
+
+    @media (min-width: 1000px) {
+      margin-inline-start: 5%;
+    }
+
+    h2 {
+      margin-block-end: var(--space-l);
+    }
+
+    img {
+      width: auto;
+      height: min(38vw, 280px);
+    }
+
+    .flow {
+      --flow-space: var(--flow-space--default);
+    }
+  }
+
+  h4 {
+    font-family: sans-serif;
+    font-weight: normal;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-size: var(--size-step--1);
+    letter-spacing: 0.03em;
+  }
+
+  .view-all {
+    display: inline-block;
+    margin-block-start: var(--space-m);
+  }
+</style>
