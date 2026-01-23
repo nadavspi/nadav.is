@@ -175,10 +175,13 @@ h3,
 a {
   font-style: italic;
   color: var(--color-greenlake);
-  text-decoration: none;
 
   .dark & {
     color: var(--color-tumbleweed);
+  }
+
+  &:hover {
+    text-decoration: none;
   }
 
   &:hover,
