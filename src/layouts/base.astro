@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/fonts.css";
 import BackTo from "../components/BackTo.astro";
 import ThemeSwitcher from "@components/ThemeSwitcher.astro";
+import { ClientRouter } from "astro:transitions";
 const { pageTitle, backTo, noHeader, class: className } = Astro.props;
 ---
 
@@ -19,6 +20,8 @@ const { pageTitle, backTo, noHeader, class: className } = Astro.props;
       href={new URL("rss.xml", Astro.site)}
     />
     <title>{pageTitle}</title>
+
+    <ClientRouter />
   </head>
   <body>
     <div class:list={["page-wrapper", { "page-wrapper--no-header": noHeader }]}>
