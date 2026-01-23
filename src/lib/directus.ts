@@ -29,7 +29,13 @@ export const getPhotoGalleries = async () => {
   const directus = await getDirectusClient();
   return await directus.request(
     readItems("photo_galleries", {
-      fields: ["id", "title", "options", { files: ["directus_files_id"] }],
+      fields: [
+        "id",
+        "title",
+        "options",
+        "slug",
+        { files: ["directus_files_id"] },
+      ],
     }),
   );
 };

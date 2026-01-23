@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-22T01:38:17.886Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-23T21:16:51.056Z */
 export interface Block {
   id: string;
 }
@@ -20,8 +20,7 @@ export interface LitestreamLock {
 }
 
 export interface LitestreamSeq {
-  id: number;
-  seq: number;
+  id: string;
 }
 
 export interface BlockGrid {
@@ -100,6 +99,7 @@ export interface PhotoGallery {
   blocks: unknown;
   files: number[] | PhotoGalleriesFile[];
   options: Record<string, unknown>;
+  slug: string;
 }
 
 export interface PhotoGalleriesBlock {

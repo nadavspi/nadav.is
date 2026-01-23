@@ -12,13 +12,17 @@ const { id } = Astro.props;
 
 const gallery = await getEntry("photoGalleries", id);
 const data = gallery?.data as PhotoGallery;
+import { makeHref } from "src/lib/slugs";
+const href = makeHref('photoGalleries', data.slug);
 
 // @ts-ignore
 const isFeatured = data.options.includes("featured");
 ---
 
 <div class="feed-container">
-  <h3 class:list={[{ featured: isFeatured }]}>{data.title}</h3>
+  <h3 class:list={[{ featured: isFeatured }]}>
+    <a href={href}>{data.title}</a>
+  </h3>
   <ol class="feed | no-measure">
     {
       data.files.map((file) => (
