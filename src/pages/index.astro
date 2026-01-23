@@ -115,52 +115,6 @@ import Feed from "@components/Feed.astro";
   </div>
 
   <style>
-    .tile {
-      --top-offset: 50%;
-      --background-color: #fdf5eb;
-
-      /* 50% opacity of var(--text-color) */
-      --border-color: #958278;
-
-      .dark & {
-        --background-color: #221b31;
-
-        /* 50% opacity of var(--text-color) */
-        --border-color: #777581;
-      }
-
-      opacity: .9;
-      transition: opacity var(--transition-duration);
-      &:hover,
-      &:focus-within {
-        opacity: 1;
-        --border-color: var(--color-border);
-      }
-
-      position: relative;
-      display: flex;
-      margin-block: var(--space-2xl);
-      justify-content: center;
-      padding-inline: var(--space-s);
-
-      &::after {
-        content: "";
-        width: 100%;
-        position: absolute;
-        top: var(--top-offset);
-        height: 0;
-        border-top: var(--border-width-thick) solid var(--border-color);
-        transform: translatey(-50%);
-      }
-
-      > :first-child {
-        padding: var(--space-l);
-        border: var(--border-width-thick) solid var(--border-color);
-        background-color: var(--background-color);
-        z-index: 1;
-      }
-    }
-
     h1 {
       max-width: 16em;
       line-height: 1.6;
@@ -181,6 +135,8 @@ import Feed from "@components/Feed.astro";
     .photos {
       --flow-space: var(--space-xl);
 
+      padding-inline: var(--space-xl);
+
       @media (min-width: 1000px) {
         margin-inline-start: 5%;
       }
@@ -197,10 +153,6 @@ import Feed from "@components/Feed.astro";
       .flow {
         --flow-space: var(--flow-space--default);
       }
-    }
-
-    .tile .photos {
-      padding-inline: var(--space-xl);
     }
 
     h4 {

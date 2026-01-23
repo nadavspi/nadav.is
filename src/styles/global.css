@@ -5,8 +5,9 @@
 @import './masonry.css';
 
 @import './blocks/flex.css';
-@import './blocks/grid.css';
 @import './blocks/flow.css';
+@import './blocks/grid.css';
+@import './blocks/tile.css';
 @import './blocks/wrapper.css';
 
 @import './elements/table.css';
