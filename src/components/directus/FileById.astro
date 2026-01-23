@@ -1,14 +1,15 @@
 ---
 import { getEntry } from "astro:content";
+
 import DirectusFileRenderer from "./DirectusFileRenderer.astro";
 
 interface Props {
-  id: string;
   galleryId?: string;
+  id: string;
 }
 
 const { galleryId, id } = Astro.props;
 const file = await getEntry("files", id);
 ---
 
-{file && <DirectusFileRenderer galleryId={galleryId} file={file} />}
+{file && <DirectusFileRenderer file={file} galleryId={galleryId} />}

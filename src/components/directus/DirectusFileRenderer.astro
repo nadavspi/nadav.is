@@ -1,35 +1,36 @@
 ---
 interface Props {
-  galleryId?: string;
   file: DirectusFile;
+  galleryId?: string;
 }
 
-import { Image } from "astro:assets";
 import type { DirectusFile } from "@directus/sdk";
+
+import { Image } from "astro:assets";
 const { file, galleryId } = Astro.props;
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const image = {
   ...file,
+  // @ts-ignore
+  height: file.data?.height || file.height,
+  src: `${import.meta.env.DIRECTUS_URL}/assets/${file.id}`,
   // depends on whether the file is from the content collection
   // or from a directus block
   // @ts-ignore
   width: file.data?.width || file.width,
-  // @ts-ignore
-  height: file.data?.height || file.height,
-  src: `${import.meta.env.DIRECTUS_URL}/assets/${file.id}`,
 };
 ---
 
 {
   image && image.width && image.height && (
-    <a href={image.src} data-fancybox={galleryId || "gallery"}>
+    <a data-fancybox={galleryId || "gallery"} href={image.src}>
       <Image
-        src={image.src}
         alt={image.title || ""}
-        width={image.width}
         height={image.height}
+        src={image.src}
+        width={image.width}
       />
     </a>
   )
@@ -41,18 +42,14 @@ const image = {
   const isDarkMode = document.querySelector("html")?.classList.contains("dark");
 
   Fancybox.bind("[data-fancybox]", {
-    theme: isDarkMode ? "dark" : "light",
-    mainStyle: {
-      "--f-thumb-selected-shadow": "none",
-      "--f-thumb-selected-border":
-        "var(--border-width-thin) solid var(--color-border)",
-      "--f-thumb-border-radius": "0",
-    },
     Carousel: {
+      Arrows: false,
       Autoplay: {
         timeout: "5000",
       },
-      Arrows: false,
+      Thumbs: {
+        type: "classic",
+      },
       Toolbar: {
         absolute: false,
         display: {
@@ -61,10 +58,14 @@ const image = {
           right: ["fullscreen", "thumbs", "autoplay", "close"],
         },
       },
-      Thumbs: {
-        type: "classic",
-      },
     },
+    mainStyle: {
+      "--f-thumb-border-radius": "0",
+      "--f-thumb-selected-border":
+      "var(--border-width-thin) solid var(--color-border)",
+      "--f-thumb-selected-shadow": "none",
+    },
+    theme: isDarkMode ? "dark" : "light",
   });
 </script>
 

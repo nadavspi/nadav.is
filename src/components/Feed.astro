@@ -5,9 +5,11 @@ interface Props {
 
 import "../styles/blocks/feed.css";
 
-import FileById from "./directus/FileById.astro";
-import { getEntry } from "astro:content";
 import type { PhotoGallery } from "src/types/directus-schema";
+
+import { getEntry } from "astro:content";
+
+import FileById from "./directus/FileById.astro";
 const { id } = Astro.props;
 
 const gallery = await getEntry("photoGalleries", id);
