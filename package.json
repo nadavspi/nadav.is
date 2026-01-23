@@ -34,13 +34,22 @@
   "devDependencies": {
     "@astrojs/preact": "^4.0.4",
     "@biomejs/biome": "^1.5.3",
+    "@eslint/css": "^0.14.1",
+    "@eslint/js": "^9.39.2",
     "biome": "^0.3.3",
     "directus-typeforge": "^0.16.3",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-perfectionist": "^5.4.0",
+    "globals": "^17.1.0",
     "husky": "^9.0.11",
+    "jiti": "^2.6.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
     "sharp": "^0.33.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.53.1"
   },
   "overrides": {
     "react": "npm:@preact/compat@latest",
