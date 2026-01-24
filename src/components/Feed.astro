@@ -18,7 +18,7 @@ import { makeHref } from "src/lib/slugs";
 const href = makeHref('photoGalleries', data.slug);
 
 // @ts-ignore
-const isFeatured = data.options.includes("featured");
+const isFeatured = data.options?.includes("featured");
 ---
 
 <div class="feed-container">

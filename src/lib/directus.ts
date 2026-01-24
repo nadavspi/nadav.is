@@ -5,9 +5,10 @@ import {
   readItems,
   rest,
 } from "@directus/sdk";
+
 import type { ApiCollections } from "../types/directus-schema.ts";
 
-const { DIRECTUS_URL, DIRECTUS_USER, DIRECTUS_PASSWORD } = import.meta.env;
+const { DIRECTUS_PASSWORD, DIRECTUS_URL, DIRECTUS_USER } = import.meta.env;
 
 const initDirectus = async () => {
   const directus = createDirectus<ApiCollections>(DIRECTUS_URL)
@@ -30,10 +31,11 @@ export const getPhotoGalleries = async () => {
   return await directus.request(
     readItems("photo_galleries", {
       fields: [
+        "date",
         "id",
-        "title",
         "options",
         "slug",
+        "title",
         { files: ["directus_files_id"] },
       ],
     }),

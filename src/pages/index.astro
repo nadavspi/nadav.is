@@ -9,6 +9,16 @@ const items = [...writing, ...media, ...notes].sort(
   (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
 );
 
+const galleries = [...(await getCollection("photoGalleries"))].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
+const featuredGalleries = galleries.filter((gallery) =>
+  gallery.data.options?.includes("featured"),
+);
+const latestGalleries = galleries.filter(
+  (gallery) => !gallery.data.options?.includes("featured"),
+  ).slice(0, 2);
+
 const jobYears = new Date().getFullYear() - 2014;
 
 import "../styles/home.css";
@@ -37,80 +47,23 @@ import { makeHref } from "src/lib/slugs";
 
     <section class="tile">
       <div class="photos">
-        <h2>Photography</h2>
+        <a href={makeHref("photoGalleries")}><h2>Photography</h2></a>
 
         <div class="feeds | flow-large">
           <div class="feed-group | flow">
             <h4>Featured</h4>
-            <Feed id="94e6159e-9c3f-4188-9b9e-081c9bd2f708" />
-
-            <div>
-              <h3 class="featured">Artists</h3>
-              <ol class="feed | no-measure">
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-              </ol>
-            </div>
+            {featuredGalleries.map((gallery) => <Feed id={gallery.id} />)}
           </div>
 
           <div class="feed-group | flow">
             <h4>Latest</h4>
 
-            <div>
-              <h3>Fourteen days ago</h3>
-              <ol class="feed | no-measure">
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-              </ol>
-            </div>
-
-            <div>
-              <h3>Something that happened</h3>
-              <ol class="feed | no-measure">
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-                <li>
-                  <img alt="" src="https://placehold.co/600x400" />
-                </li>
-              </ol>
-            </div>
+            {latestGalleries.map((gallery) => <Feed id={gallery.id} />)}
           </div>
+
+          <a class="view-all" href={makeHref("photoGalleries")}
+            >View all photo galleries →</a
+          >
         </div>
       </div>
     </section>
