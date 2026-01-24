@@ -38,9 +38,7 @@ const image = {
 
 <script>
   import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
-
-  document.addEventListener("astro:page-load", () => {
-    // doesn't work if the theme changed after load
+  const bind = () => {
     const isDarkMode = document
       .querySelector("html")
       ?.classList.contains("dark");
@@ -71,6 +69,18 @@ const image = {
       },
       theme: isDarkMode ? "dark" : "light",
     });
+  };
+
+  const unbind = () => {
+    Fancybox.unbind("[data-fancybox]");
+  };
+
+  document.addEventListener("theme-switch", () => {
+    unbind();
+    bind();
+  });
+  document.addEventListener("astro:page-load", () => {
+    bind();
   });
 </script>
 
