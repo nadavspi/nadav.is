@@ -38,34 +38,39 @@ const image = {
 
 <script>
   import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
-  // doesn't work if the theme changed after load
-  const isDarkMode = document.querySelector("html")?.classList.contains("dark");
 
-  Fancybox.bind("[data-fancybox]", {
-    Carousel: {
-      Arrows: false,
-      Autoplay: {
-        timeout: "5000",
-      },
-      Thumbs: {
-        type: "classic",
-      },
-      Toolbar: {
-        absolute: false,
-        display: {
-          left: ["counter"],
-          middle: [],
-          right: ["fullscreen", "thumbs", "autoplay", "close"],
+  document.addEventListener("astro:page-load", () => {
+    // doesn't work if the theme changed after load
+    const isDarkMode = document
+      .querySelector("html")
+      ?.classList.contains("dark");
+
+    Fancybox.bind("[data-fancybox]", {
+      Carousel: {
+        Arrows: false,
+        Autoplay: {
+          timeout: "5000",
+        },
+        Thumbs: {
+          type: "classic",
+        },
+        Toolbar: {
+          absolute: false,
+          display: {
+            left: ["counter"],
+            middle: [],
+            right: ["fullscreen", "thumbs", "autoplay", "close"],
+          },
         },
       },
-    },
-    mainStyle: {
-      "--f-thumb-border-radius": "0",
-      "--f-thumb-selected-border":
-      "var(--border-width-thin) solid var(--color-border)",
-      "--f-thumb-selected-shadow": "none",
-    },
-    theme: isDarkMode ? "dark" : "light",
+      mainStyle: {
+        "--f-thumb-border-radius": "0",
+        "--f-thumb-selected-border":
+          "var(--border-width-thin) solid var(--color-border)",
+        "--f-thumb-selected-shadow": "none",
+      },
+      theme: isDarkMode ? "dark" : "light",
+    });
   });
 </script>
 
