@@ -1,6 +1,6 @@
 ---
 import DirectusBlocks from "@components/DirectusBlocks.astro";
-import Feed from "@components/Feed.astro";
+import PhotoGrid from "@components/PhotoGrid.astro";
 import PostHeader from "@components/PostHeader.astro";
 import PostTitle from "@components/PostTitle.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
@@ -30,5 +30,5 @@ const { blocks, date, subtitle, title } = item.data;
 
   {blocks && <DirectusBlocks item={item} />}
 
-  <Feed id={item.id} />
+  <PhotoGrid id={item.id} />
 </Layout>

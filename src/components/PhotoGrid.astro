@@ -1,0 +1,33 @@
+---
+interface Props {
+  id: string;
+}
+
+import type { PhotoGallery } from "src/types/directus-schema";
+
+import { getEntry } from "astro:content";
+
+import FileById from "./directus/FileById.astro";
+const { id } = Astro.props;
+
+const gallery = await getEntry("photoGalleries", id);
+const data = gallery?.data as PhotoGallery;
+---
+
+<div class="gallery-container">
+  <ol class="gallery | no-measure">
+    {
+      data.files.map((file) => (
+        <li>
+          <FileById galleryId={data.title} id={file.directus_files_id} />
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .gallery {
+    list-style-type: none;
+  }
+</style>
