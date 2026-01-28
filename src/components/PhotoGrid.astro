@@ -14,20 +14,29 @@ const gallery = await getEntry("photoGalleries", id);
 const data = gallery?.data as PhotoGallery;
 ---
 
-<div class="gallery-container">
-  <ol class="gallery | no-measure">
-    {
-      data.files.map((file) => (
-        <li>
-          <FileById galleryId={data.title} id={file.directus_files_id} />
-        </li>
-      ))
-    }
-  </ol>
-</div>
+<section class="photo-grid">
+  {
+    data.files.map((file) => (
+      <FileById galleryId={data.title} id={file.directus_files_id} />
+    ))
+  }
+</section>
 
 <style>
-  .gallery {
-    list-style-type: none;
+  .photo-grid {
+    --min-height: clamp(300px, 20vw, 400px);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    padding: var(--space-m);
+    max-inline-size: 80em;
+    margin-inline: auto;
+
+    a {
+      flex-grow: calc(var(--width) * (100000 / var(--height)));
+      flex-basis: calc(var(--min-height) * (var(--width) / var(--height)));
+      aspect-ratio: var(--width) / var(--height);
+    }
   }
 </style>

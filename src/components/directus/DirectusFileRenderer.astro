@@ -25,7 +25,11 @@ const image = {
 
 {
   image && image.width && image.height && (
-    <a data-fancybox={galleryId || "gallery"} href={image.src}>
+    <a
+      data-fancybox={galleryId || "gallery"}
+      href={image.src}
+      style={`--width: ${image.width}; --height: ${image.height};`}
+    >
       <Image
         alt={image.title || ""}
         height={image.height}
