@@ -1,0 +1,34 @@
+---
+import DirectusBlocks from "@components/DirectusBlocks.astro";
+import Feed from "@components/Feed.astro";
+import PostHeader from "@components/PostHeader.astro";
+import PostTitle from "@components/PostTitle.astro";
+import WrittenLongAgo from "@components/WrittenLongAgo.astro";
+import Layout from "@layouts/base.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const galleries = await getCollection("photoGalleries");
+  return galleries.map((item) => ({
+    params: { slug: item.data.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { blocks, date, subtitle, title } = item.data;
+---
+
+<Layout pageTitle={title}>
+  <div class="tile">
+    <PostHeader>
+      <PostTitle>{title}</PostTitle>
+      {subtitle && <h2>{subtitle}</h2>}
+      <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
+    </PostHeader>
+  </div>
+
+  {blocks && <DirectusBlocks item={item} />}
+
+  <Feed id={item.id} />
+</Layout>

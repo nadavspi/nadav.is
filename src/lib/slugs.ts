@@ -1,5 +1,5 @@
 export const slugs = {
-  photoGalleries: 'gallery',
+  photoGalleries: 'photography',
   notes: 'notes',
 }
 
