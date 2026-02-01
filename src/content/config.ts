@@ -1,5 +1,10 @@
 import { defineCollection, z } from "astro:content";
-import { getFiles, getNotes, getPhotoGalleries } from "src/lib/directus";
+import {
+  getBooks,
+  getFiles,
+  getNotes,
+  getPhotoGalleries,
+} from "src/lib/directus";
 
 const photoGalleries = defineCollection({
   loader: async () => {
@@ -7,16 +12,22 @@ const photoGalleries = defineCollection({
   },
 });
 
+const books = defineCollection({
+  loader: async () => {
+    return getBooks();
+  },
+});
+
 const notes = defineCollection({
   loader: async () =>
     getNotes({
       filter: {
+        password: {
+          _empty: true,
+        },
         status: {
           _eq: "published",
         },
-        password: {
-          _empty: true
-        }
       },
     }),
 });
@@ -26,7 +37,6 @@ const files = defineCollection({
 });
 
 const media = defineCollection({
-  type: "content",
   schema: ({ image }) =>
     z.object({
       category: z.enum(["Movie", "TV"]),
@@ -38,24 +48,26 @@ const media = defineCollection({
       titleTranslated: z.string().optional(),
       yearPublished: z.number(),
     }),
+  type: "content",
 });
 
 const writing = defineCollection({
-  type: "content",
   schema: ({ image }) =>
     z.object({
       blurb: z.string().optional(),
-      date: z.date(),
       cover: image().optional(),
       coverAlt: z.string().optional(),
+      date: z.date(),
       dateUpdated: z.date().optional(),
+      subtitle: z.string().optional(),
       tags: z.array(z.string()).optional(),
       title: z.string(),
-      subtitle: z.string().optional(),
     }),
+  type: "content",
 });
 
 export const collections = {
+  books,
   files: files,
   media: media,
   notes: notes,
