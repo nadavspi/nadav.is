@@ -10,4 +10,9 @@
   li {
     flex-shrink: 0;
   }
+
+  img {
+    width: auto;
+    height: min(38vw, 200px);
+  }
 }

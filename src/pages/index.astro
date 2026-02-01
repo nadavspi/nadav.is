@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/base.astro";
 import { getCollection } from "astro:content";
+import FileById from "@components/directus/FileById.astro";
 
 const writing = await getCollection("writing");
 const media = await getCollection("media");
@@ -19,12 +20,19 @@ const latestGalleries = galleries.filter(
   (gallery) => !gallery.data.options?.includes("featured"),
   ).slice(0, 2);
 
+const books = (await getCollection("books"))
+  .filter((book) => book.data.cover)
+  .sort(
+    (a, b) => Date.parse(b.data.date_created) - Date.parse(a.data.date_created),
+  );
+
 const jobYears = new Date().getFullYear() - 2014;
 
 import "../styles/home.css";
 import Feed from "@components/Feed.astro";
-import Items from "./notes/_items.astro";
 import { makeHref } from "src/lib/slugs";
+
+import Items from "./notes/_items.astro";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
@@ -74,10 +82,39 @@ import { makeHref } from "src/lib/slugs";
 
         <div>
           <h4>Latest</h4>
-          <Items items={items.slice(0, 5)} />
+          <Items items={items.slice(0, 3)} />
 
           <a class="view-all" href={makeHref("notes")}>View all notes →</a>
         </div>
+      </div>
+    </section>
+
+    <section class="tile">
+      <div class="reading | flow" transition:name="reading">
+        <a href={makeHref("books")}><h2>Reading</h2></a>
+
+        <ol class="books-list | feed">
+          {
+            books.slice(0, 8).map((book) => {
+              return (
+                <li>
+                  <details name="book">
+                    <summary>
+                      {book.data.cover && (
+                        <FileById id={book.data.cover} galleryId="books" disableLightbox />
+                      )}
+                    </summary>
+                    <div>
+                      {book.data.title} by {book.data.author}
+                    </div>
+                  </details>
+                </li>
+              );
+            })
+          }
+        </ol>
+
+        <a class="view-all" href={makeHref("books")}>View all books →</a>
       </div>
     </section>
   </div>
@@ -114,11 +151,6 @@ import { makeHref } from "src/lib/slugs";
       margin-block-end: var(--space-l);
     }
 
-    img {
-      width: auto;
-      height: min(38vw, 200px);
-    }
-
     .flow {
       --flow-space: var(--flow-space--default);
     }
@@ -136,5 +168,10 @@ import { makeHref } from "src/lib/slugs";
   .view-all {
     display: inline-block;
     margin-block-start: var(--space-m);
+  }
+
+  .books-list {
+    list-style-type: none;
+    display: flex;
   }
 </style>
