@@ -2,12 +2,33 @@
 import BookFeed from "@components/BookFeed.astro";
 import Layout from "@layouts/base.astro";
 import { getCollection } from "astro:content";
+import type { Book } from "src/types/directus-schema";
 
 const books = (await getCollection("books"))
   .filter((book) => book.data.cover)
-  .sort(
-    (a, b) => Date.parse(b.data.date_created) - Date.parse(a.data.date_created),
+  .map((book) => book.data);
+
+const booksByYear: { [year: string]: Book[] } = {};
+
+for (const book of books) {
+  const year = new Date(book.date_created).getFullYear().toString();
+
+  if (!booksByYear[year]) {
+    booksByYear[year] = [];
+  }
+
+  booksByYear[year].push(book);
+}
+
+for (const year of Object.keys(booksByYear)) {
+  booksByYear[year].sort(
+    (a, b) => Date.parse(b.date_created) - Date.parse(a.date_created),
   );
+}
+
+const sortedYears = Object.keys(booksByYear).sort(
+  (a, b) => Number(b) - Number(a),
+);
 ---
 
 <Layout pageTitle="Reading">
@@ -15,7 +36,16 @@ const books = (await getCollection("books"))
     <div class="notes" transition:name="reading">
       <h1>Reading</h1>
 
-      <BookFeed books={books} />
+      <div class="flow">
+        {
+          sortedYears.map((year) => (
+            <section>
+              <h2>{year}</h2>
+              <BookFeed books={booksByYear[year]} class="feed--page" />
+            </section>
+          ))
+        }
+      </div>
     </div>
   </section>
 </Layout>

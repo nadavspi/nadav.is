@@ -1,10 +1,15 @@
 ---
+interface Props {
+  books: Book[];
+  class?: string;
+}
+
 import type { Book } from "src/types/directus-schema";
 import FileById from "./directus/FileById.astro";
 
 import "../styles/blocks/feed.css";
 
-const books = Astro.props.books.map((book) => book.data) as Book[];
+const { books } = Astro.props;
 ---
 
 <ol class:list={["feed | no-measure", Astro.props.class]}>
@@ -14,13 +19,6 @@ const books = Astro.props.books.map((book) => book.data) as Book[];
         <li>
           <details class="book" name="book">
             <summary>
-              {book.cover && (
-                <FileById
-                  id={book.cover as string}
-                  galleryId="books"
-                  disableLightbox
-                />
-              )}
             </summary>
             <div class="book-details">
               {book.title} by {book.author}
@@ -34,7 +32,6 @@ const books = Astro.props.books.map((book) => book.data) as Book[];
 
 <style>
   .book {
-
     &:open {
       outline: var(--border-width-thin) solid var(--color-border);
     }
