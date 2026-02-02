@@ -1,0 +1,21 @@
+---
+import BookFeed from "@components/BookFeed.astro";
+import Layout from "@layouts/base.astro";
+import { getCollection } from "astro:content";
+
+const books = (await getCollection("books"))
+  .filter((book) => book.data.cover)
+  .sort(
+    (a, b) => Date.parse(b.data.date_created) - Date.parse(a.data.date_created),
+  );
+---
+
+<Layout pageTitle="Reading">
+  <section class="tile">
+    <div class="notes" transition:name="reading">
+      <h1>Reading</h1>
+
+      <BookFeed books={books} />
+    </div>
+  </section>
+</Layout>
