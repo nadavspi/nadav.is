@@ -1,7 +1,6 @@
 ---
 import Layout from "@layouts/base.astro";
 import { getCollection } from "astro:content";
-import FileById from "@components/directus/FileById.astro";
 
 const writing = await getCollection("writing");
 const media = await getCollection("media");
@@ -33,6 +32,7 @@ import PhotoFeed from "@components/PhotoFeed.astro";
 import { makeHref } from "src/lib/slugs";
 
 import Items from "./notes/_items.astro";
+import BookFeed from "@components/BookFeed.astro";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
@@ -93,27 +93,7 @@ import Items from "./notes/_items.astro";
       <div class="reading | flow" transition:name="reading">
         <a href={makeHref("books")}><h2>Reading</h2></a>
 
-        <ol class="books-list | feed">
-          {
-            books.slice(0, 8).map((book) => {
-              return (
-                <li>
-                  <details name="book">
-                    <summary>
-                      {book.data.cover && (
-                        <FileById id={book.data.cover} galleryId="books" disableLightbox />
-                      )}
-                    </summary>
-                    <div>
-                      {book.data.title} by {book.data.author}
-                    </div>
-                  </details>
-                </li>
-              );
-            })
-          }
-        </ol>
-
+        <BookFeed books={books.slice(0, 10).map(book => book.data)} />
         <a class="view-all" href={makeHref("books")}>View all books →</a>
       </div>
     </section>
