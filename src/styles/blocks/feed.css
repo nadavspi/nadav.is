@@ -23,6 +23,7 @@
 
 .feed--page {
   flex-wrap: wrap;
+  gap: var(--space-m) var(--space-s);
 
   img {
     height: min(45vw, 260px);

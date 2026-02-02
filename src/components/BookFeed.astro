@@ -17,11 +17,21 @@ const { books } = Astro.props;
     books.map((book) => {
       return (
         <li>
-          <details class="book" name="book">
-            <summary>
-            </summary>
-            <div class="book-details">
-              {book.title} by {book.author}
+          {book.cover && (
+            <FileById
+              id={book.cover as string}
+              galleryId="books"
+              disableLightbox
+            />
+          )}
+          <details class="book-info" name="book">
+            <div class="flow">
+              <header>
+                <div>{book.title}</div>
+                {book.author}
+              </header>
+
+              <div>{book.highlights?.length} highlights</div>
             </div>
           </details>
         </li>
@@ -31,13 +41,17 @@ const { books } = Astro.props;
 </ol>
 
 <style>
-  .book {
-    &:open {
-      outline: var(--border-width-thin) solid var(--color-border);
-    }
-  }
+  .book-info {
+    position: relative;
+    padding: var(--space-2xs);
+    font-size: var(--size-step--1);
+    cursor: pointer;
 
-  .book-details {
-    padding: var(--space-s);
+    &:open {
+      position: absolute;
+      background-color: var(--background-color);
+      outline: var(--border-width-thin) solid var(--color-border);
+      z-index: 1;
+    }
   }
 </style>
