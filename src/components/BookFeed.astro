@@ -2,6 +2,7 @@
 interface Props {
   books: Book[];
   class?: string;
+  noDetails?: boolean;
 }
 
 import type { Book } from "src/types/directus-schema";
@@ -9,7 +10,7 @@ import FileById from "./directus/FileById.astro";
 
 import "../styles/blocks/feed.css";
 
-const { books } = Astro.props;
+const { books, noDetails } = Astro.props;
 ---
 
 <ol class:list={["feed | no-measure", Astro.props.class]}>
@@ -24,16 +25,18 @@ const { books } = Astro.props;
               disableLightbox
             />
           )}
-          <details class="book-info" name="book">
-            <div class="flow">
-              <header>
-                <div>{book.title}</div>
-                {book.author}
-              </header>
+          {!noDetails && (
+            <details class="book-info" name="book">
+              <div class="flow">
+                <header>
+                  <div>{book.title}</div>
+                  {book.author}
+                </header>
 
-              <div>{book.highlights?.length} highlights</div>
-            </div>
-          </details>
+                <div>{book.highlights?.length} highlights</div>
+              </div>
+            </details>
+          )}
         </li>
       );
     })
