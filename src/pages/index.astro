@@ -29,7 +29,7 @@ const books = (await getCollection("books"))
 const jobYears = new Date().getFullYear() - 2014;
 
 import "../styles/home.css";
-import Feed from "@components/Feed.astro";
+import PhotoFeed from "@components/PhotoFeed.astro";
 import { makeHref } from "src/lib/slugs";
 
 import Items from "./notes/_items.astro";
@@ -60,13 +60,13 @@ import Items from "./notes/_items.astro";
         <div class="feeds | flow-large">
           <div class="feed-group | flow">
             <h4>Featured</h4>
-            {featuredGalleries.map((gallery) => <Feed id={gallery.id} />)}
+            {featuredGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
           </div>
 
           <div class="feed-group | flow">
             <h4>Latest</h4>
 
-            {latestGalleries.map((gallery) => <Feed id={gallery.id} />)}
+            {latestGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
           </div>
 
           <a class="view-all" href={makeHref("photoGalleries")}
