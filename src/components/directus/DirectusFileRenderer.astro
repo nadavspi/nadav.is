@@ -1,5 +1,6 @@
 ---
 interface Props {
+  disableLightbox?: boolean;
   file: DirectusFile;
   galleryId?: string;
 }
@@ -7,7 +8,7 @@ interface Props {
 import type { DirectusFile } from "@directus/sdk";
 
 import { Image } from "astro:assets";
-const { file, galleryId } = Astro.props;
+const { disableLightbox, file, galleryId } = Astro.props;
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -24,7 +25,18 @@ const image = {
 ---
 
 {
-  image && image.width && image.height && (
+  disableLightbox && image && image.width && image.height && (
+    <Image
+      alt={image.title || ""}
+      height={image.height}
+      src={image.src}
+      width={image.width}
+    />
+  )
+}
+
+{
+  !disableLightbox && image && image.width && image.height && (
     <a
       data-fancybox={galleryId || "gallery"}
       href={image.src}
