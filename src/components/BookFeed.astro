@@ -5,10 +5,13 @@ interface Props {
   noDetails?: boolean;
 }
 
+import plur from "plur";
+
 import type { Book } from "src/types/directus-schema";
 import FileById from "./directus/FileById.astro";
 
 import "../styles/blocks/feed.css";
+import { makeHref } from "src/lib/slugs";
 
 const { books, noDetails } = Astro.props;
 ---
@@ -19,11 +22,13 @@ const { books, noDetails } = Astro.props;
       return (
         <li>
           {book.cover && (
-            <FileById
-              id={book.cover as string}
-              galleryId="books"
-              disableLightbox
-            />
+            <a href={makeHref("books", book.slug)}>
+              <FileById
+                id={book.cover as string}
+                galleryId="books"
+                disableLightbox
+              />
+            </a>
           )}
           {!noDetails && (
             <details class="book-info" name="book">
@@ -33,7 +38,10 @@ const { books, noDetails } = Astro.props;
                   {book.author}
                 </header>
 
-                <div>{book.highlights?.length} highlights</div>
+                <div>
+                  {book.highlights?.length}{" "}
+                  {plur("highlight", book.highlights?.length)}
+                </div>
               </div>
             </details>
           )}
