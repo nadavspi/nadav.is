@@ -42,7 +42,8 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-* {
+*,
+.measure {
   max-inline-size: var(--measure);
 }
 

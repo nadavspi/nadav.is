@@ -175,6 +175,21 @@ h3,
   font-weight: normal;
 }
 
+h4,
+.h4 {
+  font-family: sans-serif;
+  font-weight: normal;
+  opacity: 0.8;
+  text-transform: uppercase;
+  font-size: var(--size-step--1);
+  letter-spacing: 0.03em;
+  color: var(--color-greenlake-800);
+
+  .dark & {
+    color: var(--color-purple-pale);
+  }
+}
+
 a {
   font-style: italic;
   color: var(--color-greenlake);

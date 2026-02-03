@@ -1,0 +1,74 @@
+---
+interface Props {
+  book: Book;
+}
+
+import Layout from "@layouts/base.astro";
+import plur from "plur";
+import { getCollection } from "astro:content";
+import type { Book } from "src/types/directus-schema";
+import FileById from "@components/directus/FileById.astro";
+import WrittenLongAgo from "@components/WrittenLongAgo.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("books");
+  return items.map((item) => ({
+    params: { slug: item.data.slug },
+    props: { book: item.data },
+  }));
+}
+
+const { book } = Astro.props;
+const { title, author, highlights, cover } = book;
+---
+
+<Layout pageTitle={title}>
+  <div class="tile" transition:name="reading">
+    <header class="flow">
+      <div>
+        <h1>{title}</h1>
+        by {author}
+      </div>
+      <p class="h4">
+        Created: <WrittenLongAgo date={book.date_created} />
+      </p>
+    </header>
+    {
+      book.cover && (
+        <div class="prose">
+          <FileById id={book.cover as string} disableLightbox />
+        </div>
+      )
+    }
+  </div>
+
+  <article class="center flow-large">
+    <h2>My {highlights.length} {plur("highlight", highlights.length)}</h2>
+    <ul class="highlights | flow-large" role="list">
+      {
+        highlights.map((highlight) => (
+          <li class="flow-small">
+            <blockquote>{highlight.content}</blockquote>
+            {highlight.note && <aside class="small">Reader's note: {highlight.note}</aside>}
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>
+
+<style>
+  .tile {
+    margin-block-start: var(--space-2xl-3xl);
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  article {
+    margin-block-start: var(--space-2xl-3xl);
+  }
+</style>
