@@ -20,31 +20,21 @@ const { books, noDetails } = Astro.props;
   {
     books.map((book) => {
       return (
-        <li>
+        <li class="book">
           {book.cover && (
-            <a href={makeHref("books", book.slug)}>
+            <a class="flow-small" href={makeHref("books", book.slug)}>
               <FileById
                 id={book.cover as string}
                 galleryId="books"
                 disableLightbox
               />
-            </a>
-          )}
-
-          {!noDetails && (
-            <details class="book-info" name="book">
-              <div class="flow">
+              {!noDetails && (
                 <header>
                   <div>{book.title}</div>
-                  {book.author}
+                  <span class="author">{book.author}</span>
                 </header>
-
-                <div>
-                  {book.highlights?.length}{" "}
-                  {plur("highlight", book.highlights?.length)}
-                </div>
-              </div>
-            </details>
+              )}
+            </a>
           )}
         </li>
       );
@@ -53,17 +43,18 @@ const { books, noDetails } = Astro.props;
 </ol>
 
 <style>
-  .book-info {
-    position: relative;
-    padding: var(--space-2xs);
-    font-size: var(--size-step--1);
-    cursor: pointer;
-
-    &:open {
-      position: absolute;
-      background-color: var(--background-color);
-      outline: var(--border-width-thin) solid var(--color-border);
-      z-index: 1;
+  .book {
+    a {
+      text-decoration: none;
     }
+  }
+
+  header {
+    font-size: var(--size-step--1);
+    max-inline-size: 10em;
+  }
+
+  .author {
+    font-size: var(--size-step--2);
   }
 </style>
