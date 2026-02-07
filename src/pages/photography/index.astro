@@ -1,0 +1,40 @@
+---
+import PhotoFeed from "@components/PhotoFeed.astro";
+import Layout from "@layouts/base.astro";
+import { getCollection } from "astro:content";
+import { makeHref } from "src/lib/slugs";
+
+const galleries = [...(await getCollection("photoGalleries"))].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
+const featuredGalleries = galleries.filter((gallery) =>
+  gallery.data.options?.includes("featured"),
+);
+const latestGalleries = galleries.filter(
+  (gallery) => !gallery.data.options?.includes("featured"),
+);
+---
+
+<Layout pageTitle="Photography">
+  <section class="tile">
+    <div>
+      <h1>Photography</h1>
+      <div class="feeds | flow-large">
+        <div class="feed-group">
+          <h4>Featured</h4>
+          <div class="flow-large">
+            {featuredGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
+          </div>
+        </div>
+
+        <div class="feed-group">
+          <h4>Latest</h4>
+
+          <div class="flow-large">
+            {latestGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
