@@ -3,7 +3,6 @@ import DirectusBlocks from "@components/DirectusBlocks.astro";
 import PhotoGrid from "@components/PhotoGrid.astro";
 import PostHeader from "@components/PostHeader.astro";
 import PostTitle from "@components/PostTitle.astro";
-import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import Layout from "@layouts/base.astro";
 import { getCollection } from "astro:content";
 
@@ -24,7 +23,7 @@ const { blocks, date, subtitle, title } = item.data;
     <PostHeader>
       <PostTitle>{title}</PostTitle>
       {subtitle && <h2>{subtitle}</h2>}
-      <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
+      <time>{date}</time>
     </PostHeader>
   </div>
 

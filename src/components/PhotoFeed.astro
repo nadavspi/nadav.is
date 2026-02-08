@@ -15,7 +15,6 @@ const { id } = Astro.props;
 const gallery = await getEntry("photoGalleries", id);
 const data = gallery?.data as PhotoGallery;
 import { makeHref } from "src/lib/slugs";
-import WrittenLongAgo from "./WrittenLongAgo.astro";
 const href = makeHref("photoGalleries", data.slug);
 
 // @ts-ignore
@@ -26,15 +25,7 @@ const isFeatured = data.options?.includes("featured");
   <h3 class:list={[{ featured: isFeatured }]}>
     <a href={href}>{data.title}</a>
   </h3>
-  {
-    !isFeatured && (
-      <time>
-        <WrittenLongAgo date={data.date} server:defer>
-          Loading...
-        </WrittenLongAgo>
-      </time>
-    )
-  }
+  {!isFeatured && <time>{data.date}</time>}
 
   <ol class="feed | no-measure">
     {
