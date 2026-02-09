@@ -30,7 +30,7 @@ const { pageTitle, class: className } = Astro.props;
         </main>
       </div>
 
-      <div>
+      <div class="footer-container">
         <footer class="wrapper">
           <ThemeSwitcher />
 
@@ -54,5 +54,21 @@ const { pageTitle, class: className } = Astro.props;
     padding: var(--space-xs);
     gap: var(--space-xs);
     font-size: var(--size-step--1);
+  }
+
+  .footer-container {
+    --border: hsla(from var(--color-border) h s l / 0.5);
+    --background: oklch(
+      from var(--background-color) calc(l * 95%) c calc(h - 10)
+    );
+
+    .dark & {
+      --background: oklch(from var(--background-color) calc(l * 85%) c h);
+    }
+
+    margin-block-start: var(--space-3xl);
+    background-color: var(--background);
+    opacity: 0.9;
+    border-block-start: var(--border-width-thin) solid var(--border);
   }
 </style>

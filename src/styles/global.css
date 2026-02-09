@@ -123,7 +123,7 @@
 }
 
 body {
-  --background-color: var(--color-tumbleweed-100);
+  --background-color: oklch(from var(--color-tumbleweed-100) l calc(c * 1.45) h);
   --text-color: var(--color-tumbleweed-950);
 
   font-family: 'FF Tundra', Georgia, serif;
