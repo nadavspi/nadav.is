@@ -9,6 +9,7 @@ import { getCollection } from "astro:content";
 import type { Book } from "src/types/directus-schema";
 import FileById from "@components/directus/FileById.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
+import { makeHref } from "src/lib/slugs";
 
 export async function getStaticPaths() {
   const items = await getCollection("books");
@@ -20,9 +21,58 @@ export async function getStaticPaths() {
 
 const { book } = Astro.props;
 const { title, author, highlights, cover } = book;
+
+const books = (await getCollection("books"))
+  .filter((book) => book.data.cover)
+  .map((book) => book.data);
+
+const booksByYear: { [year: string]: Book[] } = {};
+
+for (const book of books) {
+  const year = new Date(book.date_created).getFullYear().toString();
+
+  if (!booksByYear[year]) {
+    booksByYear[year] = [];
+  }
+
+  booksByYear[year].push(book);
+}
+
+for (const year of Object.keys(booksByYear)) {
+  booksByYear[year].sort(
+    (a, b) => Date.parse(b.date_created) - Date.parse(a.date_created),
+  );
+}
+
+const sortedYears = Object.keys(booksByYear).sort(
+  (a, b) => Number(b) - Number(a),
+);
 ---
 
 <Layout pageTitle={title}>
+  <details slot="subnav" class="subnav flow" open>
+    <summary>Other books</summary>
+    <div class="flow">
+      {
+        sortedYears.map((year) => (
+          <section>
+            <h3>{year}</h3>
+            <ol class="flow" role="list">
+              {booksByYear[year].map((book) => (
+                <li>
+                  <a href={makeHref("books", book.slug)}>
+                    <div>{book.title}</div>
+                    <div class="small">{book.author}</div>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+    </div>
+  </details>
+
   <div class="tile" transition:name="reading">
     <header class="flow">
       <div>
@@ -49,7 +99,9 @@ const { title, author, highlights, cover } = book;
         highlights.map((highlight) => (
           <li class="flow-small">
             <blockquote>{highlight.content}</blockquote>
-            {highlight.note && <aside class="small">Reader's note: {highlight.note}</aside>}
+            {highlight.note && (
+              <aside class="small">Reader's note: {highlight.note}</aside>
+            )}
           </li>
         ))
       }

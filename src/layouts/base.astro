@@ -26,7 +26,11 @@ const { pageTitle, class: className } = Astro.props;
   <body>
     <div class:list={["page-wrapper"]}>
       <header class="site-header | no-measure">
-        {navLinks.map(({ href, text }) => <a href={href}>{text}</a>)}
+        <nav class="site-nav">
+          {navLinks.map(({ href, text }) => <a href={href}>{text}</a>)}
+        </nav>
+
+        <slot name="subnav" />
       </header>
 
       <div>

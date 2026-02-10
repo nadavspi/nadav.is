@@ -222,6 +222,7 @@ figcaption {
 }
 
 summary {
+  cursor: pointer;
   color: var(--color-greenlake-800);
 
   .dark & {
@@ -262,8 +263,8 @@ blockquote {
   }
 
   display: flex;
-  padding: var(--space-xs);
   gap: var(--space-xs-s);
+  padding: var(--space-xs);
   font-size: var(--size-step--1);
   background-color: var(--background);
 }
@@ -271,6 +272,12 @@ blockquote {
 .site-header {
   margin-block-end: var(--space-m-xl);
   border-block-end: var(--border-width-thin) solid var(--border);
+  flex-direction: column;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-xs-s);
 }
 
 .site-footer {
@@ -287,11 +294,30 @@ main {
   }
 
   .site-header {
-    flex-direction: column;
-    padding: var(--space-m) var(--space-s);
-    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    display: grid;
+    padding: 0;
+    border-inline-end: var(--border-width-thin) solid var(--border);
+    margin-block-end: 0;
+    border-block-end: none;
 
+    &:has(.subnav) {
+      grid-template-columns: 6em max(14vw, 300px);
+    }
+
+    &>* {
+      padding: var(--space-m) var(--space-s);
+    }
+  }
+
+  .site-nav {
+    position: relative;
+    flex-direction: column;
     /* Hide the .site-footer border */
+
     &::after {
       position: absolute;
       content: "";
@@ -304,10 +330,11 @@ main {
     }
   }
 
-  .site-header {
-    border-inline-end: var(--border-width-thin) solid var(--border);
-    margin-block-end: 0;
-    border-block-end: none;
+  .subnav {
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    border-inline-start: var(--border-width-thin) solid var(--border);
   }
 
   main {

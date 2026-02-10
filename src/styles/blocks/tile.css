@@ -2,14 +2,8 @@
   --top-offset: 50%;
   --background-color: #fdf5eb;
 
-  /* 50% opacity of var(--text-color) */
-  --border-color: #958278;
-
   .dark & {
     --background-color: #221b31;
-
-    /* 50% opacity of var(--text-color) */
-    --border-color: #777581;
   }
 
   position: relative;
@@ -30,7 +24,6 @@
   &:hover,
   &:focus-within {
     opacity: 1;
-    --border-color: var(--color-border);
   }
 
   &::after {
@@ -39,7 +32,7 @@
     position: absolute;
     top: var(--top-offset);
     height: 0;
-    border-top: var(--border-width-thick) solid var(--border-color);
+    border-top: var(--border-width-thick) solid var(--color-border);
     transform: translatey(-50%);
   }
 
@@ -52,7 +45,7 @@
     background-color: var(--background-color);
 
     @media (min-width: 500px) {
-      border: var(--border-width-thick) solid var(--border-color);
+      border: var(--border-width-thick) solid var(--color-border);
     }
   }
 }
