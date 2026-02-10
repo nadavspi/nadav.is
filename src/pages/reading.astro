@@ -1,5 +1,7 @@
 ---
 import BookFeed from "@components/BookFeed.astro";
+import type { TocItem } from "@components/TOC.astro";
+import TOC from "@components/TOC.astro";
 import Layout from "@layouts/base.astro";
 import { getCollection } from "astro:content";
 import type { Book } from "src/types/directus-schema";
@@ -29,16 +31,22 @@ for (const year of Object.keys(booksByYear)) {
 const sortedYears = Object.keys(booksByYear).sort(
   (a, b) => Number(b) - Number(a),
 );
+
+const headings: TocItem[] = sortedYears.map((year) => ({
+  href: `#section-${year}`,
+  caption: year,
+}));
 ---
 
 <Layout pageTitle="Reading">
+  <TOC slot="toc" items={headings} />
   <div class="notes" transition:name="reading">
     <h1>Reading</h1>
 
     <div class="flow-large">
       {
         sortedYears.map((year) => (
-          <section>
+          <section id={`section-${year}`}>
             <h2>{year}</h2>
             <BookFeed books={booksByYear[year]} class="feed--page" />
           </section>

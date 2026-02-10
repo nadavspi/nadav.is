@@ -286,6 +286,10 @@ blockquote {
 
 main {
   margin-block-end: var(--space-3xl);
+
+  >*:not(.tile) {
+    margin-inline: var(--space-s);
+  }
 }
 
 @media (min-width: 1200px) {
@@ -347,5 +351,42 @@ main {
 
   .site-footer {
     grid-column: 2;
+  }
+}
+
+@media (min-width: 1400px) {
+  main:has(.toc) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .toc {
+    order: 2;
+    max-height: 100vw;
+    overflow-y: auto;
+    position: sticky;
+    top: var(--space-s);
+  }
+}
+
+.toc {
+  ol {
+    list-style-type: circle;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .active {
+    list-style-type: disc;
+
+    &::marker {
+      color: var(--color-tumbleweed-600);
+    }
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
