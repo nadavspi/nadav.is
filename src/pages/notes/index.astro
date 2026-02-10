@@ -11,11 +11,9 @@ const items = [...writing, ...media, ...notes].sort(
 );
 ---
 
-<Layout class="wrapper" pageTitle="Writing">
-  <section class="tile">
-    <div class="notes" transition:name="notes">
-      <h1>Notes</h1>
-      <Items items={items} />
-    </div>
-  </section>
+<Layout pageTitle="Writing">
+  <div class="notes" transition:name="notes">
+    <h1>Notes</h1>
+    <Items items={items} />
+  </div>
 </Layout>

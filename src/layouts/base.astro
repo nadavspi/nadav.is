@@ -25,11 +25,9 @@ const { pageTitle, class: className } = Astro.props;
   </head>
   <body>
     <div class:list={["page-wrapper"]}>
-      <div class="header-container">
-        <header>
-          {navLinks.map(({ href, text }) => <a href={href}>{text}</a>)}
-        </header>
-      </div>
+      <header class="site-header | no-measure">
+        {navLinks.map(({ href, text }) => <a href={href}>{text}</a>)}
+      </header>
 
       <div>
         <main class:list={["page-content", "flow", className]}>
@@ -37,54 +35,11 @@ const { pageTitle, class: className } = Astro.props;
         </main>
       </div>
 
-      <div class="footer-container">
-        <footer class="wrapper">
-          <ThemeSwitcher />
+      <footer class="site-footer no-measure">
+        <ThemeSwitcher />
 
-          <a href="/rss.xml">Subscribe (RSS)</a>
-        </footer>
-      </div>
+        <a href="/rss.xml">Subscribe (RSS)</a>
+      </footer>
     </div>
   </body>
 </html>
-
-<style>
-  .page-wrapper {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
-
-  header,
-  footer {
-    display: flex;
-    padding: var(--space-xs);
-    gap: var(--space-xs);
-    font-size: var(--size-step--1);
-  }
-
-  .header-container,
-  .footer-container {
-    --border: hsla(from var(--color-border) h s l / 0.5);
-    --background: oklch(
-      from var(--background-color) calc(l * 95%) c calc(h - 10)
-    );
-
-    .dark & {
-      --background: oklch(from var(--background-color) calc(l * 85%) c h);
-    }
-
-    background-color: var(--background);
-    opacity: 0.9;
-  }
-
-  .header-container {
-    margin-block-end: var(--space-m-xl);
-    border-block-end: var(--border-width-thin) solid var(--border);
-  }
-
-  .footer-container {
-    margin-block-start: var(--space-3xl);
-    border-block-start: var(--border-width-thin) solid var(--border);
-  }
-</style>

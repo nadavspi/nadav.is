@@ -32,20 +32,18 @@ const sortedYears = Object.keys(booksByYear).sort(
 ---
 
 <Layout pageTitle="Reading">
-  <section class="tile">
-    <div class="notes" transition:name="reading">
-      <h1>Reading</h1>
+  <div class="notes" transition:name="reading">
+    <h1>Reading</h1>
 
-      <div class="flow-large">
-        {
-          sortedYears.map((year) => (
-            <section>
-              <h2>{year}</h2>
-              <BookFeed books={booksByYear[year]} class="feed--page" />
-            </section>
-          ))
-        }
-      </div>
+    <div class="flow-large">
+      {
+        sortedYears.map((year) => (
+          <section>
+            <h2>{year}</h2>
+            <BookFeed books={booksByYear[year]} class="feed--page" />
+          </section>
+        ))
+      }
     </div>
-  </section>
+  </div>
 </Layout>

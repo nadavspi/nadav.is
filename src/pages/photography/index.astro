@@ -16,25 +16,23 @@ const latestGalleries = galleries.filter(
 ---
 
 <Layout pageTitle="Photography">
-  <section class="tile">
-    <div>
-      <h1>Photography</h1>
-      <div class="feeds | flow-large">
-        <div class="feed-group">
-          <h4>Featured</h4>
-          <div class="flow-large">
-            {featuredGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
-          </div>
+  <div>
+    <h1>Photography</h1>
+    <div class="feeds | flow-large">
+      <div class="feed-group">
+        <h4>Featured</h4>
+        <div class="flow-large">
+          {featuredGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
         </div>
+      </div>
 
-        <div class="feed-group">
-          <h4>Latest</h4>
+      <div class="feed-group">
+        <h4>Latest</h4>
 
-          <div class="flow-large">
-            {latestGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
-          </div>
+        <div class="flow-large">
+          {latestGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </Layout>
