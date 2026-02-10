@@ -3,8 +3,10 @@
 }
 
 [class*='flow']>*+*,
+[class*='flow']>*+script+*,
 [class*='flow']>*+:where(astro-island, astro-slot)>*,
 figure>*+* {
+  display: block;
   margin-block-start: var(--flow-space, var(--flow-space--default));
 }
 

@@ -28,15 +28,24 @@ const { date, title, subtitle, tags } = item.data;
 ---
 
 <Layout backTo="notes" pageTitle={title}>
-  <PostHeader>
-  {(tags && source === "directus") && <div class="small">{tags[0].tags_id.title}</div>}
-    <PostTitle>{title}</PostTitle>
-    {subtitle && <h2>{subtitle}</h2>}
-    <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
-  </PostHeader>
+  <div class="tile" transition:name="reading">
+    <header class="flow">
+      {
+        tags && source === "directus" && (
+          <div class="small">{tags[0].tags_id.title}</div>
+        )
+      }
+
+      <h1>{title}</h1>
+      {subtitle}
+      <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
+    </header>
+  </div>
 
   <Prose>
-    {source === "astro" && <Content item={item} />}
-    {source === "directus" && <DirectusBlocks item={item} />}
+    <article class="center flow">
+      {source === "astro" && <Content item={item} />}
+      {source === "directus" && <DirectusBlocks item={item} />}
+    </article>
   </Prose>
 </Layout>
