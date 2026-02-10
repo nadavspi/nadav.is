@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/fonts.css";
 import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 import { ClientRouter } from "astro:transitions";
+import navLinks from "@components/navLinks";
 const { pageTitle, class: className } = Astro.props;
 ---
 
@@ -24,6 +25,12 @@ const { pageTitle, class: className } = Astro.props;
   </head>
   <body>
     <div class:list={["page-wrapper"]}>
+      <div class="header-container">
+        <header>
+          {navLinks.map(({ href, text }) => <a href={href}>{text}</a>)}
+        </header>
+      </div>
+
       <div>
         <main class:list={["page-content", "flow", className]}>
           <slot />
@@ -45,7 +52,7 @@ const { pageTitle, class: className } = Astro.props;
   .page-wrapper {
     min-height: 100vh;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr auto;
   }
 
   header,
@@ -56,6 +63,7 @@ const { pageTitle, class: className } = Astro.props;
     font-size: var(--size-step--1);
   }
 
+  .header-container,
   .footer-container {
     --border: hsla(from var(--color-border) h s l / 0.5);
     --background: oklch(
@@ -66,9 +74,17 @@ const { pageTitle, class: className } = Astro.props;
       --background: oklch(from var(--background-color) calc(l * 85%) c h);
     }
 
-    margin-block-start: var(--space-3xl);
     background-color: var(--background);
     opacity: 0.9;
+  }
+
+  .header-container {
+    margin-block-end: var(--space-m-xl);
+    border-block-end: var(--border-width-thin) solid var(--border);
+  }
+
+  .footer-container {
+    margin-block-start: var(--space-3xl);
     border-block-start: var(--border-width-thin) solid var(--border);
   }
 </style>
