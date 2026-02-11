@@ -1,12 +1,11 @@
 ---
-import PostTitle from "@components/PostTitle.astro";
-import PostHeader from "@components/PostHeader.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import Layout from "@layouts/base.astro";
 import Prose from "@components/Prose.astro";
 import { getCollection } from "astro:content";
 import DirectusBlocks from "@components/DirectusBlocks.astro";
 import Content from "@components/Content.astro";
+import Items from "./_items.astro";
 
 export async function getStaticPaths() {
   const writing = await getCollection("writing");
@@ -25,9 +24,23 @@ export async function getStaticPaths() {
 
 const { item, source } = Astro.props;
 const { date, title, subtitle, tags } = item.data;
+
+const writing = await getCollection("writing");
+const media = await getCollection("media");
+const notes = await getCollection("notes");
+const items = [...writing, ...media, ...notes].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
 ---
 
 <Layout backTo="notes" pageTitle={title}>
+  <details slot="subnav" class="subnav flow">
+    <summary>Other notes</summary>
+    <div class="flow">
+      <Items items={items} />
+    </div>
+  </details>
+
   <div class="tile">
     <header class="flow">
       {
@@ -49,3 +62,15 @@ const { date, title, subtitle, tags } = item.data;
     </article>
   </Prose>
 </Layout>
+
+<script>
+  import maybeOpen from '../../lib/maybeOpen';
+
+
+  const init = () => {
+    maybeOpen("(width > 1200px)", ".subnav");
+  };
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>
