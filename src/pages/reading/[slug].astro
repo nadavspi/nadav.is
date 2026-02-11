@@ -52,12 +52,12 @@ const sortedYears = Object.keys(booksByYear).sort(
 <Layout pageTitle={title}>
   <details slot="subnav" class="subnav flow">
     <summary>Other books</summary>
-    <div class="flow">
+    <div class="flow-large">
       {
         sortedYears.map((year) => (
           <section>
             <h3>{year}</h3>
-            <ol class="flow" role="list">
+            <ol class="year-list | flow" role="list">
               {booksByYear[year].map((book) => {
                 const href = makeHref("books", book.slug);
                 return (
@@ -67,7 +67,7 @@ const sortedYears = Object.keys(booksByYear).sort(
                       class:list={[{ active: href === Astro.url.pathname }]}
                     >
                       <div>{book.title}</div>
-                      <div class="small">{book.author}</div>
+                      <div class="author">{book.author}</div>
                     </a>
                   </li>
                 );
@@ -120,6 +120,14 @@ const sortedYears = Object.keys(booksByYear).sort(
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .author {
+    font-size: var(--size-step--2);
+  }
+
+  .year-list {
+    --flow-space: var(--space-s);
   }
 </style>
 
