@@ -3,8 +3,10 @@ import DirectusBlocks from "@components/DirectusBlocks.astro";
 import PhotoGrid from "@components/PhotoGrid.astro";
 import PostHeader from "@components/PostHeader.astro";
 import PostTitle from "@components/PostTitle.astro";
+import Subnav from "@components/Subnav.astro";
 import Layout from "@layouts/base.astro";
 import { getCollection } from "astro:content";
+import { makeHref } from "src/lib/slugs";
 
 export async function getStaticPaths() {
   const galleries = await getCollection("photoGalleries");
@@ -16,6 +18,16 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { blocks, date, subtitle, title } = item.data;
+
+const galleries = [...(await getCollection("photoGalleries"))].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
+const featuredGalleries = galleries.filter((gallery) =>
+  gallery.data.options?.includes("featured"),
+);
+const latestGalleries = galleries.filter(
+  (gallery) => !gallery.data.options?.includes("featured"),
+);
 ---
 
 <Layout pageTitle={title}>
@@ -30,4 +42,45 @@ const { blocks, date, subtitle, title } = item.data;
   {blocks && <DirectusBlocks item={item} />}
 
   <PhotoGrid id={item.id} />
+
+  <Subnav title="Other galleries" slot="subnav">
+      <div>
+        <h4>Featured</h4>
+        <ol class="flow" role="list">
+          {
+            featuredGalleries.map((gallery) => {
+              const href = makeHref("photoGalleries", gallery.data.slug);
+              return (
+                <li>
+                  <a
+                    class:list={[{ active: href === Astro.url.pathname }]}
+                    href={href}
+                  >
+                    {gallery.data.title}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ol>
+        <h4>Latest</h4>
+        <ol class="flow" role="list">
+          {
+            latestGalleries.map((gallery) => {
+              const href = makeHref("photoGalleries", gallery.data.slug);
+              return (
+                <li>
+                  <a
+                    class:list={[{ active: href === Astro.url.pathname }]}
+                    href={href}
+                  >
+                    {gallery.data.title}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ol>
+      </div>
+    </Subnav>
 </Layout>

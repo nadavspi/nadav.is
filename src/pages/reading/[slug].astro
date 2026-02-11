@@ -10,6 +10,7 @@ import type { Book } from "src/types/directus-schema";
 import FileById from "@components/directus/FileById.astro";
 import WrittenLongAgo from "@components/WrittenLongAgo.astro";
 import { makeHref } from "src/lib/slugs";
+import Subnav from "@components/Subnav.astro";
 
 export async function getStaticPaths() {
   const items = await getCollection("books");
@@ -50,8 +51,7 @@ const sortedYears = Object.keys(booksByYear).sort(
 ---
 
 <Layout pageTitle={title}>
-  <details slot="subnav" class="subnav flow">
-    <summary>Other books</summary>
+  <Subnav slot="subnav" title="Other books">
     <div class="flow-large">
       {
         sortedYears.map((year) => (
@@ -77,7 +77,7 @@ const sortedYears = Object.keys(booksByYear).sort(
         ))
       }
     </div>
-  </details>
+  </Subnav>
 
   <div class="tile" transition:name="reading">
     <header class="flow">
@@ -130,19 +130,3 @@ const sortedYears = Object.keys(booksByYear).sort(
     --flow-space: var(--space-s);
   }
 </style>
-
-<script>
-  import maybeOpen from "../../lib/maybeOpen";
-
-  const init = () => {
-    maybeOpen("(width > 1200px)", ".subnav");
-
-    const link = document.querySelector(`.subnav .active`);
-    if (link) {
-      link.scrollIntoView({ block: "start" });
-    }
-  };
-
-  init();
-  document.addEventListener("astro:after-swap", init);
-</script>

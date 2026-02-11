@@ -6,6 +6,7 @@ import { getCollection } from "astro:content";
 import DirectusBlocks from "@components/DirectusBlocks.astro";
 import Content from "@components/Content.astro";
 import Items from "./_items.astro";
+import Subnav from "@components/Subnav.astro";
 
 export async function getStaticPaths() {
   const writing = await getCollection("writing");
@@ -34,12 +35,11 @@ const items = [...writing, ...media, ...notes].sort(
 ---
 
 <Layout backTo="notes" pageTitle={title}>
-  <details slot="subnav" class="subnav flow">
-    <summary>Other notes</summary>
+  <Subnav slot="subnav" title="Other notes">
     <div class="flow">
       <Items items={items} />
     </div>
-  </details>
+  </Subnav>
 
   <div class="tile">
     <header class="flow">
@@ -62,15 +62,3 @@ const items = [...writing, ...media, ...notes].sort(
     </article>
   </Prose>
 </Layout>
-
-<script>
-  import maybeOpen from '../../lib/maybeOpen';
-
-
-  const init = () => {
-    maybeOpen("(width > 1200px)", ".subnav");
-  };
-
-  init();
-  document.addEventListener("astro:after-swap", init);
-</script>
