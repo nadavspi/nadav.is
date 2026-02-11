@@ -390,3 +390,16 @@ main {
     }
   }
 }
+
+.site-nav,
+.subnav {
+  a {
+    text-decoration: none;
+  }
+
+  .active {
+    color: var(--color-tumbleweed-600);
+    text-decoration: underline;
+    scroll-margin-block-start: min(200px, 12vh);
+  }
+}

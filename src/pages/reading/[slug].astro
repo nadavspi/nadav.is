@@ -58,14 +58,20 @@ const sortedYears = Object.keys(booksByYear).sort(
           <section>
             <h3>{year}</h3>
             <ol class="flow" role="list">
-              {booksByYear[year].map((book) => (
-                <li>
-                  <a href={makeHref("books", book.slug)}>
-                    <div>{book.title}</div>
-                    <div class="small">{book.author}</div>
-                  </a>
-                </li>
-              ))}
+              {booksByYear[year].map((book) => {
+                const href = makeHref("books", book.slug);
+                return (
+                  <li>
+                    <a
+                      href={href}
+                      class:list={[{ active: href === Astro.url.pathname }]}
+                    >
+                      <div>{book.title}</div>
+                      <div class="small">{book.author}</div>
+                    </a>
+                  </li>
+                );
+              })}
             </ol>
           </section>
         ))

@@ -45,7 +45,10 @@ const href = (() => {
 
 <div>
   {isArchived && <span>Archived</span>}
-  <a href={href} class:list={[className]}>
+  <a
+    href={href}
+    class:list={[className, { active: href === Astro.url.pathname }]}
+  >
     {title}
     {titleTranslated && <div>{titleTranslated}</div>}
     {subtitle && <div class="text-xs mt-2">{subtitle}</div>}
