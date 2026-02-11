@@ -4,9 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap);
-    padding: var(--space-m);
     max-inline-size: 80em;
-    margin-inline: auto;
 
     a {
       flex-grow: calc(var(--width) * (100000 / var(--height)));

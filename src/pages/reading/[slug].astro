@@ -92,7 +92,7 @@ const sortedYears = Object.keys(booksByYear).sort(
     }
   </div>
 
-  <article class="center flow-large">
+  <article class="flow-large">
     <h2>My {highlights.length} {plur("highlight", highlights.length)}</h2>
     <ul class="highlights | flow-large" role="list">
       {
@@ -110,18 +110,10 @@ const sortedYears = Object.keys(booksByYear).sort(
 </Layout>
 
 <style>
-  .tile {
-    margin-block-start: var(--space-2xl-3xl);
-  }
-
   header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  article {
-    margin-block-start: var(--space-2xl-3xl);
   }
 </style>
 

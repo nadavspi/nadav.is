@@ -10,11 +10,9 @@
   display: flex;
   flex-direction: column;
   margin-block: var(--space-2xl);
-  justify-content: center;
 
   @media (min-width: 500px) {
     flex-direction: row;
-    padding-inline: var(--space-s);
   }
 
   opacity: .9;
@@ -24,16 +22,6 @@
   &:hover,
   &:focus-within {
     opacity: 1;
-  }
-
-  &::after {
-    content: "";
-    width: 100%;
-    position: absolute;
-    top: var(--top-offset);
-    height: 0;
-    border-top: var(--border-width-thick) solid var(--color-border);
-    transform: translatey(-50%);
   }
 
   >* {
@@ -48,8 +36,4 @@
       border: var(--border-width-thick) solid var(--color-border);
     }
   }
-}
-
-.tile+.tile {
-  margin-block-start: var(--space-3xl);
 }

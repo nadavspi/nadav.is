@@ -28,7 +28,7 @@ const { date, title, subtitle, tags } = item.data;
 ---
 
 <Layout backTo="notes" pageTitle={title}>
-  <div class="tile" transition:name="reading">
+  <div class="tile">
     <header class="flow">
       {
         tags && source === "directus" && (
@@ -43,7 +43,7 @@ const { date, title, subtitle, tags } = item.data;
   </div>
 
   <Prose>
-    <article class="center flow">
+    <article class="flow">
       {source === "astro" && <Content item={item} />}
       {source === "directus" && <DirectusBlocks item={item} />}
     </article>

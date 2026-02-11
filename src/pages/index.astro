@@ -40,7 +40,7 @@ import BookFeed from "@components/BookFeed.astro";
     <section class="tile">
       <h1>Hello. I’m Nadav Spiegelman and this is my home on the web.</h1>
     </section>
-    <article class="flow center">
+    <article class="flow">
       <p>
         I made <a href="/notes/my-first-website">my first website</a> when I was
         10 years old and haven't stopped. For the past {jobYears} years, I've also
@@ -93,7 +93,7 @@ import BookFeed from "@components/BookFeed.astro";
       <div class="reading | flow" transition:name="reading">
         <a href={makeHref("books")}><h2>Reading</h2></a>
 
-        <BookFeed books={books.slice(0, 10).map(book => book.data)} noDetails />
+        <BookFeed books={books.slice(0, 15).map(book => book.data)} noDetails />
         <a class="view-all" href={makeHref("books")}>View all books →</a>
       </div>
     </section>
@@ -104,28 +104,10 @@ import BookFeed from "@components/BookFeed.astro";
   h1 {
     max-width: 16em;
     line-height: 1.6;
-
-    @media (min-width: 500px) {
-      margin-inline-end: 20%;
-    }
-  }
-
-  article {
-    padding: var(--space-m-l);
-  }
-
-  .tile:has(.photos) {
-    --top-offset: 10%;
   }
 
   .photos {
     --flow-space: var(--space-xl);
-
-    padding-inline: var(--space-m-xl);
-
-    @media (min-width: 1000px) {
-      margin-inline-start: 5%;
-    }
 
     h2 {
       margin-block-end: var(--space-l);
