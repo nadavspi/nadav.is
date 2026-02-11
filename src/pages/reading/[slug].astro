@@ -50,7 +50,7 @@ const sortedYears = Object.keys(booksByYear).sort(
 ---
 
 <Layout pageTitle={title}>
-  <details slot="subnav" class="subnav flow" open>
+  <details slot="subnav" class="subnav flow">
     <summary>Other books</summary>
     <div class="flow">
       {
@@ -124,3 +124,19 @@ const sortedYears = Object.keys(booksByYear).sort(
     margin-block-start: var(--space-2xl-3xl);
   }
 </style>
+
+<script>
+  import maybeOpen from "../../lib/maybeOpen";
+
+  const init = () => {
+    maybeOpen("(width > 1200px)", ".subnav");
+
+    const link = document.querySelector(`.subnav .active`);
+    if (link) {
+      link.scrollIntoView({ block: "start" });
+    }
+  };
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>
