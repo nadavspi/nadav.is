@@ -32,6 +32,7 @@ export const getPhotoGalleries = async () => {
     readItems("photo_galleries", {
       fields: [
         "date",
+        "description",
         "id",
         "options",
         "slug",

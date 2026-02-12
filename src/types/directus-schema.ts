@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-02-01T20:47:16.040Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-02-12T23:50:45.092Z */
 export interface Block {
   id: string;
 }
@@ -120,6 +120,7 @@ export interface PhotoGallery {
   options: Record<string, unknown>;
   slug: string;
   status: string;
+  description: string;
 }
 
 export interface PhotoGalleriesBlock {
