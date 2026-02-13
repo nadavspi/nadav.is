@@ -80,15 +80,17 @@ const sortedYears = Object.keys(booksByYear).sort(
   </Subnav>
 
   <div class="tile" transition:name="reading">
-    <header class="flow">
-      <div>
-        <h1>{title}</h1>
-        by {author}
-      </div>
-      <p class="h4">
-        Created: <WrittenLongAgo date={book.date_created} />
-      </p>
-    </header>
+    <div class="text-content">
+      <header class="flow">
+        <div>
+          <h1>{title}</h1>
+          {author}
+        </div>
+        <p class="h4">
+          Created: <WrittenLongAgo date={book.date_created} />
+        </p>
+      </header>
+    </div>
     {
       book.cover && (
         <div class="prose">
@@ -116,6 +118,20 @@ const sortedYears = Object.keys(booksByYear).sort(
 </Layout>
 
 <style>
+  .tile {
+    flex-wrap: wrap;
+    gap: var(--space-s) 0;
+
+    @media (max-width: 600px) {
+      align-items: center;
+    }
+  }
+
+  .text-content {
+    display: flex;
+    align-items: center;
+  }
+
   header {
     display: flex;
     flex-direction: column;
