@@ -17,8 +17,10 @@ const { title } = Astro.props;
   const init = () => {
     maybeOpen("(width > 1200px)", ".subnav");
 
+    const subnav = document.querySelector(".subnav");
     const link = document.querySelector(`.subnav .active`);
-    if (link) {
+    // @ts-ignore
+    if (subnav.scrollHeight > subnav.clientHeight && link) {
       link.scrollIntoView({ block: "start" });
     }
   };
