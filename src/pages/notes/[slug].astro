@@ -51,7 +51,7 @@ const items = [...writing, ...media, ...notes].sort(
 
       <h1>{title}</h1>
       {subtitle}
-      <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
+      <time><WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo></time>
     </header>
   </div>
 

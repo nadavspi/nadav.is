@@ -76,6 +76,8 @@
   --border-width-thick: 4px;
 
   --transition-duration: .25s;
+
+  --sans: 'Space Grotesk', 'Gill Sans', sans-serif;
 }
 
 :root {
@@ -177,7 +179,7 @@ h3,
 
 h4,
 .h4 {
-  font-family: sans-serif;
+  font-family: var(--sans);
   font-weight: normal;
   opacity: 0.8;
   text-transform: uppercase;
@@ -187,6 +189,15 @@ h4,
 
   .dark & {
     color: var(--color-purple-pale);
+  }
+}
+
+time {
+  font-family: var(--sans);
+  font-size: var(--size-step--1);
+
+  .subnav & {
+    font-size: var(--size-step--2);
   }
 }
 

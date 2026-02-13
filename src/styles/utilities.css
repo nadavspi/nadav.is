@@ -48,3 +48,7 @@
 
   }
 }
+
+.sans {
+  font-family: var(--sans);
+}

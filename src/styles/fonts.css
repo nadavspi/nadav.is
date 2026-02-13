@@ -17,3 +17,8 @@
     src: url("/fonts/1468559/79a3e616-8931-4235-b8dc-0f9718329786.woff2") format("woff2"),
       url("/fonts/1468559/98d8ab99-1bd9-4469-8ed9-e5bb30485dce.woff") format("woff");
   }
+
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/fonts/space-grotesk/SpaceGrotesk[wght].woff2") format("woff2");
+  }
