@@ -15,9 +15,9 @@ const galleries = [...(await getCollection("photoGalleries"))].sort(
 const featuredGalleries = galleries.filter((gallery) =>
   gallery.data.options?.includes("featured"),
 );
-const latestGalleries = galleries.filter(
-  (gallery) => !gallery.data.options?.includes("featured"),
-  ).slice(0, 2);
+const latestGalleries = galleries
+  .filter((gallery) => !gallery.data.options?.includes("featured"))
+  .slice(0, 2);
 
 const books = (await getCollection("books"))
   .filter((book) => book.data.cover)
@@ -33,6 +33,7 @@ import { makeHref } from "src/lib/slugs";
 
 import Items from "./notes/_items.astro";
 import BookFeed from "@components/BookFeed.astro";
+import FileById from "@components/directus/FileById.astro";
 ---
 
 <Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
@@ -42,10 +43,12 @@ import BookFeed from "@components/BookFeed.astro";
     </section>
     <article class="flow">
       <p>
-        I made <a href="/notes/my-first-website">my first website</a> when I was
-        10 years old and haven't stopped. For the past {jobYears} years, I've also
-        been making them professionally as a front end developer, but I don't want
-        to talk about that here.
+        I made <FileById id="002e5db4-f87b-4bb5-872f-a0ef7eb06fcc">
+          my first website
+        </FileById>
+        when I was 10 years old and haven't stopped. For the past {jobYears} years,
+        I've also been making them professionally as a front end developer, but I
+        don't want to talk about that here.
       </p>
       <p>
         This website is for photos and for writing about my interests, which
@@ -93,7 +96,10 @@ import BookFeed from "@components/BookFeed.astro";
       <div class="reading | flow" transition:name="reading">
         <a href={makeHref("books")}><h2>Reading</h2></a>
 
-        <BookFeed books={books.slice(0, 15).map(book => book.data)} noDetails />
+        <BookFeed
+          books={books.slice(0, 15).map((book) => book.data)}
+          noDetails
+        />
         <a class="view-all" href={makeHref("books")}>View all books →</a>
       </div>
     </section>

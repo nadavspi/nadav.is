@@ -42,12 +42,14 @@ const image = {
       href={image.src}
       style={`--width: ${image.width}; --height: ${image.height};`}
     >
-      <Image
-        alt={image.title || ""}
-        height={image.height}
-        src={image.src}
-        width={image.width}
-      />
+      <slot name="content">
+        <Image
+          alt={image.title || ""}
+          height={image.height}
+          src={image.src}
+          width={image.width}
+        />
+      </slot>
     </a>
   )
 }

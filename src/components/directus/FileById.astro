@@ -11,6 +11,19 @@ interface Props {
 
 const { galleryId, id, disableLightbox } = Astro.props;
 const file = await getEntry("files", id);
+
+const hasChildren = Astro.slots.has("default");
 ---
 
-{file && <DirectusFileRenderer file={file} galleryId={galleryId} disableLightbox={disableLightbox} />}
+
+{
+  file && (
+    <DirectusFileRenderer
+      file={file}
+      galleryId={galleryId}
+      disableLightbox={disableLightbox}
+    >
+      <slot slot={hasChildren && "content"} />
+    </DirectusFileRenderer>
+  )
+}
