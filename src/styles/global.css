@@ -71,21 +71,27 @@
   --color-greenlake-950: hsl(178, 49%, 10%);
 
   --color-grey: #937c8b;
-
-  --border-width-thin: 3px;
-  --border-width-thick: 4px;
-
   --transition-duration: .25s;
 
   --sans: 'Space Grotesk', 'Gill Sans', sans-serif;
 }
 
 :root {
-  --color-border: var(--color-tumbleweed);
-}
+  --background: oklch(from var(--color-tumbleweed-100) l calc(c * 1.45) h);
+  --border: var(--color-tumbleweed);
+  --text-emphasis: var(--color-tumbleweed-600);
+  --text-faint: var(--color-greenlake-800);
+  --text: var(--color-tumbleweed-950);
 
+  --border-width-thin: 3px;
+  --border-width-thick: 4px;
+}
 .dark {
-  --color-border: var(--color-purple);
+  --background: var(--color-purple-dark);
+  --border: var(--color-purple);
+  --text-emphasis: var(--color-cyan);
+  --text-faint: var(--color-purple-pale);
+  --text: var(--color-purple-light);
 }
 
 /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|l-2xl|m-xl&g=s,l,xl,12 */
@@ -125,19 +131,11 @@
 }
 
 body {
-  --background-color: oklch(from var(--color-tumbleweed-100) l calc(c * 1.45) h);
-  --text-color: var(--color-tumbleweed-950);
-
   font-family: 'FF Tundra', Georgia, serif;
   font-size: var(--size-step-0);
   line-height: 1.5;
-  color: var(--text-color);
-  background-color: var(--background-color);
-}
-
-.dark body {
-  --background-color: var(--color-purple-dark);
-  --text-color: var(--color-purple-light);
+  color: var(--text);
+  background-color: var(--background);
 }
 
 h1,
@@ -185,11 +183,7 @@ h4,
   text-transform: uppercase;
   font-size: var(--size-step--1);
   letter-spacing: 0.03em;
-  color: var(--color-greenlake-800);
-
-  .dark & {
-    color: var(--color-purple-pale);
-  }
+  color: var(--text-faint);
 }
 
 time {
@@ -228,7 +222,7 @@ a {
 
 figcaption {
   font-size: var(--size-step--1);
-  border-block-end: 3px solid var(--color-border);
+  border-block-end: 3px solid var(--border);
   padding-block-end: var(--space-s);
 }
 
@@ -251,7 +245,7 @@ summary::marker {
 
 blockquote {
   padding-inline-start: var(--space-s);
-  border-inline-start: 3px solid var(--color-border);
+  border-inline-start: 3px solid var(--border);
 }
 
 .shiki {
@@ -266,11 +260,11 @@ blockquote {
 
 .site-header,
 .site-footer {
-  --border: hsla(from var(--color-border) h s l / 0.5);
-  --background: oklch(from var(--background-color) calc(l * 95%) c calc(h - 10));
+  --border: hsla(from var(--border) h s l / 0.5);
+  --background: oklch(from var(--background) calc(l * 95%) c calc(h - 10));
 
   .dark & {
-    --background: oklch(from var(--background-color) calc(l * 85%) c h);
+    --background: oklch(from var(--background) calc(l * 85%) c h);
   }
 
   display: flex;
@@ -348,7 +342,7 @@ main {
   .subnav {
     max-height: 100vh;
     overflow-y: auto;
-    background-color: var(--background-color);
+    background-color: var(--background);
     border-inline-start: var(--border-width-thin) solid var(--border);
   }
 
@@ -408,8 +402,8 @@ main {
     text-decoration: none;
   }
 
-  .active {
-    color: var(--color-tumbleweed-600);
+  [aria-current] {
+    color: var(--text-emphasis);
     text-decoration: underline;
     scroll-margin-block-start: min(200px, 12vh);
   }

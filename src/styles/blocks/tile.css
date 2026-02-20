@@ -1,9 +1,9 @@
 .tile {
   --top-offset: 50%;
-  --background-color: #fdf5eb;
+  --background: #fdf5eb;
 
   .dark & {
-    --background-color: #221b31;
+    --background: #221b31;
   }
 
   position: relative;
@@ -30,7 +30,7 @@
 
   > :first-child {
     padding: var(--space-m-l);
-    background-color: var(--background-color);
-    border: var(--border-width-thick) solid var(--color-border);
+    background-color: var(--background);
+    border: var(--border-width-thick) solid var(--border);
   }
 }

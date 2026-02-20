@@ -10,7 +10,7 @@ caption {
 }
 
 thead {
-  border-block: 2px solid var(--color-border);
+  border-block: 2px solid var(--border);
 }
 
 thead th {
