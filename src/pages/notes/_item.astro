@@ -47,7 +47,8 @@ const href = (() => {
   {isArchived && <span>Archived</span>}
   <a
     href={href}
-    class:list={[className, { active: href === Astro.url.pathname }]}
+    class={className}
+    aria-current={href === Astro.url.pathname || undefined}
   >
     {title}
     {titleTranslated && <div>{titleTranslated}</div>}

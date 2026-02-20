@@ -31,9 +31,9 @@ const { pageTitle, class: className } = Astro.props;
             navLinks.map(({ href, text }) => (
               <a
                 href={href}
-                class:list={[
-                  { active: href === `/${Astro.url.pathname.split("/")[1]}` },
-                ]}
+                aria-current={
+                  href === `/${Astro.url.pathname.split("/")[1]}` || undefined
+                }
               >
                 {text}
               </a>
