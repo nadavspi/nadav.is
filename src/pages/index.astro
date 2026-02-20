@@ -58,7 +58,7 @@ import FileById from "@components/directus/FileById.astro";
 
     <section class="tile">
       <div class="photos">
-        <a href={makeHref("photoGalleries")}><h2>Photography</h2></a>
+        <h2><a href={makeHref("photoGalleries")}>Photography</a></h2>
 
         <div class="feeds | flow-large">
           <div class="feed-group | flow">
@@ -81,7 +81,7 @@ import FileById from "@components/directus/FileById.astro";
 
     <section class="tile">
       <div class="notes | flow" transition:name="notes">
-        <a href="/notes"><h2>Notes</h2></a>
+        <h2><a href="/notes">Notes</a></h2>
 
         <div>
           <h4>Latest</h4>
@@ -94,9 +94,10 @@ import FileById from "@components/directus/FileById.astro";
 
     <section class="tile">
       <div class="reading | flow" transition:name="reading">
-        <a href={makeHref("books")}><h2>Reading</h2></a>
+        <h2><a href={makeHref("books")}>Reading</a></h2>
 
         <BookFeed
+          appendViewAll
           books={books.slice(0, 15).map((book) => book.data)}
           noDetails
         />

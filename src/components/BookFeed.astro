@@ -1,11 +1,10 @@
 ---
 interface Props {
+  appendViewAll?: boolean;
   books: Book[];
   class?: string;
   noDetails?: boolean;
 }
-
-import plur from "plur";
 
 import type { Book } from "src/types/directus-schema";
 import FileById from "./directus/FileById.astro";
@@ -13,7 +12,7 @@ import FileById from "./directus/FileById.astro";
 import "../styles/blocks/feed.css";
 import { makeHref } from "src/lib/slugs";
 
-const { books, noDetails } = Astro.props;
+const { books, noDetails, appendViewAll } = Astro.props;
 ---
 
 <ol class:list={["feed | no-measure", Astro.props.class]}>
@@ -40,6 +39,15 @@ const { books, noDetails } = Astro.props;
       );
     })
   }
+  {
+    appendViewAll && (
+      <li class="contains-view-all">
+        <a class="view-all" href={makeHref("books")}>
+          <span>View all books →</span>
+        </a>
+      </li>
+    )
+  }
 </ol>
 
 <style>
@@ -56,5 +64,16 @@ const { books, noDetails } = Astro.props;
 
   .author {
     font-size: var(--size-step--2);
+  }
+
+  .contains-view-all {
+    display: flex;
+  }
+
+  .view-all {
+    display: grid;
+    place-items: center;
+    padding: var(--space-s);
+    border: var(--border-width-thin) solid var(--color-border);
   }
 </style>
