@@ -55,6 +55,7 @@ nav,
 main,
 section,
 table,
+pre,
 caption,
 figcaption {
   max-inline-size: none;

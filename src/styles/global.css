@@ -249,7 +249,9 @@ blockquote {
 }
 
 .shiki {
+  padding: var(--space-l) var(--space-m);
   font-size: var(--size-step--1);
+  overflow-x: auto;
 }
 
 .page-wrapper {
