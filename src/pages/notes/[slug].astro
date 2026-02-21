@@ -43,12 +43,6 @@ const items = [...writing, ...media, ...notes].sort(
 
   <div class="tile" transition:name="notes">
     <header class="flow">
-      {
-        tags && source === "directus" && (
-          <div class="small">{tags[0].tags_id.title}</div>
-        )
-      }
-
       <h1>{title}</h1>
       {subtitle}
       <time><WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo></time>
