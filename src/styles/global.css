@@ -26,72 +26,60 @@
   --content-max-width: 1800px;
   --measure: 66ch;
 
-  --color-purple-dark: #1b191f;
-  --color-purple: hsl(276 74% 29%);
-  --color-purple-pale: #ead3ff;
-  --color-purple-light: #d2d0e2;
+  --color-purple-dark: oklch(0.218 0.012 300.6);
+  --color-purple: oklch(0.363 0.168 306.5);
+  --color-purple-pale: oklch(0.899 0.064 308.6);
+  --color-purple-light: oklch(0.865 0.025 291);
 
-  --color-tumbleweed-50: #fbf7f1;
-  --color-tumbleweed-100: #f6ecde;
-  --color-tumbleweed-200: #ecd6bc;
-  --color-tumbleweed-300: #e0b991;
-  --color-tumbleweed-400: #d9a479;
-  --color-tumbleweed: #d9a479;
-  --color-tumbleweed-500: #ca7c45;
-  --color-tumbleweed-600: #bc673a;
-  --color-tumbleweed-700: #9c5132;
-  --color-tumbleweed-800: #7e422e;
-  --color-tumbleweed-900: #663828;
-  --color-tumbleweed-950: #361b14;
+  --color-tumbleweed-50: oklch(0.978 0.009 78.3);
+  --color-tumbleweed-100: oklch(0.947 0.022 76.5);
+  --color-tumbleweed-200: oklch(0.887 0.042 71.9);
+  --color-tumbleweed-300: oklch(0.81 0.07 67.3);
+  --color-tumbleweed-400: oklch(0.758 0.085 60.1);
+  --color-tumbleweed: oklch(0.758 0.085 60.1);
+  --color-tumbleweed-500: oklch(0.659 0.12 54.1);
+  --color-tumbleweed-600: oklch(0.603 0.124 47);
+  --color-tumbleweed-700: oklch(0.52 0.109 42.4);
+  --color-tumbleweed-800: oklch(0.449 0.089 39.1);
+  --color-tumbleweed-900: oklch(0.394 0.071 39.8);
+  --color-tumbleweed-950: oklch(0.258 0.045 35.4);
 
-  --color-cyan-50: #effbfc;
-  --color-cyan-100: #d7f4f6;
-  --color-cyan-200: #b3e9ee;
-  --color-cyan-300: #7fd7e1;
-  --color-cyan-400: #43bdcd;
-  --color-cyan-500: #2baec2;
-  --color-cyan: #2baec2;
-  --color-cyan-600: #248296;
-  --color-cyan-700: #23697b;
-  --color-cyan-800: #255765;
-  --color-cyan-900: #234956;
-  --color-cyan-950: #12303a;
+  --color-cyan-50: oklch(0.979 0.013 202.9);
+  --color-cyan-100: oklch(0.947 0.03 201.7);
+  --color-cyan-200: oklch(0.899 0.055 203.3);
+  --color-cyan-300: oklch(0.827 0.086 205);
+  --color-cyan-400: oklch(0.738 0.108 207.5);
+  --color-cyan-500: oklch(0.692 0.11 210.4);
+  --color-cyan: oklch(0.692 0.11 210.4);
+  --color-cyan-600: oklch(0.562 0.089 215.4);
+  --color-cyan-700: oklch(0.486 0.074 218.3);
+  --color-cyan-800: oklch(0.429 0.058 218.9);
+  --color-cyan-900: oklch(0.383 0.048 222.7);
+  --color-cyan-950: oklch(0.291 0.04 222.6);
 
-  --color-greenlake-50: hsl(171, 41%, 97%);
-  --color-greenlake-100: hsl(167, 49%, 89%);
-  --color-greenlake-200: hsl(168, 48%, 78%);
-  --color-greenlake-300: hsl(170, 44%, 64%);
-  --color-greenlake-400: hsl(172, 38%, 50%);
-  --color-greenlake-500: hsl(173, 46%, 39%);
-  --color-greenlake: hsl(173, 46%, 39%);
-  --color-greenlake-600: hsl(174, 48%, 32%);
-  --color-greenlake-700: hsl(174, 44%, 26%);
-  --color-greenlake-800: hsl(175, 41%, 22%);
-  --color-greenlake-900: hsl(176, 34%, 19%);
-  --color-greenlake-950: hsl(178, 49%, 10%);
+  --color-greenlake-50: oklch(0.982 0.007 186.4);
+  --color-greenlake-100: oklch(0.936 0.03 181.2);
+  --color-greenlake-200: oklch(0.872 0.057 181.3);
+  --color-greenlake-300: oklch(0.788 0.082 182.3);
+  --color-greenlake-400: oklch(0.695 0.093 183.6);
+  --color-greenlake-500: oklch(0.6 0.087 184.5);
+  --color-greenlake: oklch(0.6 0.087 184.5);
+  --color-greenlake-600: oklch(0.526 0.076 185.9);
+  --color-greenlake-700: oklch(0.447 0.061 186.3);
+  --color-greenlake-800: oklch(0.395 0.051 188);
+  --color-greenlake-900: oklch(0.349 0.039 189.9);
+  --color-greenlake-950: oklch(0.249 0.031 192.4);
 
-  --color-grey: #937c8b;
+  --color-grey: oklch(0.612 0.035 339);
+
   --transition-duration: .25s;
 
   --sans: 'Space Grotesk', 'Gill Sans', sans-serif;
 }
 
 :root {
-  --background: oklch(from var(--color-tumbleweed-100) l calc(c * 1.45) h);
-  --border: var(--color-tumbleweed);
-  --text-emphasis: var(--color-tumbleweed-600);
-  --text-faint: var(--color-greenlake-800);
-  --text: var(--color-tumbleweed-950);
-
   --border-width-thin: 3px;
   --border-width-thick: 4px;
-}
-.dark {
-  --background: var(--color-purple-dark);
-  --border: var(--color-purple);
-  --text-emphasis: var(--color-cyan);
-  --text-faint: var(--color-purple-pale);
-  --text: var(--color-purple-light);
 }
 
 /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|l-2xl|m-xl&g=s,l,xl,12 */
@@ -131,6 +119,20 @@
 }
 
 body {
+  --background: oklch(from var(--color-tumbleweed-100) l calc(c * 1.45) h);
+  --border: var(--color-tumbleweed);
+  --text-emphasis: var(--color-tumbleweed-600);
+  --text-faint: var(--color-greenlake-800);
+  --text: var(--color-tumbleweed-950);
+
+  .dark & {
+    --background: var(--color-purple-dark);
+    --border: var(--color-purple);
+    --text-emphasis: var(--color-cyan);
+    --text-faint: var(--color-purple-pale);
+    --text: var(--color-purple-light);
+  }
+
   font-family: 'FF Tundra', Georgia, serif;
   font-size: var(--size-step-0);
   line-height: 1.5;
@@ -262,23 +264,23 @@ blockquote {
 
 .site-header,
 .site-footer {
-  --border: hsla(from var(--border) h s l / 0.5);
-  --background: oklch(from var(--background) calc(l * 95%) c calc(h - 10));
+  --border-color: hsla(from var(--border) h s l / 0.5);
+  --background-color: oklch(from var(--background) calc(l * 95%) c calc(h - 10));
 
   .dark & {
-    --background: oklch(from var(--background) calc(l * 85%) c h);
+    --background-color: oklch(from var(--background) calc(l * 85%) c h);
   }
 
   display: flex;
   gap: var(--space-xs-s);
   padding: var(--space-xs);
   font-size: var(--size-step--1);
-  background-color: var(--background);
+  background-color: var(--background-color);
 }
 
 .site-header {
   margin-block-end: var(--space-m-xl);
-  border-block-end: var(--border-width-thin) solid var(--border);
+  border-block-end: var(--border-width-thin) solid var(--border-color);
   flex-direction: column;
 }
 
@@ -288,7 +290,7 @@ blockquote {
 }
 
 .site-footer {
-  border-block-start: var(--border-width-thin) solid var(--border);
+  border-block-start: var(--border-width-thin) solid var(--border-color);
 }
 
 main {
@@ -311,7 +313,7 @@ main {
     top: 0;
     display: grid;
     padding: 0;
-    border-inline-end: var(--border-width-thin) solid var(--border);
+    border-inline-end: var(--border-width-thin) solid var(--border-color);
     margin-block-end: 0;
     border-block-end: none;
 
@@ -332,7 +334,7 @@ main {
     &::after {
       position: absolute;
       content: "";
-      background-color: var(--background);
+      background-color: var(--background-color);
       height: var(--border-width-thin);
       bottom: calc(var(--border-width-thin) * -1);
       width: 100%;
@@ -357,6 +359,7 @@ main {
   }
 
   .site-footer {
+    padding-inline: var(--space-xl);
     grid-column: 2;
   }
 }
