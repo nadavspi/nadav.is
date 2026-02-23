@@ -197,6 +197,11 @@ time {
   }
 }
 
+[type="checkbox"] {
+  margin-inline-start: 0;
+  margin-inline-end: var(--space-3xs);
+}
+
 a {
   font-style: italic;
   color: var(--color-greenlake);
