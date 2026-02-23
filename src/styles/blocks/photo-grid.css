@@ -1,0 +1,14 @@
+  .photo-grid {
+    --min-height: clamp(300px, 20vw, 400px);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    max-inline-size: 80em;
+
+    a {
+      flex-grow: calc(var(--width) * (100000 / var(--height)));
+      flex-basis: calc(var(--min-height) * (var(--width) / var(--height)));
+      aspect-ratio: var(--width) / var(--height);
+    }
+  }

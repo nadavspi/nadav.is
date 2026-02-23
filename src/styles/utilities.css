@@ -1,0 +1,54 @@
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.center {
+  margin-inline: auto;
+}
+
+.no-measure {
+  max-inline-size: 100%;
+}
+
+.small-caps {
+  font-variant-caps: small-caps;
+}
+
+.small {
+  font-size: var(--size-step--1);
+}
+
+.lead {
+  font-size: var(--size-step-1);
+}
+
+.chinese {
+  font-family: ui-system, sans-serif;
+}
+
+.featured {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: -1.2em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--size-step--1);
+    font-weight: normal;
+    content: "✰";
+
+    @media (min-width: 500px) {
+      font-size: 1em;
+    }
+
+  }
+}
+
+.sans {
+  font-family: var(--sans);
+}

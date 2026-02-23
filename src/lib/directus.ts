@@ -3,11 +3,12 @@ import {
   createDirectus,
   readFiles,
   readItems,
-  rest
+  rest,
 } from "@directus/sdk";
+
 import type { ApiCollections } from "../types/directus-schema.ts";
 
-const { DIRECTUS_URL, DIRECTUS_USER, DIRECTUS_PASSWORD } = import.meta.env;
+const { DIRECTUS_PASSWORD, DIRECTUS_URL, DIRECTUS_USER } = import.meta.env;
 
 const initDirectus = async () => {
   const directus = createDirectus<ApiCollections>(DIRECTUS_URL)
@@ -29,11 +30,50 @@ export const getPhotoGalleries = async () => {
   const directus = await getDirectusClient();
   return await directus.request(
     readItems("photo_galleries", {
-      fields: ["id", "title", "cover"],
+      fields: [
+        "date",
+        "description",
+        "id",
+        "options",
+        "slug",
+        "title",
+        { files: ["directus_files_id"] },
+      ],
+      filter: {
+        status: {
+          _eq: "published",
+        },
+      },
     }),
   );
 };
 export type PhotoGallery = Awaited<ReturnType<typeof getPhotoGalleries>>;
+
+export const getBooks = async () => {
+  const directus = await getDirectusClient();
+  return await directus.request(
+    readItems("books", {
+      fields: [
+        "author",
+        "cover",
+        "date_created",
+        "date_updated",
+        "id",
+        "slug",
+        "title",
+        { highlights: ["id", "content", "note"] },
+      ],
+      filter: {
+        status: {
+          _eq: "published",
+        },
+      },
+      limit: -1,
+    }),
+  );
+};
+export type Book = Awaited<ReturnType<typeof getBooks>>;
+
 
 export const getNotes = async (params?: {}) => {
   const directus = await getDirectusClient();
@@ -74,5 +114,5 @@ export type Note = Awaited<ReturnType<typeof getNotes>>;
 
 export const getFiles = async () => {
   const directus = await getDirectusClient();
-  return await directus.request(readFiles());
+  return await directus.request(readFiles({ limit: -1 }));
 };

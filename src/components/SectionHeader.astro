@@ -1,39 +1,54 @@
 ---
+import Prose from "./Prose.astro";
+
 interface Props {
   title: string;
   date: string;
   class?: string;
+  layout?: "reverse";
 }
 
-const { title, date } = Astro.props;
-const { class: className } = Astro.props;
+const { title, date, class: className, layout } = Astro.props;
 ---
 
-<section
-  class:list={[
-    "mb-16 xl:mb-24 pb-4",
-    "border-b-4",
-    "border-tumbleweed-200 dark:border-cyan-600",
-    "shadow-sm",
-    className,
-  ]}
->
-  <div class="mb-4 grid xl:grid-cols-5 gap-4">
-    <div class="xl:col-span-2">
-      <header class="mb-4">
-        <h2 class="mb-0">{title}</h2>
-        <time>{date}</time>
-      </header>
+<Prose class={className} imagesHeight="tall">
+  <header class="flow">
+    {
+      layout === "reverse" && (
+        <div class="banner">
+          <slot name="banner" />
+        </div>
+      )
+    }
+
+    <div class="metadata flow">
+      <h2>{title}</h2>
+      <time>{date}</time>
       <slot name="description" />
     </div>
 
-    <div class="xl:col-span-3">
-      <slot name="banner" />
-    </div>
-  </div>
+    {
+      layout !== "reverse" && (
+        <div class="banner">
+          <slot name="banner" />
+        </div>
+      )
+    }
+  </header>
+</Prose>
 
-  <div class="grid grid-cols-2 gap-4 mb-4">
-    <slot name="images" />
-  </div>
+<style>
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+  }
 
-</section>
+  .metadata {
+    flex: 1 1 max(20em, 40%);
+  }
+
+  .banner {
+    flex: 0 1 max(400px, 55%);
+  }
+</style>

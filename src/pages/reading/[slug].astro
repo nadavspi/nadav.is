@@ -1,0 +1,148 @@
+---
+interface Props {
+  book: Book;
+}
+
+import Layout from "@layouts/base.astro";
+import plur from "plur";
+import { getCollection } from "astro:content";
+import type { Book } from "src/types/directus-schema";
+import FileById from "@components/directus/FileById.astro";
+import WrittenLongAgo from "@components/WrittenLongAgo.astro";
+import { makeHref } from "src/lib/slugs";
+import Subnav from "@components/Subnav.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("books");
+  return items.map((item) => ({
+    params: { slug: item.data.slug },
+    props: { book: item.data },
+  }));
+}
+
+const { book } = Astro.props;
+const { title, author, highlights, cover } = book;
+
+const books = (await getCollection("books"))
+  .filter((book) => book.data.cover)
+  .map((book) => book.data);
+
+const booksByYear: { [year: string]: Book[] } = {};
+
+for (const book of books) {
+  const year = new Date(book.date_created).getFullYear().toString();
+
+  if (!booksByYear[year]) {
+    booksByYear[year] = [];
+  }
+
+  booksByYear[year].push(book);
+}
+
+for (const year of Object.keys(booksByYear)) {
+  booksByYear[year].sort(
+    (a, b) => Date.parse(b.date_created) - Date.parse(a.date_created),
+  );
+}
+
+const sortedYears = Object.keys(booksByYear).sort(
+  (a, b) => Number(b) - Number(a),
+);
+---
+
+<Layout pageTitle={title}>
+  <Subnav slot="subnav" title="Other books">
+    <div class="flow-large">
+      {
+        sortedYears.map((year) => (
+          <section>
+            <h3>{year}</h3>
+            <ol class="year-list | flow" role="list">
+              {booksByYear[year].map((book) => {
+                const href = makeHref("books", book.slug);
+                return (
+                  <li>
+                    <a
+                      href={href}
+                      class:list={[{ active: href === Astro.url.pathname }]}
+                    >
+                      <div>{book.title}</div>
+                      <div class="author">{book.author}</div>
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        ))
+      }
+    </div>
+  </Subnav>
+
+  <div class="tile" transition:name="reading">
+    <div class="text-content">
+      <header class="flow">
+        <div>
+          <h1>{title}</h1>
+          {author}
+        </div>
+        <time>
+          Created: <WrittenLongAgo date={book.date_created} />
+        </time>
+      </header>
+    </div>
+    {
+      book.cover && (
+        <div class="prose">
+          <FileById id={book.cover as string} disableLightbox />
+        </div>
+      )
+    }
+  </div>
+
+  <article class="flow-large">
+    <h2>My {highlights.length} {plur("highlight", highlights.length)}</h2>
+    <ul class="highlights | flow-large" role="list">
+      {
+        highlights.map((highlight) => (
+          <li class="flow-small">
+            <blockquote>{highlight.content}</blockquote>
+            {highlight.note && (
+              <aside class="small">Reader's note: {highlight.note}</aside>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>
+
+<style>
+  .tile {
+    flex-wrap: wrap;
+    gap: var(--space-s) 0;
+
+    @media (max-width: 600px) {
+      align-items: center;
+    }
+  }
+
+  .text-content {
+    display: flex;
+    align-items: center;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .author {
+    font-size: var(--size-step--2);
+  }
+
+  .year-list {
+    --flow-space: var(--space-s);
+  }
+</style>

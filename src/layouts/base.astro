@@ -1,11 +1,13 @@
 ---
 import "../styles/global.css";
 import "../styles/fonts.css";
-import Header from "../components/Header.astro";
-const { pageTitle, backTo, noHeader } = Astro.props;
+import ThemeSwitcher from "@components/ThemeSwitcher.astro";
+import { ClientRouter } from "astro:transitions";
+import navLinks from "@components/navLinks";
+const { pageTitle, class: className } = Astro.props;
 ---
 
-<html class="dark text-lg md:text-2xl/normal font-serif px-4 py-8 md:px-10" lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
@@ -18,11 +20,42 @@ const { pageTitle, backTo, noHeader } = Astro.props;
       href={new URL("rss.xml", Astro.site)}
     />
     <title>{pageTitle}</title>
+
+    <ClientRouter />
   </head>
-  <body
-    class="bg-tumbleweed-100 dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-[60rem] mx-auto"
-  >
-    {!noHeader && <Header backTo={backTo} />}
-    <slot />
+  <body>
+    <div class:list={["page-wrapper"]}>
+      <header class="site-header | no-measure">
+        <nav class="site-nav" aria-label="Main navigation">
+          {
+            navLinks.map(({ href, text }) => (
+              <a
+                href={href}
+                aria-current={
+                  href === `/${Astro.url.pathname.split("/")[1]}` || undefined
+                }
+              >
+                {text}
+              </a>
+            ))
+          }
+        </nav>
+
+        <slot name="subnav" />
+      </header>
+
+      <div>
+        <main class:list={["page-content", className]}>
+          <slot name="toc" />
+          <slot />
+        </main>
+      </div>
+
+      <footer class="site-footer no-measure">
+        <ThemeSwitcher />
+
+        <a href="/rss.xml">Subscribe (RSS)</a>
+      </footer>
+    </div>
   </body>
 </html>

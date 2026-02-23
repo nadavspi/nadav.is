@@ -53,6 +53,8 @@ const { class: className } = Astro.props;
 
       const isDark = element.classList.contains("dark");
       localStorage.setItem("theme", isDark ? "dark" : "light");
+
+      document.dispatchEvent(new Event("theme-switch"));
     };
 
     const checkbox = document.querySelector("[data-theme-switcher]");

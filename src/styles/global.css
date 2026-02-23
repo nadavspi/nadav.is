@@ -1,48 +1,420 @@
-@tailwind base;
-@layer base {
-  h1 {
-    @apply text-xl md:text-2xl;
-    @apply text-purple-dark dark:text-purple-light;
-    @apply mb-2;
+@import './reset.css';
+
+@import './utilities.css';
+@import './code-blocks.css';
+@import './masonry.css';
+
+@import './blocks/flex.css';
+@import './blocks/flow.css';
+@import './blocks/grid.css';
+@import './blocks/photo-grid.css';
+@import './blocks/prose.css';
+@import './blocks/tile.css';
+@import './blocks/wrapper.css';
+
+@import './elements/table.css';
+
+:root {
+  /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,2000,28,1.333,3,2,1268&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --size-step--2: clamp(0.7813rem, 0.7366rem + 0.1987vw, 0.9849rem);
+  --size-step--1: clamp(0.9375rem, 0.8551rem + 0.3662vw, 1.3128rem);
+  --size-step-0: clamp(1.125rem, 0.9878rem + 0.6098vw, 1.75rem);
+  --size-step-1: clamp(1.35rem, 1.1343rem + 0.9588vw, 2.3328rem);
+  --size-step-2: clamp(1.62rem, 1.293rem + 1.4532vw, 3.1096rem);
+  --size-step-3: clamp(1.944rem, 1.4608rem + 2.1474vw, 4.145rem);
+
+  --content-max-width: 1800px;
+  --measure: 66ch;
+
+  --color-purple-dark: oklch(0.218 0.012 300.6);
+  --color-purple: oklch(0.363 0.168 306.5);
+  --color-purple-pale: oklch(0.899 0.064 308.6);
+  --color-purple-light: oklch(0.865 0.025 291);
+
+  --color-tumbleweed-50: oklch(0.978 0.009 78.3);
+  --color-tumbleweed-100: oklch(0.947 0.022 76.5);
+  --color-tumbleweed-200: oklch(0.887 0.042 71.9);
+  --color-tumbleweed-300: oklch(0.81 0.07 67.3);
+  --color-tumbleweed-400: oklch(0.758 0.085 60.1);
+  --color-tumbleweed: oklch(0.758 0.085 60.1);
+  --color-tumbleweed-500: oklch(0.659 0.12 54.1);
+  --color-tumbleweed-600: oklch(0.603 0.124 47);
+  --color-tumbleweed-700: oklch(0.52 0.109 42.4);
+  --color-tumbleweed-800: oklch(0.449 0.089 39.1);
+  --color-tumbleweed-900: oklch(0.394 0.071 39.8);
+  --color-tumbleweed-950: oklch(0.258 0.045 35.4);
+
+  --color-cyan-50: oklch(0.979 0.013 202.9);
+  --color-cyan-100: oklch(0.947 0.03 201.7);
+  --color-cyan-200: oklch(0.899 0.055 203.3);
+  --color-cyan-300: oklch(0.827 0.086 205);
+  --color-cyan-400: oklch(0.738 0.108 207.5);
+  --color-cyan-500: oklch(0.692 0.11 210.4);
+  --color-cyan: oklch(0.692 0.11 210.4);
+  --color-cyan-600: oklch(0.562 0.089 215.4);
+  --color-cyan-700: oklch(0.486 0.074 218.3);
+  --color-cyan-800: oklch(0.429 0.058 218.9);
+  --color-cyan-900: oklch(0.383 0.048 222.7);
+  --color-cyan-950: oklch(0.291 0.04 222.6);
+
+  --color-greenlake-50: oklch(0.982 0.007 186.4);
+  --color-greenlake-100: oklch(0.936 0.03 181.2);
+  --color-greenlake-200: oklch(0.872 0.057 181.3);
+  --color-greenlake-300: oklch(0.788 0.082 182.3);
+  --color-greenlake-400: oklch(0.695 0.093 183.6);
+  --color-greenlake-500: oklch(0.6 0.087 184.5);
+  --color-greenlake: oklch(0.6 0.087 184.5);
+  --color-greenlake-600: oklch(0.526 0.076 185.9);
+  --color-greenlake-700: oklch(0.447 0.061 186.3);
+  --color-greenlake-800: oklch(0.395 0.051 188);
+  --color-greenlake-900: oklch(0.349 0.039 189.9);
+  --color-greenlake-950: oklch(0.249 0.031 192.4);
+
+  --color-grey: oklch(0.612 0.035 339);
+
+  --transition-duration: .25s;
+
+  --sans: 'Space Grotesk', 'Gill Sans', sans-serif;
+}
+
+:root {
+  --border-width-thin: 3px;
+  --border-width-thick: 4px;
+}
+
+/* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|l-2xl|m-xl&g=s,l,xl,12 */
+
+:root {
+  --space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
+  --space-2xs: clamp(0.5625rem, 0.5369rem + 0.1136vw, 0.625rem);
+  --space-xs: clamp(0.875rem, 0.8494rem + 0.1136vw, 0.9375rem);
+  --space-s: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+  --space-m: clamp(1.6875rem, 1.6108rem + 0.3409vw, 1.875rem);
+  --space-l: clamp(2.25rem, 2.1477rem + 0.4545vw, 2.5rem);
+  --space-xl: clamp(3.375rem, 3.2216rem + 0.6818vw, 3.75rem);
+  --space-2xl: clamp(4.5rem, 4.2955rem + 0.9091vw, 5rem);
+  --space-3xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.3125rem, 0.1847rem + 0.5682vw, 0.625rem);
+  --space-2xs-xs: clamp(0.5625rem, 0.4091rem + 0.6818vw, 0.9375rem);
+  --space-xs-s: clamp(0.875rem, 0.7216rem + 0.6818vw, 1.25rem);
+  --space-s-m: clamp(1.125rem, 0.8182rem + 1.3636vw, 1.875rem);
+  --space-m-l: clamp(1.6875rem, 1.3551rem + 1.4773vw, 2.5rem);
+  --space-l-xl: clamp(2.25rem, 1.6364rem + 2.7273vw, 3.75rem);
+  --space-xl-2xl: clamp(3.375rem, 2.7102rem + 2.9545vw, 5rem);
+  --space-2xl-3xl: clamp(4.5rem, 3.2727rem + 5.4545vw, 7.5rem);
+
+  /* Custom pairs */
+  --space-s-l: clamp(1.125rem, 0.5625rem + 2.5vw, 2.5rem);
+  --space-l-2xl: clamp(2.25rem, 1.125rem + 5vw, 5rem);
+  --space-m-xl: clamp(1.6875rem, 0.8438rem + 3.75vw, 3.75rem);
+}
+
+:root {
+  --gap: var(--space-s);
+
+  --images-max-height: 40vh;
+  --images-max-height--tall: 80vh;
+}
+
+body {
+  --background: oklch(from var(--color-tumbleweed-100) l calc(c * 1.45) h);
+  --border: var(--color-tumbleweed);
+  --text-emphasis: var(--color-tumbleweed-600);
+  --text-faint: var(--color-greenlake-800);
+  --text: var(--color-tumbleweed-950);
+
+  .dark & {
+    --background: var(--color-purple-dark);
+    --border: var(--color-purple);
+    --text-emphasis: var(--color-cyan);
+    --text-faint: var(--color-purple-pale);
+    --text: var(--color-purple-light);
   }
 
-  h2 {
-    @apply text-lg text-greenlake-800 dark:text-purple-pale;
-    @apply mb-2;
-    @apply leading-tight;
+  font-family: 'FF Tundra', Georgia, serif;
+  font-size: var(--size-step-0);
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+caption,
+figcaption {
+  text-wrap: balance;
+}
+
+
+h1,
+h2,
+h3 {
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--size-step-2);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--size-step-1);
+  color: var(--color-greenlake-800);
+
+  .dark & {
+    color: var(--color-purple-pale);
+  }
+}
+
+h3,
+.h3 {
+  font-weight: normal;
+}
+
+h4,
+.h4 {
+  font-family: var(--sans);
+  font-weight: normal;
+  opacity: 0.8;
+  text-transform: uppercase;
+  font-size: var(--size-step--1);
+  letter-spacing: 0.03em;
+  color: var(--text-faint);
+}
+
+time {
+  font-family: var(--sans);
+  font-size: var(--size-step--1);
+
+  .subnav & {
+    font-size: var(--size-step--2);
+  }
+}
+
+[type="checkbox"] {
+  margin-inline-start: 0;
+  margin-inline-end: var(--space-3xs);
+}
+
+a {
+  font-style: italic;
+  color: var(--color-greenlake);
+
+  .dark & {
+    color: var(--color-tumbleweed);
   }
 
-  h3 {
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--color-tumbleweed-600);
+  }
+
+  .dark &:hover,
+  .dark &:focus,
+  .dark &:active {
+    color: var(--color-cyan);
+  }
+}
+
+figcaption {
+  font-size: var(--size-step--1);
+  border-block-end: 3px solid var(--border);
+  padding-block-end: var(--space-s);
+}
+
+summary {
+  cursor: pointer;
+  color: var(--color-greenlake-800);
+
+  .dark & {
+    color: var(--color-purple-pale);
+  }
+}
+
+summary::marker {
+  color: var(--color-greenlake);
+
+  .dark & {
+    color: var(--color-tumbleweed);
+  }
+}
+
+blockquote {
+  padding-inline-start: var(--space-s);
+  border-inline-start: 3px solid var(--border);
+}
+
+.shiki {
+  padding: var(--space-l) var(--space-m);
+  font-size: var(--size-step--1);
+  overflow-x: auto;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.site-header,
+.site-footer {
+  --border-color: hsla(from var(--border) h s l / 0.5);
+  --background-color: oklch(from var(--background) calc(l * 95%) c calc(h - 10));
+
+  .dark & {
+    --background-color: oklch(from var(--background) calc(l * 85%) c h);
+  }
+
+  display: flex;
+  gap: var(--space-xs-s);
+  padding: var(--space-xs);
+  font-size: var(--size-step--1);
+  background-color: var(--background-color);
+}
+
+.site-header {
+  margin-block-end: var(--space-m-xl);
+  border-block-end: var(--border-width-thin) solid var(--border-color);
+  flex-direction: column;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-xs-s);
+}
+
+.site-footer {
+  border-block-start: var(--border-width-thin) solid var(--border-color);
+}
+
+main {
+  margin-block-end: var(--space-3xl);
+
+  >* {
+    margin-inline: var(--space-s);
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-wrapper {
+    grid-template-columns: min-content 1fr;
+  }
+
+  .site-header {
+    height: 100vh;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    display: grid;
+    padding: 0;
+    border-inline-end: var(--border-width-thin) solid var(--border-color);
+    margin-block-end: 0;
+    border-block-end: none;
+
+    &:has(.subnav) {
+      grid-template-columns: 6em max(14vw, 300px);
+    }
+
+    &>* {
+      padding: var(--space-m) var(--space-s);
+    }
+  }
+
+  .site-nav {
+    position: relative;
+    flex-direction: column;
+    /* Hide the .site-footer border */
+
+    &::after {
+      position: absolute;
+      content: "";
+      background-color: var(--background-color);
+      height: var(--border-width-thin);
+      bottom: calc(var(--border-width-thin) * -1);
+      width: 100%;
+      z-index: 1;
+      left: 0;
+    }
+  }
+
+  .subnav {
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: var(--background);
+    border-inline-start: var(--border-width-thin) solid var(--border);
+  }
+
+  main {
+    margin-block-start: var(--space-xl);
+
+    >* {
+      margin-inline: var(--space-xl);
+    }
+  }
+
+  .site-footer {
+    padding-inline: var(--space-xl);
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 1400px) {
+  main:has(.toc) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .toc {
+    order: 2;
+    max-height: 100vw;
+    overflow-y: auto;
+    position: sticky;
+    top: var(--space-s);
+  }
+}
+
+.toc {
+  ol {
+    list-style-type: circle;
   }
 
   a {
-    @apply italic;
-    @apply text-greenlake dark:text-tumbleweed;
-    @apply hover:text-tumbleweed-600 dark:hover:text-cyan;
-    @apply transition-all;
+    text-decoration: none;
+  }
+
+  .active {
+    list-style-type: disc;
+
+    &::marker {
+      color: var(--color-tumbleweed-600);
+    }
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
 
-@tailwind components;
-
-@tailwind utilities; 
-@layer utilities {
-  .fullbleed {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+.site-nav,
+.subnav {
+  a {
+    text-decoration: none;
   }
 
-  .small-caps {
-    font-variant-caps: small-caps;
+  [aria-current] {
+    color: var(--text-emphasis);
+    text-decoration: underline;
+    scroll-margin-block-start: min(200px, 12vh);
   }
-}
-
-.masonry img,
-.masonry figure {
-  margin-top: 0;
-  margin-bottom: 0;
 }

@@ -6,6 +6,7 @@ cover: ./shooting-film-for-a-year/6.jpg
 coverAlt: "Photo of woman being arrested by 4 cops"
 ---
 import { Image } from "astro:assets";
+import Grid from "@components/Grid.astro";
 import Image1 from "./shooting-film-for-a-year/1.jpg";
 import Image2 from "./shooting-film-for-a-year/2.jpg";
 import Image3 from "./shooting-film-for-a-year/3.jpg";
@@ -109,7 +110,7 @@ of the way so that you can just respond  automatically when the
 shot comes.[^3] You take a second to celebrate if you think you got
 it, or curse if you think you didn’t, and keep walking. 
 
-<div class="featured">
+<Grid>
   <figure class="half">
     <Image src={Image1} alt="" />
     <figcaption>First roll developed at home, December 2017</figcaption>
@@ -138,7 +139,7 @@ it, or curse if you think you didn’t, and keep walking.
     <Image src={Image7} alt="" />
     <figcaption>October 2018</figcaption>
   </figure>
-</div>
+</Grid>
 
 [^1]: Out of my 250 rolls, maybe ten were in color, the rest in black and white.
 

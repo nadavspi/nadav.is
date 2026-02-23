@@ -1,0 +1,57 @@
+---
+import BookFeed from "@components/BookFeed.astro";
+import type { TocItem } from "@components/TOC.astro";
+import TOC from "@components/TOC.astro";
+import Layout from "@layouts/base.astro";
+import { getCollection } from "astro:content";
+import type { Book } from "src/types/directus-schema";
+
+const books = (await getCollection("books"))
+  .filter((book) => book.data.cover)
+  .map((book) => book.data);
+
+const booksByYear: { [year: string]: Book[] } = {};
+
+for (const book of books) {
+  const year = new Date(book.date_created).getFullYear().toString();
+
+  if (!booksByYear[year]) {
+    booksByYear[year] = [];
+  }
+
+  booksByYear[year].push(book);
+}
+
+for (const year of Object.keys(booksByYear)) {
+  booksByYear[year].sort(
+    (a, b) => Date.parse(b.date_created) - Date.parse(a.date_created),
+  );
+}
+
+const sortedYears = Object.keys(booksByYear).sort(
+  (a, b) => Number(b) - Number(a),
+);
+
+const headings: TocItem[] = sortedYears.map((year) => ({
+  href: `#section-${year}`,
+  caption: year,
+}));
+---
+
+<Layout pageTitle="Reading">
+  <TOC slot="toc" items={headings} />
+  <div transition:name="reading">
+    <h1>Reading</h1>
+
+    <div class="flow-large">
+      {
+        sortedYears.map((year) => (
+          <section id={`section-${year}`}>
+            <h2>{year}</h2>
+            <BookFeed books={booksByYear[year]} class="feed--page" />
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

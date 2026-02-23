@@ -5,10 +5,16 @@ const unarchived = items.filter((item: CollectionConfig) => !item.data.tags?.inc
 const archived = items.filter(item => item.data.tags?.includes("archived"))
 ---
 
-<ol class="grid md:grid-cols-2 lg:grid-cols-3">
+<ol class="flow" role="list">
   {
     [...unarchived, ...archived].map(({ collection, data, slug }) => {
-      return <Item data={data} slug={slug} collection={collection} />;
+    return <li><Item data={data} slug={slug} collection={collection} /></li>;
     })
   }
 </ol>
+
+<style>
+  .flow {
+    --flow-space: var(--space-m-l);
+  }
+</style>

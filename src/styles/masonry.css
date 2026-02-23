@@ -1,0 +1,15 @@
+.masonry img,
+.masonry figure {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose .masonry img {
+  max-block-size: var(--images-max-height--tall);
+}
+
+/* justify first column to the center line */
+/* in case image width is limited by vh */
+.masonry .grid:first-child {
+  justify-items: flex-end;
+}

@@ -1,0 +1,24 @@
+---
+interface Props {
+  id: string;
+}
+
+import type { PhotoGallery } from "src/types/directus-schema";
+
+import { getEntry } from "astro:content";
+
+import FileById from "./directus/FileById.astro";
+const { id } = Astro.props;
+
+const gallery = await getEntry("photoGalleries", id);
+const data = gallery?.data as PhotoGallery;
+---
+
+<section class="photo-grid">
+  {
+    data.files.map((file) => (
+      <FileById galleryId={data.title} id={file.directus_files_id} />
+    ))
+  }
+</section>
+

@@ -1,11 +1,48 @@
 ---
 import type { BlockMarkdown } from "src/types/directus-schema";
-import { Marked } from "marked";
-import DOMPurify from "isomorphic-dompurify";
 
 const block: BlockMarkdown = Astro.props.block;
-const marked = new Marked();
-const content = DOMPurify.sanitize(await marked.parse(block.content || ""));
+import rehypeShiki from "@shikijs/rehype";
+import rehypeStringify from "rehype-stringify";
+import remarkDirective from "remark-directive";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import type { Root } from "mdast";
+import { h } from "hastscript";
+import { unified } from "unified";
+import { visit } from "unist-util-visit";
+
+const containerDirectives = () => (tree: Root) =>
+  visit(tree, (node) => {
+    if (node.type === "containerDirective") {
+      const allowed = ["aside", "details", "figure"];
+      if (!allowed.includes(node.name)) return;
+    } else if (node.type === "leafDirective") {
+      const allowed = ["summary", "figcaption"];
+      if (!allowed.includes(node.name)) return;
+    } else {
+      return;
+    }
+
+    const tagName = node.name;
+    const data = node.data || (node.data = {});
+    data.hName = tagName;
+    data.hProperties = h(tagName, node.attributes || {}).properties;
+  });
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkDirective)
+  .use(containerDirectives)
+  .use(remarkRehype)
+  .use(rehypeShiki, {
+    themes: {
+      light: "rose-pine-dawn",
+      dark: "catppuccin-mocha",
+    },
+  })
+  .use(rehypeStringify)
+  .process(block.content);
 ---
 
-<div data-id={block.id} set:html={content} />
+<div class="flow" data-id={block.id} set:html={html} />

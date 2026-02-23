@@ -1,23 +1,30 @@
 ---
-const { class: className, links } = Astro.props;
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
-<nav class:list={["flex flex-wrap", className ]}>
-  {
-    links.map(({ text, href }) => {
-      const isActive = href === Astro.url.pathname.replace(/\/$/, "");
-      return (
-        <a
-          href={href}
-          class:list={[
-            "block mr-4",
-            { "text-tumbleweed-600 dark:text-cyan": isActive },
-            { "hover:text-tumbleweed-900 dark:hover:text-cyan-300": isActive },
-          ]}
-        >
-          {text}
-        </a>
-      );
-    })
-  }
-</nav>
+<details class="subnav flow">
+  <summary>{title}</summary>
+  <slot />
+</details>
+
+<script>
+  import maybeOpen from "../lib/maybeOpen";
+
+  const init = () => {
+    maybeOpen("(width > 1200px)", ".subnav");
+
+    const subnav = document.querySelector(".subnav");
+    const link = document.querySelector(`.subnav .active`);
+    // @ts-ignore
+    if (subnav.scrollHeight > subnav.clientHeight && link) {
+      link.scrollIntoView({ block: "start" });
+    }
+  };
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>

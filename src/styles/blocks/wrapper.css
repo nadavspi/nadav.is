@@ -1,0 +1,20 @@
+.wrapper {
+  max-inline-size: 2400px;
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(var(--wrapper-max-width, var(--content-max-width)), 100%)
+    1fr;
+}
+
+.wrapper > *,
+:where(astro-island, astro-slot) > * {
+  grid-column: 2;
+}
+
+.full-bleed {
+  width: 100%;
+  grid-column: 1 / -1;
+}

@@ -21,11 +21,11 @@ const { category, date, title, titleTranslated, yearPublished } = item.data;
 
 <Layout backTo="notes" pageTitle={title}>
   <PostHeader>
-    <PostTitle>
-      <span class="block">{title}</span>
-      {titleTranslated}
+    <PostTitle class="flow">
+      <span class:list={["block", { chinese: titleTranslated }]}>{title}</span>
+      <span class="block">{titleTranslated}</span>
     </PostTitle>
-    <div class="flex gap-2">
+    <div class="flex">
       <WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo>
       ⋅
       <div>{yearPublished}, {category}</div>

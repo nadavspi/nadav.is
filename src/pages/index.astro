@@ -1,12 +1,6 @@
 ---
 import Layout from "@layouts/base.astro";
-import Nadav from "../content/photos/nadav-closet.jpg";
-import ThemeSwitcher from "@components/ThemeSwitcher.astro";
-import { Image } from "astro:assets";
-import navLinks from "@components/navLinks.js";
-
 import { getCollection } from "astro:content";
-import Item from "./notes/_item.astro";
 
 const writing = await getCollection("writing");
 const media = await getCollection("media");
@@ -14,82 +8,130 @@ const notes = await getCollection("notes");
 const items = [...writing, ...media, ...notes].sort(
   (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
 );
-const latest = items[0];
+
+const galleries = [...(await getCollection("photoGalleries"))].sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date),
+);
+const featuredGalleries = galleries.filter((gallery) =>
+  gallery.data.options?.includes("featured"),
+);
+const latestGalleries = galleries
+  .filter((gallery) => !gallery.data.options?.includes("featured"))
+  .slice(0, 2);
+
+const books = (await getCollection("books"))
+  .filter((book) => book.data.cover)
+  .sort(
+    (a, b) => Date.parse(b.data.date_created) - Date.parse(a.data.date_created),
+  );
+
+const jobYears = new Date().getFullYear() - 2014;
+
+import "../styles/home.css";
+import PhotoFeed from "@components/PhotoFeed.astro";
+import { makeHref } from "src/lib/slugs";
+
+import Items from "./notes/_items.astro";
+import BookFeed from "@components/BookFeed.astro";
+import FileById from "@components/directus/FileById.astro";
 ---
 
-<Layout noHeader={true} pageTitle="Nadav Spiegelman">
-  <header class="mb-4">
-    <ThemeSwitcher class="md:absolute top-2 right-4" />
-  </header>
-  <main
-    class:list={[
-      "xl:relative",
-      "xl:grid xl:grid-cols-3",
-      "xl:border-tumbleweed xl:dark:border-purple",
-      "xl:pb-12 xl:border-b-4",
-    ]}
-  >
-    <article
-      class:list={[
-        "xl:justify-self-end xl:mr-12 xl:col-span-2",
-        "xl:border-r-4 xl:pr-12 xl:py-6",
-        "border-tumbleweed dark:border-purple",
-      ]}
-    >
-      <h1
-        class="underline decoration-2 decoration-tumbleweed dark:decoration-purple"
-      >
-        Hello. I’m Nadav Spiegelman.
-      </h1>
-      <Image
-        src={Nadav}
-        alt="here I am"
-        class="md:max-w-[24rem] 2xl:max-w-[30rem] mb-6"
-      />
-
+<Layout noHeader={true} pageTitle="Nadav Spiegelman’s website">
+  <div class="flow">
+    <section class="tile">
+      <h1>Hello. I’m Nadav Spiegelman and this is my home on the web.</h1>
+    </section>
+    <article class="flow">
       <p>
-        I’m an artist & computer geek living in New York City.<br />
-        I make websites, photos, and sometimes music.<br />
-        I’m <a href="/notes/about">a person of many interests.</a>
+        I made <FileById id="002e5db4-f87b-4bb5-872f-a0ef7eb06fcc">
+          my first website
+        </FileById>
+        when I was 10 years old and haven't stopped. For the past {jobYears} years,
+        I've also been making them professionally as a front end developer, but I
+        don't want to talk about that here.
+      </p>
+      <p>
+        This website is for photos and for writing about my interests, which
+        include art, food, books, code, justice.
       </p>
     </article>
 
-    <nav
-      class:list={[
-        "mt-6 pt-6 max-w-80",
-        "xl:pt-0",
-        "border-t-4",
-        "border-tumbleweed dark:border-purple",
-        "xl:border-t-0",
-        "text-lg xl:text-3xl",
-      ]}
-    >
-      {
-        navLinks.map((link) => {
-          return (
-            <a class="block mb-2 lg:mb-3 xl:mb-6" href={link.href}>
-              {link.text}
-            </a>
-          );
-        })
-      }
-    </nav>
-  </main>
-  <footer
-    class:list={[
-      "mt-6 pt-6 max-w-80",
-      "xl:pt-0 xl:mt-4 xl:max-w-none",
-      "border-t-4",
-      "border-tumbleweed dark:border-purple",
-      "xl:border-t-0",
-      "xl:flex justify-between items-center gap-2",
-    ]}
-  >
-    <div class="mb-2 xl:mb-0 xl:order-last">
-      Want to talk? <a href="mailto:hello@nadav.is">hello@nadav.is</a>
-    </div>
-    <a class="text-sm md:text-xs" href="https://github.com/nadavspi/nadav.is">
-      View website source
-    </a>
-  </footer>
+    <section class="tile">
+      <div class="photos">
+        <h2><a href={makeHref("photoGalleries")}>Photography</a></h2>
+
+        <div class="feeds | flow-large">
+          <div class="feed-group | flow">
+            <h4>Featured</h4>
+            {featuredGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
+          </div>
+
+          <div class="feed-group | flow">
+            <h4>Latest</h4>
+
+            {latestGalleries.map((gallery) => <PhotoFeed id={gallery.id} />)}
+          </div>
+
+          <a class="view-all" href={makeHref("photoGalleries")}
+            >View all photo galleries →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="tile">
+      <div class="notes | flow" transition:name="notes">
+        <h2><a href="/notes">Notes</a></h2>
+
+        <div>
+          <h4>Latest</h4>
+          <Items items={items.slice(0, 3)} />
+
+          <a class="view-all" href={makeHref("notes")}>View all notes →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tile">
+      <div class="reading | flow" transition:name="reading">
+        <h2><a href={makeHref("books")}>Reading</a></h2>
+
+        <BookFeed
+          appendViewAll
+          books={books.slice(0, 15).map((book) => book.data)}
+          noDetails
+        />
+        <a class="view-all" href={makeHref("books")}>View all books →</a>
+      </div>
+    </section>
+  </div>
 </Layout>
+
+<style>
+  h1 {
+    max-width: 16em;
+    line-height: 1.6;
+  }
+
+  .photos {
+    --flow-space: var(--space-xl);
+
+    h2 {
+      margin-block-end: var(--space-l);
+    }
+
+    .flow {
+      --flow-space: var(--flow-space--default);
+    }
+  }
+
+  .view-all {
+    display: inline-block;
+    margin-block-start: var(--space-m);
+  }
+
+  .books-list {
+    list-style-type: none;
+    display: flex;
+  }
+</style>

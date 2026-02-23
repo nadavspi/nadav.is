@@ -1,0 +1,40 @@
+:root {
+  --flow-space--default: var(--space-m);
+}
+
+[class*='flow']>*+*,
+[class*='flow']>*+script+*,
+[class*='flow']>*+:where(astro-island, astro-slot)>*,
+figure>*+* {
+  display: block;
+  margin-block-start: var(--flow-space, var(--flow-space--default));
+}
+
+.flow-small {
+  --flow-space: var(--space-xs);
+}
+
+.flow-default {
+  --flow-space: --flow-space--default;
+}
+
+.flow-large>*+* {
+  margin-block-start: var(--space-xl);
+}
+
+.flow>*+table {
+  margin-block-start: var(--space-m);
+}
+
+:is(h1, h2, h3, blockquote) {
+  --flow-space: 1.4em;
+}
+
+:is(h3, h4)+* {
+  --flow-space: .5em;
+  margin-block-start: 0.5em;
+}
+
+h1+* {
+  margin-block-start: var(--space-m-l);
+}

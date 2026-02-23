@@ -1,0 +1,79 @@
+---
+interface Props {
+  appendViewAll?: boolean;
+  books: Book[];
+  class?: string;
+  noDetails?: boolean;
+}
+
+import type { Book } from "src/types/directus-schema";
+import FileById from "./directus/FileById.astro";
+
+import "../styles/blocks/feed.css";
+import { makeHref } from "src/lib/slugs";
+
+const { books, noDetails, appendViewAll } = Astro.props;
+---
+
+<ol class:list={["feed | no-measure", Astro.props.class]}>
+  {
+    books.map((book) => {
+      return (
+        <li class="book">
+          {book.cover && (
+            <a class="flow-small" href={makeHref("books", book.slug)}>
+              <FileById
+                id={book.cover as string}
+                galleryId="books"
+                disableLightbox
+              />
+              {!noDetails && (
+                <header>
+                  <div>{book.title}</div>
+                  <span class="author">{book.author}</span>
+                </header>
+              )}
+            </a>
+          )}
+        </li>
+      );
+    })
+  }
+  {
+    appendViewAll && (
+      <li class="contains-view-all">
+        <a class="view-all" href={makeHref("books")}>
+          <span>View all books →</span>
+        </a>
+      </li>
+    )
+  }
+</ol>
+
+<style>
+  .book {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  header {
+    font-size: var(--size-step--1);
+    max-inline-size: 10em;
+  }
+
+  .author {
+    font-size: var(--size-step--2);
+  }
+
+  .contains-view-all {
+    display: flex;
+  }
+
+  .view-all {
+    display: grid;
+    place-items: center;
+    padding: var(--space-s);
+    border: var(--border-width-thin) solid var(--border);
+  }
+</style>

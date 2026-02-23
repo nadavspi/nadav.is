@@ -1,16 +1,113 @@
 ---
-import { Image } from "astro:assets";
+interface Props {
+  disableLightbox?: boolean;
+  file: DirectusFile;
+  galleryId?: string;
+}
+
 import type { DirectusFile } from "@directus/sdk";
-const file: DirectusFile = Astro.props.file;
+
+import { Image } from "astro:assets";
+const { disableLightbox, file, galleryId } = Astro.props;
+
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+const image = {
+  ...file,
+  // @ts-ignore
+  height: file.data?.height || file.height,
+  src: `${import.meta.env.DIRECTUS_URL}/assets/${file.id}`,
+  // depends on whether the file is from the content collection
+  // or from a directus block
+  // @ts-ignore
+  width: file.data?.width || file.width,
+};
 ---
 
 {
-  file && file.width && file.height && (
+  disableLightbox && image && image.width && image.height && (
     <Image
-      src={`${import.meta.env.DIRECTUS_URL}/assets/${file.id}`}
-      alt={file.description || ""}
-      width={file.width}
-      height={file.height}
+      alt={image.title || ""}
+      height={image.height}
+      src={image.src}
+      width={image.width}
     />
   )
 }
+
+{
+  !disableLightbox && image && image.width && image.height && (
+    <a
+      data-fancybox={galleryId || "gallery"}
+      href={image.src}
+      style={`--width: ${image.width}; --height: ${image.height};`}
+    >
+      <slot name="content">
+        <Image
+          alt={image.title || ""}
+          height={image.height}
+          src={image.src}
+          width={image.width}
+        />
+      </slot>
+    </a>
+  )
+}
+
+<script>
+  import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+  const bind = () => {
+    const isDarkMode = document
+      .querySelector("html")
+      ?.classList.contains("dark");
+
+    Fancybox.bind("[data-fancybox]", {
+      Carousel: {
+        Arrows: false,
+        Autoplay: {
+          timeout: "5000",
+        },
+        Thumbs: {
+          type: "classic",
+        },
+        Toolbar: {
+          absolute: false,
+          display: {
+            left: ["counter"],
+            middle: [],
+            right: ["fullscreen", "thumbs", "autoplay", "close"],
+          },
+        },
+      },
+      mainStyle: {
+        "--f-thumb-border-radius": "0",
+        "--f-thumb-selected-border":
+          "var(--border-width-thin) solid var(--border)",
+        "--f-thumb-selected-shadow": "none",
+      },
+      theme: isDarkMode ? "dark" : "light",
+    });
+  };
+
+  const unbind = () => {
+    Fancybox.unbind("[data-fancybox]");
+  };
+
+  document.addEventListener("theme-switch", () => {
+    unbind();
+    bind();
+  });
+  document.addEventListener("astro:page-load", () => {
+    bind();
+  });
+</script>
+
+<style is:global>
+  .f-thumbs__slide:not(.is-selected) {
+    opacity: 0.7;
+  }
+
+  .f-thumbs__slide button::after {
+    inset: -3px;
+  }
+</style>
