@@ -64,7 +64,7 @@ const sortedYears = Object.keys(booksByYear).sort(
                   <li>
                     <a
                       href={href}
-                      class:list={[{ active: href === Astro.url.pathname }]}
+                      aria-current={href === Astro.url.pathname || undefined}
                     >
                       <div>{book.title}</div>
                       <div class="author">{book.author}</div>
