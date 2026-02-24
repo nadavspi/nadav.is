@@ -68,8 +68,10 @@ const latestGalleries = galleries.filter(
             return (
               <li>
                 <a
-                  class:list={[{ active: href === Astro.url.pathname }]}
                   href={href}
+                  aria-current={
+                    href === Astro.url.pathname || undefined
+                  }
                 >
                   {gallery.data.title}
                 </a>
@@ -86,8 +88,10 @@ const latestGalleries = galleries.filter(
             return (
               <li>
                 <a
-                  class:list={[{ active: href === Astro.url.pathname }]}
                   href={href}
+                  aria-current={
+                    href === Astro.url.pathname || undefined
+                  }
                 >
                   {gallery.data.title}
                 </a>
