@@ -45,7 +45,7 @@ const latestGalleries = galleries.filter(
 ---
 
 <Layout class="flow-large" pageTitle={title}>
-  <div class="tile">
+  <div class="tile" transition:name="photography">
     <PostHeader>
       <PostTitle>{title}</PostTitle>
       {subtitle && <h2>{subtitle}</h2>}
@@ -68,8 +68,10 @@ const latestGalleries = galleries.filter(
             return (
               <li>
                 <a
-                  class:list={[{ active: href === Astro.url.pathname }]}
                   href={href}
+                  aria-current={
+                    href === Astro.url.pathname || undefined
+                  }
                 >
                   {gallery.data.title}
                 </a>
@@ -86,8 +88,10 @@ const latestGalleries = galleries.filter(
             return (
               <li>
                 <a
-                  class:list={[{ active: href === Astro.url.pathname }]}
                   href={href}
+                  aria-current={
+                    href === Astro.url.pathname || undefined
+                  }
                 >
                   {gallery.data.title}
                 </a>

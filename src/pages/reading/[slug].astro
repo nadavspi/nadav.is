@@ -87,7 +87,7 @@ const sortedYears = Object.keys(booksByYear).sort(
           {author}
         </div>
         <time>
-          Created: <WrittenLongAgo date={book.date_created} />
+          Created: <WrittenLongAgo date={book.date_created} server:defer />
         </time>
       </header>
     </div>
