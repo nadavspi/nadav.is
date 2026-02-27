@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-02-12T23:50:45.092Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-02-27T03:52:14.839Z */
 export interface Block {
   id: string;
 }
@@ -73,6 +73,7 @@ export interface Book {
   slug: string;
   highlights: string[] | Highlight[];
   date_created: 'datetime';
+  options: Record<string, unknown>;
 }
 
 export interface Highlight {
@@ -146,6 +147,7 @@ export interface Tag {
 
 export interface DirectusFile {
   id: string;
+  caption: string;
   storage: string;
   filename_disk: string;
   filename_download: string;

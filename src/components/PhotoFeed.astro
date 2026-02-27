@@ -19,6 +19,8 @@ const href = makeHref("photoGalleries", data.slug);
 
 // @ts-ignore
 const isFeatured = data.options?.includes("featured");
+// @ts-ignore
+const showCaptions = data.options?.includes("showCaptions");
 ---
 
 <div class="feed-container">
@@ -31,7 +33,7 @@ const isFeatured = data.options?.includes("featured");
     {
       data.files.map((file) => (
         <li>
-          <FileById galleryId={data.title} id={file.directus_files_id} />
+          <FileById galleryId={data.title} id={file.directus_files_id} showCaptions={showCaptions} />
         </li>
       ))
     }

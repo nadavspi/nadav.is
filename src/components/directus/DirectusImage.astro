@@ -1,27 +1,27 @@
 ---
 interface Props {
   disableLightbox?: boolean;
-  file: DirectusFile;
+  file: object;
   galleryId?: string;
+  showCaptions?: boolean;
 }
 
-import type { DirectusFile } from "@directus/sdk";
-
 import { Image } from "astro:assets";
-const { disableLightbox, file, galleryId } = Astro.props;
+const { disableLightbox, galleryId, file, showCaptions } = Astro.props;
 
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import type { DirectusFile } from "src/types/directus-schema";
 
 const image = {
-  ...file,
-  // @ts-ignore
-  height: file.data?.height || file.height,
-  src: `${import.meta.env.DIRECTUS_URL}/assets/${file.id}`,
   // depends on whether the file is from the content collection
   // or from a directus block
   // @ts-ignore
-  width: file.data?.width || file.width,
-};
+  ...(file.data ?? file),
+  // @ts-ignore
+  src: `${import.meta.env.DIRECTUS_URL}/assets/${file.id}`,
+} as DirectusFile & { src: string };
+
+const Wrapper = showCaptions ? "figure" : Fragment;
 ---
 
 {
@@ -40,15 +40,19 @@ const image = {
     <a
       data-fancybox={galleryId || "gallery"}
       href={image.src}
+      class="focus-outline"
       style={`--width: ${image.width}; --height: ${image.height};`}
     >
       <slot name="content">
-        <Image
-          alt={image.title || ""}
-          height={image.height}
-          src={image.src}
-          width={image.width}
-        />
+        <Wrapper>
+          <Image
+            alt={image.title || ""}
+            height={image.height}
+            src={image.src}
+            width={image.width}
+          />
+          {showCaptions && <figcaption>{image.caption}</figcaption>}
+        </Wrapper>
       </slot>
     </a>
   )
@@ -109,5 +113,37 @@ const image = {
 
   .f-thumbs__slide button::after {
     inset: -3px;
+  }
+</style>
+
+<style>
+  a {
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+      color: inherit;
+    }
+  }
+
+  figure {
+    display: grid;
+    grid-template: "container";
+    place-items: center;
+    place-content: center;
+  }
+
+  figure > * {
+    grid-area: container;
+  }
+
+  figcaption {
+    place-self: end right;
+    border-block-end: none;
+    margin: var(--space-2xs);
+    padding: var(--space-2xs) var(--space-xs);
+    font-family: var(--sans);
+    background-color: oklch(from var(--background) l c h / 80%);
   }
 </style>

@@ -7,9 +7,10 @@ interface Props {
   disableLightbox?: boolean;
   galleryId?: string;
   id: string;
+  showCaptions?: boolean;
 }
 
-const { galleryId, id, disableLightbox } = Astro.props;
+const { galleryId, id, disableLightbox, showCaptions } = Astro.props;
 const file = await getEntry("files", id);
 
 const hasChildren = Astro.slots.has("default");
@@ -22,6 +23,7 @@ const hasChildren = Astro.slots.has("default");
       file={file}
       galleryId={galleryId}
       disableLightbox={disableLightbox}
+      showCaptions={showCaptions}
     >
       <slot slot={hasChildren && "content"} />
     </DirectusImage>
