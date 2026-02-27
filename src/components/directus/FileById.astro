@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 
-import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+import DirectusImage from "./DirectusImage.astro";
 
 interface Props {
   disableLightbox?: boolean;
@@ -18,12 +18,12 @@ const hasChildren = Astro.slots.has("default");
 
 {
   file && (
-    <DirectusFileRenderer
+    <DirectusImage
       file={file}
       galleryId={galleryId}
       disableLightbox={disableLightbox}
     >
       <slot slot={hasChildren && "content"} />
-    </DirectusFileRenderer>
+    </DirectusImage>
   )
 }
