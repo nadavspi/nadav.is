@@ -1,7 +1,7 @@
 ---
 import { getEntries } from "astro:content";
 import type { BlockGrid } from "src/types/directus-schema";
-import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+import DirectusImage from "./DirectusImage.astro";
 import Grid from "@components/Grid.astro";
 
 const grid: BlockGrid = Astro.props.grid;
@@ -21,7 +21,7 @@ const showCaptions = options.includes("captions");
     files.map((file) => {
       return (
         <figure class="flow">
-          <DirectusFileRenderer file={file.data} />
+          <DirectusImage file={file.data} />
           {showCaptions && (
             <figcaption>
               {file.data.description}

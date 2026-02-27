@@ -2,7 +2,7 @@
 import type { DirectusFile } from "@directus/sdk";
 import { getEntry } from "astro:content";
 import type { BlockPhoto } from "src/types/directus-schema";
-import DirectusFileRenderer from "./DirectusFileRenderer.astro";
+import DirectusImage from "./DirectusImage.astro";
 
 const photo: BlockPhoto = Astro.props.photo;
 // @ts-ignore
@@ -11,4 +11,4 @@ const file = await getEntry("files", photo.image);
 const data: DirectusFile = file?.data;
 ---
 
-{data && data.width && data.height && <DirectusFileRenderer file={data} />}
+{data && data.width && data.height && <DirectusImage file={data} />}
