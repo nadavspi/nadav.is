@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const item: PhotoGallery = Astro.props.item.data;
-const { blocks, date, subtitle, title } = item;
+const { blocks, date, subtitle, title, status } = item;
 
 const description = ((): BlockMarkdown | null => {
   if (!item.description) {
@@ -45,6 +45,7 @@ const latestGalleries = galleries.filter(
 ---
 
 <Layout class="flow-large" pageTitle={title}>
+  {status !== "published" && <h4>Status: {status}</h4>}
   <div class="tile" transition:name="photography">
     <PostHeader>
       <PostTitle>{title}</PostTitle>
@@ -69,9 +70,7 @@ const latestGalleries = galleries.filter(
               <li>
                 <a
                   href={href}
-                  aria-current={
-                    href === Astro.url.pathname || undefined
-                  }
+                  aria-current={href === Astro.url.pathname || undefined}
                 >
                   {gallery.data.title}
                 </a>
@@ -89,9 +88,7 @@ const latestGalleries = galleries.filter(
               <li>
                 <a
                   href={href}
-                  aria-current={
-                    href === Astro.url.pathname || undefined
-                  }
+                  aria-current={href === Astro.url.pathname || undefined}
                 >
                   {gallery.data.title}
                 </a>
