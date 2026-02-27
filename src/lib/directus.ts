@@ -10,6 +10,12 @@ import type { ApiCollections } from "../types/directus-schema.ts";
 
 const { DIRECTUS_PASSWORD, DIRECTUS_URL, DIRECTUS_USER } = import.meta.env;
 
+const published = process.env.NODE_ENV === "development" ? {} : {
+  status: {
+    _eq: "published",
+  },
+};
+
 const initDirectus = async () => {
   const directus = createDirectus<ApiCollections>(DIRECTUS_URL)
     .with(authentication())
@@ -37,12 +43,11 @@ export const getPhotoGalleries = async () => {
         "options",
         "slug",
         "title",
+        "status",
         { files: ["directus_files_id"] },
       ],
       filter: {
-        status: {
-          _eq: "published",
-        },
+        ...published,
       },
     }),
   );
@@ -64,16 +69,13 @@ export const getBooks = async () => {
         { highlights: ["id", "content", "note"] },
       ],
       filter: {
-        status: {
-          _eq: "published",
-        },
+        ...published,
       },
       limit: -1,
     }),
   );
 };
 export type Book = Awaited<ReturnType<typeof getBooks>>;
-
 
 export const getNotes = async (params?: {}) => {
   const directus = await getDirectusClient();
@@ -106,6 +108,9 @@ export const getNotes = async (params?: {}) => {
           ],
         },
       ],
+      filter: {
+        ...published,
+      },
       ...params,
     }),
   );
