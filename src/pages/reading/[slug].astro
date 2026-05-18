@@ -100,21 +100,25 @@ const sortedYears = Object.keys(booksByYear).sort(
     }
   </div>
 
-  <article class="flow-large">
-    <h2>My {highlights.length} {plur("highlight", highlights.length)}</h2>
-    <ul class="highlights | flow-large" role="list">
-      {
-        highlights.map((highlight) => (
-          <li class="flow-small">
-            <blockquote>{highlight.content}</blockquote>
-            {highlight.note && (
-              <aside class="small">Reader's note: {highlight.note}</aside>
-            )}
-          </li>
-        ))
-      }
-    </ul>
-  </article>
+  {
+    highlights.length > 0 && (
+      <article class="flow-large">
+        <h2>
+          My {highlights.length} {plur("highlight", highlights.length)}
+        </h2>
+        <ul class="highlights | flow-large" role="list">
+          {highlights.map((highlight) => (
+            <li class="flow-small">
+              <blockquote>{highlight.content}</blockquote>
+              {highlight.note && (
+                <aside class="small">Reader's note: {highlight.note}</aside>
+              )}
+            </li>
+          ))}
+        </ul>
+      </article>
+    )
+  }
 </Layout>
 
 <style>
