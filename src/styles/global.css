@@ -215,7 +215,7 @@ a {
   }
 
   &:hover,
-  &:focus,
+  &:focus-visible:not(.focus-outline),
   &:active {
     color: var(--color-tumbleweed-600);
   }
@@ -228,6 +228,7 @@ a {
 }
 
 figcaption {
+  font-family: var(--sans);
   font-size: var(--size-step--1);
   border-block-end: 3px solid var(--border);
   padding-block-end: var(--space-s);

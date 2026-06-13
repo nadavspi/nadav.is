@@ -17,8 +17,11 @@ const data = gallery?.data as PhotoGallery;
 <section class="photo-grid">
   {
     data.files.map((file) => (
-      <FileById galleryId={data.title} id={file.directus_files_id} />
+      <FileById
+        galleryId={data.title}
+        id={file.directus_files_id}
+        showCaptions={data.options?.includes("showCaptions")}
+      />
     ))
   }
 </section>
-
