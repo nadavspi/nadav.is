@@ -41,7 +41,7 @@
     "biome": "^0.3.3",
     "directus-typeforge": "^0.16.3",
     "eslint": "^9.39.2",
-    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-astro": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-perfectionist": "^5.4.0",
     "globals": "^17.1.0",
