@@ -15,7 +15,7 @@
     "@astrojs/mdx": "^4.0.8",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/vercel": "^8.1.3",
-    "@directus/sdk": "^18.0.3",
+    "@directus/sdk": "^24.0.0",
     "@fancyapps/ui": "^6.1.8",
     "@shikijs/rehype": "^3.11.0",
     "@types/react": "^18.2.55",
