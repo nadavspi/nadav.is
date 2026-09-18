@@ -7,8 +7,10 @@
     max-inline-size: 80em;
 
     a {
-      flex-grow: calc(var(--width) * (100000 / var(--height)));
-      flex-basis: calc(var(--min-height) * (var(--width) / var(--height)));
       aspect-ratio: var(--width) / var(--height);
+
+      @media (min-width: 800px) {
+        flex-basis: calc(var(--min-height) * (var(--width) / var(--height)));
+      }
     }
   }
