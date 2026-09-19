@@ -39,7 +39,7 @@
     "@eslint/js": "^9.39.2",
     "@types/node": "^25.3.2",
     "biome": "^0.3.3",
-    "directus-typeforge": "^0.16.3",
+    "directus-typeforge": "^0.19.0",
     "eslint": "^9.39.2",
     "eslint-plugin-astro": "^1.5.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -49,7 +49,7 @@
     "jiti": "^2.6.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
-    "sharp": "^0.33.2",
+    "sharp": "^0.35.0",
     "typescript": "^5.3.3",
     "typescript-eslint": "^8.53.1"
   },
