@@ -55,7 +55,7 @@ const latestGalleries = galleries.filter(
   </div>
 
   {description && <BlockMarkdownRenderer block={description} />}
-  {blocks && <DirectusBlocks item={item} />}
+  {blocks && <DirectusBlocks item={Astro.props.item} />}
 
   <PhotoGrid id={item.id} />
 

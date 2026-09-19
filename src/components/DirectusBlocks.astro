@@ -3,17 +3,19 @@ import type {
   BlockGrid,
   BlockMarkdown,
   BlockPhoto,
+  BlockPhotoCollection,
   BlockRichtext,
-  Note,
 } from "src/types/directus-schema";
 import BlockPhotoRenderer from "./directus/BlockPhotoRenderer.astro";
 import BlockGridRenderer from "./directus/BlockGridRenderer.astro";
 import BlockMarkdownRenderer from "./directus/BlockMarkdownRenderer.astro";
-const note: Note = Astro.props.item.data;
+import FileById from "./directus/FileById.astro";
+
+const { blocks } = Astro.props.item.data;
 ---
 
 {
-  note.blocks.map((block) => {
+  blocks.map((block) => {
     const { collection, item } = block;
 
     if (collection === "block_richtext") {
@@ -28,6 +30,21 @@ const note: Note = Astro.props.item.data;
 
     if (collection === "block_photo") {
       return <BlockPhotoRenderer photo={item as BlockPhoto} />;
+    }
+
+    if (collection === "block_photo_collection") {
+      const block = item as BlockPhotoCollection;
+
+      return (
+        <div>
+          <h2>{block.title}</h2>
+          <section class="photo-grid">
+            {block.files.map((file) => (
+              <FileById galleryId={block.title} id={file.directus_files_id} />
+            ))}
+          </section>
+        </div>
+      );
     }
 
     if (collection === "block_grid") {

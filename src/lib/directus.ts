@@ -10,11 +10,14 @@ import type { ApiCollections } from "../types/directus-schema.ts";
 
 const { DIRECTUS_PASSWORD, DIRECTUS_URL, DIRECTUS_USER } = import.meta.env;
 
-const published = process.env.NODE_ENV === "development" ? {} : {
-  status: {
-    _eq: "published",
-  },
-};
+const published =
+  process.env.NODE_ENV === "development"
+    ? {}
+    : {
+        status: {
+          _eq: "published",
+        },
+      };
 
 const initDirectus = async () => {
   const directus = createDirectus<ApiCollections>(DIRECTUS_URL)
@@ -32,7 +35,20 @@ export const getDirectusClient = async () => {
   return directusClient;
 };
 
-export const getPhotoGalleries = async () => {
+const blocks = [
+  "collection",
+  {
+    item: {
+      block_grid: [{ files: ["directus_files_id"] }, "options", "columns"],
+      block_markdown: ["*"],
+      block_photo: ["image"],
+      block_richtext: ["*"],
+      block_photo_collection: ["title", { files: ["directus_files_id"] }],
+    },
+  },
+];
+
+export const getPhotoGalleries = async (params?: {}) => {
   const directus = await getDirectusClient();
   return await directus.request(
     readItems("photo_galleries", {
@@ -45,6 +61,7 @@ export const getPhotoGalleries = async () => {
         "title",
         "status",
         { files: ["directus_files_id"] },
+        { blocks },
       ],
       filter: {
         ...published,
@@ -83,30 +100,7 @@ export const getNotes = async (params?: {}) => {
     readItems("notes", {
       fields: [
         "*",
-        {
-          blocks: [
-            "collection",
-            {
-              item: {
-                block_grid: [
-                  { files: ["directus_files_id"] },
-                  "options",
-                  "columns",
-                ],
-                block_markdown: ["*"],
-                block_photo: ["image"],
-                block_richtext: ["*"],
-              },
-            },
-          ],
-          cover: ["id", "width", "height", "description"], //
-          tags: [
-            "id",
-            {
-              tags_id: ["id", "title", "slug"],
-            },
-          ],
-        },
+        { blocks },
       ],
       filter: {
         ...published,
