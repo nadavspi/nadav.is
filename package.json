@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "op run --env-file=./.env -- astro dev",
+    "build:local": "op run --env-file=./.env -- astro build",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
