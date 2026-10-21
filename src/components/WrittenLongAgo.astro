@@ -2,15 +2,62 @@
 import { formatDistanceToNow } from "date-fns";
 
 interface Props {
+  class?: string;
   date: Date | string;
-  class?: String;
 }
 
 const { class: className, date } = Astro.props;
+const iso = new Date(date).toISOString();
 const longAgo = formatDistanceToNow(date, { addSuffix: true });
 const capitalized = [...longAgo][0].toUpperCase() + longAgo.slice(1);
 ---
- 
-<span class:list={[className]}>
+
+<time
+  class:list={[className]}
+  data-relative-date
+  datetime={iso}
+>
   {capitalized}
-</span>
+</time>
+
+<script>
+  import init from "../lib/init";
+
+  const units = [
+    ["year", 1000 * 60 * 60 * 24 * 365],
+    ["month", 1000 * 60 * 60 * 24 * 30],
+    ["week", 1000 * 60 * 60 * 24 * 7],
+    ["day", 1000 * 60 * 60 * 24],
+    ["hour", 1000 * 60 * 60],
+    ["minute", 1000 * 60],
+    ["second", 1000],
+  ] as const;
+
+  const formatter = new Intl.RelativeTimeFormat(undefined, {
+    numeric: "auto",
+  });
+
+  const updateRelativeDates = () => {
+    for (const element of document.querySelectorAll<HTMLTimeElement>(
+      "[data-relative-date]",
+    )) {
+      const datetime = element.getAttribute("datetime");
+      if (!datetime) {
+        continue;
+      }
+
+      const difference = new Date(datetime).getTime() - Date.now();
+      const [unit, duration] =
+        units.find(([, duration]) => Math.abs(difference) >= duration) ??
+        units[units.length - 1];
+      const relative = formatter.format(
+        Math.round(difference / duration),
+        unit,
+      );
+
+      element.textContent = relative.charAt(0).toUpperCase() + relative.slice(1);
+    }
+  };
+
+  init(updateRelativeDates);
+</script>
