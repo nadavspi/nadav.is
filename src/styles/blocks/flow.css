@@ -2,7 +2,7 @@
   --flow-space--default: var(--space-m);
 }
 
-[class*='flow']>*+*,
+[class*='flow']>*+*:not(script),
 [class*='flow']>*+script+*,
 [class*='flow']>*+:where(astro-island, astro-slot)>*,
 figure>*+* {
