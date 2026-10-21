@@ -45,7 +45,7 @@ const items = [...writing, ...media, ...notes].sort(
     <header class="flow">
       <h1>{title}</h1>
       {subtitle}
-      <time><WrittenLongAgo date={date} server:defer>Loading...</WrittenLongAgo></time>
+      <WrittenLongAgo date={date} />
     </header>
   </div>
 

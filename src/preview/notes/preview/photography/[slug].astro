@@ -1,12 +1,12 @@
 ---
-import { getNotes } from "src/lib/directus";
-import Page from "../[slug].astro";
+import { getPhotoGalleries } from "src/lib/directus";
+import Page from "../../../../pages/photography/[slug].astro";
 
 export const prerender = false;
 
 const { slug } = Astro.params;
 
-const items = await getNotes({
+const items = await getPhotoGalleries({
   filter: {
     slug: {
       _eq: slug,
